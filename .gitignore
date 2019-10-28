@@ -1,0 +1,16 @@
+data/Baselinestudie_vwo456.csv
+data/cleanedBaseline.rds
+data/cleanedProductfeedback.rds
+data/data_interventie_vwo4.csv
+data/Dataset procesfeedback 2019.xlsx
+data/Dataset productfeedback 2019.csv
+data/Dataset productfeedback 2019.xlsx
+.Rproj.user/*
+*.rds
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.tdo
+..gitignore.kate-swp

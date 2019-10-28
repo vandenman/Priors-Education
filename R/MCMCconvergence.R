@@ -1,0 +1,146 @@
+rm(list = ls())
+
+library(dplyr)
+library(ggplot2)
+library(colorspace)
+source("R/utils.R")
+
+# baseline ----
+samplesArray <- readRDS("results/samplesArrayBaseline.rds")
+
+# skip temp intercept
+idxTempInt <- dimnames(samplesArray)[[3L]] == "temp_Intercept"
+samplesArray <- samplesArray[, , !idxTempInt]
+
+# trace plots of MCMC convergence ----
+colnames(samplesArray) <- 1:ncol(samplesArray)
+dat <- as.data.frame.table(samplesArray, base = "iter")
+dat$iterations <- seq_len(dim(samplesArray)[1L])
+
+
+# let's only visualize the first 10000 iterations after warmup
+nIter <- 1e4
+dat2 <- dat[dat$iter <= nIter, ]
+
+dat2$parameters <- recode(dat2$parameters,
+  "b[1]"        = "Grade~11",
+  "b[2]"        = "Grade~12",
+  "sigma"       = "sigma[epsilon]",
+  "sd_SI"       = "sigma[s]",
+  "sd_SI:PI"    = "sigma[p]",
+  "sd_TI"       = "sigma[t]",
+  "b_Intercept" = "Intercept"
+)
+
+graphTrace <- ggplot(data = dat2, aes(x = iterations, y = Freq, group = chains, color = chains)) +
+  geom_line(alpha = .8) +
+  scale_color_viridis_d() +
+  scale_x_continuous(breaks = c(1, nIter / 2, nIter)) +
+  facet_wrap(~parameters, scales = "free", labeller = label_parsed) +
+  labs(x = "Iteration", y = "Value of Posterior Sample") +
+  theme_bw(base_size = 24)
+
+saveFigure("baselineTraceplots.pdf", graphTrace, 10, 10)
+
+# autocorrelation
+noLags <- 20
+autocor <- tapply(dat$Freq, list(dat$parameters, dat$chains),
+                  function(x) acf(x, plot = FALSE, lag.max = noLags)$acf[, , 1])
+
+datAcf <- tibble(
+  # drop the zero lag, which is 1 by definition
+  acf        = unlist(lapply(autocor, `[`, -1L)),
+  lag        = rep(seq_len(noLags), prod(dim(autocor))),
+  chain      = factor(rep(1:ncol(autocor), each = noLags * nrow(autocor))),
+  parameters = factor(rep(rep(rownames(autocor), each = noLags), 3))
+)
+
+datAcf$parameters <- recode(datAcf$parameters,
+  "b[1]"        = "Grade~11",
+  "b[2]"        = "Grade~12",
+  "sigma"       = "sigma[epsilon]",
+  "sd_SI"       = "sigma[s]",
+  "sd_SI:PI"    = "sigma[p]",
+  "sd_TI"       = "sigma[t]",
+  "b_Intercept" = "Intercept"
+)
+
+graphAcf <- ggplot(data = datAcf, aes(x = lag, y = acf, group = chain, color = chain)) +
+  geom_line(alpha = .8) +
+  scale_color_viridis_d() +
+  facet_wrap(~parameters, scales = "free", labeller = label_parsed) +
+  labs(x = "Iteration", y = "Autocorrelation") +
+  theme_bw(base_size = 24)
+
+saveFigure("baselineAutocorrelationplots.pdf", graphAcf, 10, 10)
+
+# TODO: combine plots with shared legend?
+
+# product ----
+samplesArray <- readRDS("results/samplesArrayProduct.rds")
+
+# skip temp intercept
+idxTempInt <- dimnames(samplesArray)[[3L]] == "temp_Intercept"
+samplesArray <- samplesArray[, , !idxTempInt]
+
+# trace plots of MCMC convergence ----
+colnames(samplesArray) <- 1:ncol(samplesArray)
+dat <- as.data.frame.table(samplesArray, base = "iter")
+dat$iterations <- seq_len(dim(samplesArray)[1L])
+
+
+# let's only visualize the first 10000 iterations after warmup
+nIter <- 1e4
+dat2 <- dat[dat$iter <= nIter, ]
+
+dat2$parameters <- recode(dat2$parameters,
+  "b[1]"        = "Grade~11",
+  "b[2]"        = "Grade~12",
+  "sigma"       = "sigma[epsilon]",
+  "sd_SI"       = "sigma[s]",
+  "sd_SI:PI"    = "sigma[p]",
+  "sd_TI"       = "sigma[t]",
+  "b_Intercept" = "Intercept"
+)
+
+graphTrace <- ggplot(data = dat2, aes(x = iterations, y = Freq, group = chains, color = chains)) +
+  geom_line(alpha = .8) +
+  scale_color_viridis_d() +
+  scale_x_continuous(breaks = c(1, nIter / 2, nIter)) +
+  facet_wrap(~parameters, scales = "free", labeller = label_parsed) +
+  labs(x = "Iteration", y = "Value of Posterior Sample") +
+  theme_bw(base_size = 24)
+
+saveFigure("productTraceplots.pdf", graphTrace, 10, 10)
+
+# autocorrelation
+noLags <- 20
+autocor <- tapply(dat$Freq, list(dat$parameters, dat$chains),
+                  function(x) acf(x, plot = FALSE, lag.max = noLags)$acf[, , 1])
+
+datAcf <- tibble(
+  # drop the zero lag, which is 1 by definition
+  acf        = unlist(lapply(autocor, `[`, -1L)),
+  lag        = rep(seq_len(noLags), prod(dim(autocor))),
+  chain      = factor(rep(1:ncol(autocor), each = noLags * nrow(autocor))),
+  parameters = factor(rep(rep(rownames(autocor), each = noLags), 3))
+)
+
+datAcf$parameters <- recode(datAcf$parameters,
+  "b[1]"        = "Grade~11",
+  "b[2]"        = "Grade~12",
+  "sigma"       = "sigma[epsilon]",
+  "sd_SI"       = "sigma[s]",
+  "sd_SI:PI"    = "sigma[p]",
+  "sd_TI"       = "sigma[t]",
+  "b_Intercept" = "Intercept"
+)
+
+graphAcf <- ggplot(data = datAcf, aes(x = lag, y = acf, group = chain, color = chain)) +
+  geom_line(alpha = .8) +
+  scale_color_viridis_d() +
+  facet_wrap(~parameters, scales = "free", labeller = label_parsed) +
+  labs(x = "Iteration", y = "Autocorrelation") +
+  theme_bw(base_size = 24)
+
+saveFigure("productAutocorrelationplots.pdf", graphAcf, 10, 10)

@@ -1,0 +1,312 @@
+ \newcommand{\noop}[1]{}
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Benjamin%
+\ \protect \BOthers {.}}{%
+Benjamin%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+BenjaminEtAl2018}
+\APACinsertmetastar {%
+BenjaminEtAl2018}%
+\begin{APACrefauthors}%
+Benjamin, D\BPBI J.%
+, Berger, J\BPBI O.%
+, Johannesson, M.%
+, Nosek, B\BPBI A.%
+, Wagenmakers, E\BHBI J.%
+, Berk, R.%
+\BDBL {}Johnson, V\BPBI E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Redefine Statistical Significance} {Redefine statistical
+  significance}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Nature Human Behaviour}{2}{}{6--10}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Bouwer%
+, B{\'e}guin%
+, Sanders%
+\BCBL {}\ \BBA {} Van~den Bergh%
+}{%
+Bouwer%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+bouwer2015effect}
+\APACinsertmetastar {%
+bouwer2015effect}%
+\begin{APACrefauthors}%
+Bouwer, R.%
+, B{\'e}guin, A.%
+, Sanders, T.%
+\BCBL {}\ \BBA {} Van~den Bergh, H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Effect of genre on the generalizability of writing
+  scores} {Effect of genre on the generalizability of writing scores}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Language Testing}{32}{1}{83--100}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Bürkner%
+}{%
+Bürkner%
+}{%
+{\protect \APACyear {2017}}%
+}]{%
+burkner2017brms}
+\APACinsertmetastar {%
+burkner2017brms}%
+\begin{APACrefauthors}%
+Bürkner, P\BHBI C.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {{brms}: An {R} Package for {Bayesian} Multilevel Models
+  Using {Stan}} {{brms}: An {R} package for {Bayesian} multilevel models using
+  {Stan}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Statistical Software}{80}{1}{1--28}.
+\newblock
+\begin{APACrefDOI} \doi{10.18637/jss.v080.i01} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Carpenter%
+\ \protect \BOthers {.}}{%
+Carpenter%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+carpenter2017stan}
+\APACinsertmetastar {%
+carpenter2017stan}%
+\begin{APACrefauthors}%
+Carpenter, B.%
+, Gelman, A.%
+, Hoffman, M\BPBI D.%
+, Lee, D.%
+, Goodrich, B.%
+, Betancourt, M.%
+\BDBL {}Riddell, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Stan: A probabilistic programming language} {Stan: A
+  probabilistic programming language}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of statistical software}{76}{1}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Gelman%
+, Simpson%
+\BCBL {}\ \BBA {} Betancourt%
+}{%
+Gelman%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+gelman2017prior}
+\APACinsertmetastar {%
+gelman2017prior}%
+\begin{APACrefauthors}%
+Gelman, A.%
+, Simpson, D.%
+\BCBL {}\ \BBA {} Betancourt, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The prior can often only be understood in the context of
+  the likelihood} {The prior can often only be understood in the context of the
+  likelihood}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Entropy}{19}{10}{555}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Graham%
+\ \BBA {} Harris%
+}{%
+Graham%
+\ \BBA {} Harris%
+}{%
+{\protect \APACyear {2014}}%
+}]{%
+graham2014conducting}
+\APACinsertmetastar {%
+graham2014conducting}%
+\begin{APACrefauthors}%
+Graham, S\BPBI E.%
+\BCBT {}\ \BBA {} Harris, K\BPBI R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Conducting high quality writing intervention research:
+  Twelve recommendations} {Conducting high quality writing intervention
+  research: Twelve recommendations}.{\BBCQ}
+\newblock
+
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Lynch%
+}{%
+Lynch%
+}{%
+{\protect \APACyear {2007}}%
+}]{%
+Lynch2007}
+\APACinsertmetastar {%
+Lynch2007}%
+\begin{APACrefauthors}%
+Lynch, S\BPBI M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2007}.
+\newblock
+\APACrefbtitle {Introduction to Applied {B}ayesian Statistics and Estimation
+  for Social Scientists} {Introduction to applied {B}ayesian statistics and
+  estimation for social scientists}.
+\newblock
+\APACaddressPublisher{New York}{Springer}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+McShane%
+, Gal%
+, Gelman%
+, Robert%
+\BCBL {}\ \BBA {} Tackett%
+}{%
+McShane%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+McShane2017abandon}
+\APACinsertmetastar {%
+McShane2017abandon}%
+\begin{APACrefauthors}%
+McShane, B\BPBI B.%
+, Gal, D.%
+, Gelman, A.%
+, Robert, C.%
+\BCBL {}\ \BBA {} Tackett, J\BPBI L.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Abandon statistical significance} {Abandon statistical
+  significance}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{The American Statistician}{73}{}{235--245}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{R Core Team}%
+}{%
+{R Core Team}%
+}{%
+{\protect \APACyear {2019}}%
+}]{%
+R}
+\APACinsertmetastar {%
+R}%
+\begin{APACrefauthors}%
+{R Core Team}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {R: A Language and Environment for Statistical Computing}
+  {R: A language and environment for statistical computing}{\BBCQ}\
+  [\bibcomputersoftwaremanual].
+\newblock
+\APACaddressPublisher{Vienna, Austria}{}.
+\newblock
+\begin{APACrefURL} \url{https://www.R-project.org/} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Vandekerckhove%
+, Rouder%
+\BCBL {}\ \BBA {} Kruschke%
+}{%
+Vandekerckhove%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+VandekerckhoveEtAl2018SI}
+\APACinsertmetastar {%
+VandekerckhoveEtAl2018SI}%
+\begin{APACrefauthors}%
+Vandekerckhove, J.%
+, Rouder, J\BPBI N.%
+\BCBL {}\ \BBA {} Kruschke, J\BPBI K.%
+\end{APACrefauthors}%
+\ (\BEDS).
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Editorial: {B}ayesian Methods for Advancing
+  Psychological Science} {Editorial: {B}ayesian methods for advancing
+  psychological science}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Psychonomic Bulletin \& Review}{25}{}{1--4}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Zwarts%
+\ \protect \BOthers {.}}{%
+Zwarts%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {1990}}%
+}]{%
+zwarts1990balans}
+\APACinsertmetastar {%
+zwarts1990balans}%
+\begin{APACrefauthors}%
+Zwarts, M.%
+, Rijlaarsdam, G.%
+, Janssens, F.%
+, Wolfhagen, I.%
+, Veldhuijzen, N.%
+\BCBL {}\ \BBA {} Wesdorp, H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1990}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Balans van het taalonderwijs aan het einde van de
+  basisschool} {Balans van het taalonderwijs aan het einde van de
+  basisschool}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Uitkomsten van de eerste taalpeiling einde
+  basisonderwijs}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}
