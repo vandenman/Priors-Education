@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.10.23)  25 OCT 2019 15:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.10.23)  13 NOV 2019 15:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -788,20 +788,20 @@ LaTeX Warning: Label `fig:baselinePosteriorDiagnostics' multiply defined.
 )
 \openout1 = `liftProject.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
  (/usr/local/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count155
@@ -833,7 +833,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box44
-Package hyperref Info: Link coloring ON on input line 72.
+Package hyperref Info: Link coloring ON on input line 76.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -843,9 +843,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count161
 )
-LaTeX Info: Redefining \ref on input line 72.
-LaTeX Info: Redefining \pageref on input line 72.
-LaTeX Info: Redefining \nameref on input line 72.
+LaTeX Info: Redefining \ref on input line 76.
+LaTeX Info: Redefining \pageref on input line 76.
+LaTeX Info: Redefining \nameref on input line 76.
 
 (./liftProject.out) (./liftProject.out)
 \@outlinefile=\write4
@@ -866,7 +866,7 @@ ABD: EveryShipout initializing macros
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.16} into 
 your preamble.
- on input line 72.
+ on input line 76.
 
 (./liftProject.tdo
 LaTeX Font Info:    Trying to load font information for U+msa on input line 1.
@@ -885,135 +885,139 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  [1
 
 {/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 7
-6.
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 8
+0.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 76.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 80.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <6> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 76.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 80.
  [2] [3]
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 99.
-
-
-LaTeX Warning: Marginpar on page 4 moved.
-
-<figures/descriptivesBaseline.pdf, id=113, 1806.75pt x 722.7pt>
+ine 117.
+ [4]
+<figures/descriptivesBaseline.pdf, id=105, 1806.75pt x 722.7pt>
 File: figures/descriptivesBaseline.pdf Graphic file (type pdf)
 <use figures/descriptivesBaseline.pdf>
 Package pdftex.def Info: figures/descriptivesBaseline.pdf  used on input line 1
-17.
+22.
 (pdftex.def)             Requested size: 345.0pt x 137.99812pt.
-[4]
-Overfull \hbox (0.38954pt too wide) in paragraph at lines 138--139
+
+Overfull \hbox (0.38954pt too wide) in paragraph at lines 143--144
 \OT1/cmr/m/n/10 pro-vides tu-to-ri-als and guid-ance for as-pir-ing Bayesians [
 ][][]Vandekerckhove, Rouder,
  []
 
 [5 <./figures/descriptivesBaseline.pdf>] [6]
 PGFPlots: reading {../tables//postSummaryBaseline.csv}
-<figures/baselinePosteriorTextQualityOverGrades.pdf, id=156, 1011.78pt x 505.89
+<figures/baselinePosteriorTextQualityOverGrades.pdf, id=142, 1011.78pt x 505.89
 pt>
 File: figures/baselinePosteriorTextQualityOverGrades.pdf Graphic file (type pdf
 )
 <use figures/baselinePosteriorTextQualityOverGrades.pdf>
 Package pdftex.def Info: figures/baselinePosteriorTextQualityOverGrades.pdf  us
-ed on input line 198.
+ed on input line 203.
 (pdftex.def)             Requested size: 345.0pt x 172.50206pt.
-<figures/descriptivesProduct.pdf, id=157, 1011.78pt x 505.89pt>
+<figures/descriptivesProduct.pdf, id=143, 1011.78pt x 505.89pt>
 File: figures/descriptivesProduct.pdf Graphic file (type pdf)
 <use figures/descriptivesProduct.pdf>
 Package pdftex.def Info: figures/descriptivesProduct.pdf  used on input line 21
-1.
+6.
 (pdftex.def)             Requested size: 345.0pt x 172.50206pt.
 PGFPlots: reading {../tables//postSummaryProduct.csv}
  [7] [8 <./figures/baselinePosteriorTextQualityOverGrades.pdf>]
-<figures/productPosteriorTextQuality.pdf, id=191, 1011.78pt x 505.89pt>
+<figures/productPosteriorTextQuality.pdf, id=177, 1011.78pt x 505.89pt>
 File: figures/productPosteriorTextQuality.pdf Graphic file (type pdf)
 <use figures/productPosteriorTextQuality.pdf>
 Package pdftex.def Info: figures/productPosteriorTextQuality.pdf  used on input
- line 255.
+ line 259.
 (pdftex.def)             Requested size: 345.0pt x 172.50206pt.
  [9 <./figures/descriptivesProduct.pdf>]
 PGFPlots: reading {../tables//postMeansProductCategoryCorrected.csv}
-<figures/comparePosteriorTextQuality.pdf, id=209, 1011.78pt x 505.89pt>
+<figures/comparePosteriorTextQuality.pdf, id=195, 1011.78pt x 505.89pt>
 File: figures/comparePosteriorTextQuality.pdf Graphic file (type pdf)
 <use figures/comparePosteriorTextQuality.pdf>
 Package pdftex.def Info: figures/comparePosteriorTextQuality.pdf  used on input
- line 269.
+ line 273.
 (pdftex.def)             Requested size: 345.0pt x 172.50206pt.
  [10 <./figures/productPosteriorTextQuality.pdf>]
-<figures/compareTaskEffects.pdf, id=228, 1300.86pt x 650.43pt>
+<figures/compareTaskEffects.pdf, id=214, 1300.86pt x 650.43pt>
 File: figures/compareTaskEffects.pdf Graphic file (type pdf)
 <use figures/compareTaskEffects.pdf>
-Package pdftex.def Info: figures/compareTaskEffects.pdf  used on input line 292
+Package pdftex.def Info: figures/compareTaskEffects.pdf  used on input line 295
 .
 (pdftex.def)             Requested size: 345.0pt x 172.49214pt.
- [11 <./figures/comparePosteriorTextQuality.pdf>] [12 <./figures/compareTaskEff
-ects.pdf>] [13] (./liftProject.bbl)
-[14]
-<figures/baselinePosteriorDescriptivesPlot.pdf, id=287, 1445.4pt x 1445.4pt>
+ [11 <./figures/comparePosteriorTextQuality.pdf>]
+PGFPlots: reading {../tables//credibleIntervalsImprovement.csv}
+<figures/improvementInYears.pdf, id=233, 867.24pt x 433.62pt>
+File: figures/improvementInYears.pdf Graphic file (type pdf)
+<use figures/improvementInYears.pdf>
+Package pdftex.def Info: figures/improvementInYears.pdf  used on input line 320
+.
+(pdftex.def)             Requested size: 345.0pt x 172.49876pt.
+ [12 <./figures/compareTaskEffects.pdf>] [13 <./figures/improvementInYears.pdf>
+] [14] (./liftProject.bbl [15]) [16]
+<figures/baselinePosteriorDescriptivesPlot.pdf, id=306, 1445.4pt x 1445.4pt>
 File: figures/baselinePosteriorDescriptivesPlot.pdf Graphic file (type pdf)
 <use figures/baselinePosteriorDescriptivesPlot.pdf>
 Package pdftex.def Info: figures/baselinePosteriorDescriptivesPlot.pdf  used on
- input line 344.
+ input line 417.
 (pdftex.def)             Requested size: 345.0pt x 344.9843pt.
-<figures/baselineTraceplots.pdf, id=288, 722.7pt x 722.7pt>
+<figures/baselineTraceplots.pdf, id=307, 722.7pt x 722.7pt>
 File: figures/baselineTraceplots.pdf Graphic file (type pdf)
 <use figures/baselineTraceplots.pdf>
-Package pdftex.def Info: figures/baselineTraceplots.pdf  used on input line 365
+Package pdftex.def Info: figures/baselineTraceplots.pdf  used on input line 438
 .
 (pdftex.def)             Requested size: 172.5pt x 172.49214pt.
-<figures/baselineAutocorrelationplots.pdf, id=289, 722.7pt x 722.7pt>
+<figures/baselineAutocorrelationplots.pdf, id=308, 722.7pt x 722.7pt>
 File: figures/baselineAutocorrelationplots.pdf Graphic file (type pdf)
 <use figures/baselineAutocorrelationplots.pdf>
 Package pdftex.def Info: figures/baselineAutocorrelationplots.pdf  used on inpu
-t line 369.
+t line 442.
 (pdftex.def)             Requested size: 172.5pt x 172.49214pt.
-<figures/productPosteriorDescriptivesPlot.pdf, id=290, 1445.4pt x 1445.4pt>
+<figures/productPosteriorDescriptivesPlot.pdf, id=309, 1445.4pt x 1445.4pt>
 File: figures/productPosteriorDescriptivesPlot.pdf Graphic file (type pdf)
 <use figures/productPosteriorDescriptivesPlot.pdf>
 Package pdftex.def Info: figures/productPosteriorDescriptivesPlot.pdf  used on 
-input line 378.
+input line 452.
 (pdftex.def)             Requested size: 345.0pt x 344.9843pt.
 File: figures/baselineTraceplots.pdf Graphic file (type pdf)
 <use figures/baselineTraceplots.pdf>
-Package pdftex.def Info: figures/baselineTraceplots.pdf  used on input line 387
+Package pdftex.def Info: figures/baselineTraceplots.pdf  used on input line 462
 .
 (pdftex.def)             Requested size: 172.5pt x 172.49214pt.
 File: figures/baselineAutocorrelationplots.pdf Graphic file (type pdf)
 <use figures/baselineAutocorrelationplots.pdf>
 Package pdftex.def Info: figures/baselineAutocorrelationplots.pdf  used on inpu
-t line 391.
+t line 466.
 (pdftex.def)             Requested size: 172.5pt x 172.49214pt.
- [15 <./figures/baselinePosteriorDescriptivesPlot.pdf>] [16 <./figures/baseline
-Traceplots.pdf> <./figures/baselineAutocorrelationplots.pdf>] [17 <./figures/pr
-oductPosteriorDescriptivesPlot.pdf>] [18]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 399.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 399.
+ [17 <./figures/baselinePosteriorDescriptivesPlot.pdf>] [18 <./figures/baseline
+Traceplots.pdf> <./figures/baselineAutocorrelationplots.pdf>] [19 <./figures/pr
+oductPosteriorDescriptivesPlot.pdf>] [20]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 476.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 476.
  (./liftProject.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 399.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 399.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 476.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 476.
 Package rerunfilecheck Info: File `liftProject.out' has not changed.
-(rerunfilecheck)             Checksum: 1B06D2089D589158A5C9D050C19ACFEB;47.
+(rerunfilecheck)             Checksum: AD965C58677E80749BE1AE16F123D513;47.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 399.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 476.
  ) 
 Here is how much of TeX's memory you used:
- 29791 strings out of 492167
- 715487 string characters out of 6125373
- 937837 words of memory out of 5000000
- 33565 multiletter control sequences out of 15000+600000
+ 29748 strings out of 492167
+ 714564 string characters out of 6125373
+ 930837 words of memory out of 5000000
+ 33520 multiletter control sequences out of 15000+600000
  17535 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,24n,102p,1686b,995s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,24n,102p,1686b,997s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></
@@ -1033,10 +1037,10 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2019/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2019/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2019/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on liftProject.pdf (18 pages, 2206047 bytes).
+Output written on liftProject.pdf (20 pages, 1923444 bytes).
 PDF statistics:
- 418 PDF objects out of 1000 (max. 8388607)
- 339 compressed objects within 4 object streams
- 73 named destinations out of 1000 (max. 500000)
- 167 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 438 PDF objects out of 1000 (max. 8388607)
+ 355 compressed objects within 4 object streams
+ 72 named destinations out of 1000 (max. 500000)
+ 172 words of extra memory for PDF output out of 10000 (max. 10000000)
 

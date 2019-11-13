@@ -9,3 +9,15 @@ saveFigure <- function(filename, graph, width = 20, height = 10) {
   file.copy(p1, p2, overwrite = TRUE)
 
 }
+
+col2hex <- function(cname) {
+  # definition from gtools::col2hex
+  colMat <- col2rgb(cname)
+  rgb(red = colMat[1, ]/255, green = colMat[2, ]/255, blue = colMat[3, ]/255)
+}
+
+writeTable <- function(x, file) {
+  # small wrapper around write.csv to save tables in a way that the latex package pgfplotstable
+  # can easily read them
+  write.csv(x, file, row.names = FALSE, quote = FALSE)
+}

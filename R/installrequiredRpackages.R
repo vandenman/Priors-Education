@@ -1,6 +1,6 @@
 # installs all R-packages required to reproduce the results
 
-install.packages(c(
+pkgs2used <- c(
   "coda",         # highest posterior density interval
   "rstan",        # general Bayesian inference
   "brms",         # fit Bayesian mixed effects models
@@ -11,7 +11,9 @@ install.packages(c(
   "tidyr",        # manipulate raw data (e.g., gather)
   "ggplot2",      # general plotting
   "GGally",       # multiple panel descriptives plot of posterior
-  "latex2exp",    # convert latex equations to R expressions for use in plots
-  ),
-  dependencies = TRUE
+  "latex2exp"     # convert latex equations to R expressions for use in plots
 )
+
+pkgs2install <- setdiff(pkgs2used, installed.packages()[, "Package"])
+
+install.packages(pkgs2install)

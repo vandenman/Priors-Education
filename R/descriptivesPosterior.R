@@ -9,7 +9,7 @@ Tex <- latex2exp::TeX
 source("R/utils.R")
 source("R/commonPlotSettings.R")
 
-posteriorScatterPlot <- function(samples, thm) {
+posteriorScatterPlot <- function(samples, thm, ...) {
 
   thm <- theme_bw(18) + theme(panel.border = element_blank())
 
@@ -34,15 +34,24 @@ posteriorScatterPlot <- function(samples, thm) {
         xdata <- rlang::eval_tidy(mapping$x, data)
         ydata <- rlang::eval_tidy(mapping$y, data)
         cc <- cor(xdata, ydata)
-        p <- ggally_text(label = paste(signif(cc, 3), sep = "", collapse = ""), mapping,
-                         xP = 0.5, yP = 0.5, xrange = 0:1, yrange = 0:1, size = 12, ...) +
-              theme(legend.position = "none") + theme_void()
+        # round using significant digits, e.g., "-0.00065"
+        # label <- paste(signif(cc, 3), sep = "", collapse = "")
+        # round using fixed number of digits e.g., "-0.001"
+        label <- formatC(cc, digits = 3, format = "f")
+        p <- ggally_text(label = label, mapping, xP = 0.5, yP = 0.5, xrange = 0:1, yrange = 0:1,
+                         size = 12, ...) +
+          theme(legend.position = "none") + theme_void()
         return(p)
       },
       # GGally defaults
       combo = "box_no_facet", discrete = "facetbar", na = "na"
+    ),
+    ...
+  ) + theme(
+      text = element_text(size = 28),
+      strip.background = element_rect(fill = "transparent",colour = "transparent")
     )
-  ))
+  )
 }
 
 posteriorDensityPlot <- function(df, colors) {
@@ -70,7 +79,16 @@ posteriorDensityPlot <- function(df, colors) {
     ))
 }
 
-posteriorSummaryTable <- function(samples) {
+squareStandardDeviations <- function(samples) {
+  idx <- startsWith(colnames(samples), "sd_") | startsWith(colnames(samples), "sigma")
+  samples[, idx] <- samples[, idx]^2
+  return(samples)
+}
+
+posteriorSummaryTable <- function(samples, squareSds = TRUE) {
+  if (squareSds)
+    samples <- squareStandardDeviations(samples)
+
   samples2 <- as.mcmc(samples)
   mus <- colMeans(samples)
   sds <- apply(samples, 2, sd)
@@ -85,7 +103,13 @@ posteriorSummaryTable <- function(samples) {
 samplesBaseline <- readRDS("results/samplesBaseline.rds")
 
 # scattor plot of posterior samples
-gDescriptive <- posteriorScatterPlot(samplesBaseline)
+columnLabels <- c("Intercept", "Grade~11", "Grade~12", "sigma[w]^2~(school)", "sigma[u]^2~(student)",
+                  "sigma[v]^2~(task)", "sigma[epsilon]^2")
+idxDraw <- match(c("b_Intercept", "b[1]", "b[2]", "sd_SI", "sd_SI:PI", "sd_TI", "sigma"),
+                 colnames(samplesBaseline))
+
+gDescriptive <- posteriorScatterPlot(squareStandardDeviations(samplesBaseline[, idxDraw]),
+                                     columnLabels = columnLabels, labeller = label_parsed)
 saveFigure("baselinePosteriorDescriptivesPlot.pdf",  gDescriptive, width = 20, height = 20)
 
 # improvement over grades
@@ -115,8 +139,9 @@ g <- posteriorDensityPlot(df, colsBaseline)
 saveFigure("baselinePosteriorTextQualityOverGrades.pdf", graph = g, width = 14, height = 7)
 
 # table with posterior summary
-tb <- posteriorSummaryTable(samplesBaseline)[c(8, 1, 2, 7, 6, 5, 4), ]
-tb$Parameter <- c("Intercept", "Grade 11", "Grade 12", "$\\sigma_v$", "$\\sigma_w$", "$\\sigma_u$", "$\\sigma_\\epsilon$")
+tb <- posteriorSummaryTable(samplesBaseline)[c(8, 1, 2, 6, 5, 7, 4), ]
+tb$Parameter <- c("Intercept", "Grade 11", "Grade 12", "$\\sigma^2_w \\, \\mathrm{(school)}$",
+                  "$\\sigma^2_u \\, \\mathrm{(student)}$", "$\\sigma^2_v \\, \\mathrm{(task)}$", "$\\sigma^2_\\epsilon$")
 print(xtable(tb, digits = 3))
 write.csv(tb, "tables/postSummaryBaseline.csv", row.names = FALSE, quote = FALSE)
 
@@ -126,8 +151,11 @@ samplesProduct  <- readRDS("results/samplesProductfeedback.rds")
 # scattor plot of posterior samples
 idx <- startsWith(colnames(samplesProduct), "sd_")
 colnames(samplesProduct)[idx] <- c("sd_SI", "sd_SI:PI")
+columnLabels <- c("Intercept", "T2", "T3", "sigma[w]^2~(school)", "sigma[u]^2~(student)", "sigma[epsilon]^2")
+idxDraw <- match(c("b_Intercept", "b[1]", "b[2]", "sd_SI", "sd_SI:PI", "sigma"), colnames(samplesProduct))
 
-gDescriptive <- posteriorScatterPlot(samplesProduct)
+gDescriptive <- posteriorScatterPlot(squareStandardDeviations(samplesProduct[, idxDraw]),
+                                     columnLabels = columnLabels, labeller = label_parsed)
 saveFigure("productPosteriorDescriptivesPlot.pdf",  gDescriptive, width = 20, height = 20)
 
 # improvement over measurement occasions
@@ -144,13 +172,14 @@ df <- tibble(
 )
 
 # compare posterior distribution across grades
+df$what <- paste0("T", df[["what"]])
 g <- posteriorDensityPlot(df, colsExperim)
 
 saveFigure("productPosteriorTextQuality.pdf", graph = g, width = 14, height = 7)
 
 # table with posterior summary
-tb <- posteriorSummaryTable(samplesProduct)[c(8, 1, 2, 7, 6, 5), ]
-# tb$Parameter <- c("Intercept", "Measurement 2", "Measurement 3", "$\\sigma_p$", "$\\sigma_s$", "$\\sigma_\\epsilon$")
-tb$Parameter <- c("Intercept", "Measurement 2", "Measurement 3", "$\\sigma_u$", "$\\sigma_w$", "$\\sigma_\\epsilon$")
+tb <- posteriorSummaryTable(samplesProduct)[c(8, 1, 2, 6, 7, 5), ]
+tb$Parameter <- c("Intercept", "Measurement 2", "Measurement 3", "$\\sigma^2_w \\, \\mathrm{(school)}$",
+                  "$\\sigma^2_u \\, \\mathrm{(student)}$", "$\\sigma^2_\\epsilon$")
 print(xtable(tb, digits = 3))
 write.csv(tb, "tables/postSummaryProduct.csv", row.names = FALSE, quote = FALSE)

@@ -14,3 +14,4 @@ data/Dataset productfeedback 2019.xlsx
 *.out
 *.tdo
 ..gitignore.kate-swp
+.Rproj.user

@@ -5886,6 +5886,29 @@
 	volume =       {17},
 	pages =        {161--163},
 }
+@article{zwarts1990balans,
+	title={Balans van het taalonderwijs aan het einde van de basisschool},
+	author={Zwarts, M and Rijlaarsdam, GCW and Janssens, F and Wolfhagen, I and Veldhuijzen, N and Wesdorp, H},
+	journal={Uitkomsten van de eerste taalpeiling einde basisonderwijs},
+	year={1990}
+}
+@article{bouwer2015effect,
+	title={Effect of genre on the generalizability of writing scores},
+	author={Bouwer, Renske and B{\'e}guin, Anton and Sanders, Ted and Van den Bergh, Huub},
+	journal={Language Testing},
+	volume={32},
+	number={1},
+	pages={83--100},
+	year={2015},
+	publisher={Sage Publications Sage UK: London, England}
+}
+@article{graham2014conducting,
+	title={Conducting high quality writing intervention research: Twelve recommendations},
+	author={Graham, Steve E and Harris, Karen R},
+	year={2014},
+	publisher={University of Antwerp}
+}
+
 @ARTICLE{GlickmanEtAlinpress,
 	AUTHOR =       {Glickman, M. E. and Gray, J. R. and Morales, C. J.},
 	TITLE =        {Combining Speed and Accuracy to Assess Error--free Cognitive Processes},
@@ -8726,6 +8749,17 @@
 	YEAR =         {2010},
 	address =      {Burlington, MA},
 }
+@article{kruschke2011bayesian,
+	title={Bayesian assessment of null values via parameter estimation and model comparison},
+	author={Kruschke, John K},
+	journal={Perspectives on Psychological Science},
+	volume={6},
+	number={3},
+	pages={299--312},
+	year={2011},
+	publisher={Sage Publications Sage CA: Los Angeles, CA}
+}
+
 @BOOK{Kruschke2015Book,
 	AUTHOR =       {Kruschke, J. K.},
 	TITLE =        {Doing {B}ayesian Data Analysis: {A} Tutorial with {R}, {JAGS}, and {S}tan},
@@ -8818,6 +8852,17 @@
 	volume =       {38},
 	pages =        {979--1009},
 }
+@article{lakens2017equivalence,
+	title={Equivalence tests: a practical primer for t tests, correlations, and meta-analyses},
+	author={Lakens, Dani{\"e}l},
+	journal={Social psychological and personality science},
+	volume={8},
+	number={4},
+	pages={355--362},
+	year={2017},
+	publisher={Sage Publications Sage CA: Los Angeles, CA}
+}
+
 @ARTICLE{LaBerge1994,
 	AUTHOR =       {LaBerge, D. A.},
 	TITLE =        {Quantitative Models of Attention and Response Processes in Shape Identification Tasks},
@@ -18388,7 +18433,6 @@
 	shortauthor = {APA},
 }
 
-@Comment{jabref-meta: databaseType:bibtex;}
 
 
 
@@ -18450,3 +18494,19 @@
 	year = {2018},
 	url = {http://mc-stan.org/},
 }
+
+@Article{Freeman1993role,
+  author    = {Freeman, Peter R},
+  title     = {The role of {$p$}--values in analysing trial results},
+  journal   = {Statistics in {M}edicine},
+  year      = {1993},
+  volume    = {12},
+  number    = {15-16},
+  pages     = {1443--1452},
+  publisher = {Wiley Online Library},
+}
+
+@Article{,
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}

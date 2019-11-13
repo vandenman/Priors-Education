@@ -23,14 +23,15 @@ nIter <- 1e4
 dat2 <- dat[dat$iter <= nIter, ]
 
 dat2$parameters <- recode(dat2$parameters,
+  "b_Intercept" = "Intercept",
   "b[1]"        = "Grade~11",
   "b[2]"        = "Grade~12",
-  "sigma"       = "sigma[epsilon]",
-  "sd_SI"       = "sigma[s]",
-  "sd_SI:PI"    = "sigma[p]",
-  "sd_TI"       = "sigma[t]",
-  "b_Intercept" = "Intercept"
+  "sd_SI"       = "sigma[w]^2~(school)",
+  "sd_SI:PI"    = "sigma[u]^2~(student)",
+  "sd_TI"       = "sigma[v]^2~(task)",
+  "sigma"       = "sigma[epsilon]^2",
 )
+levels(dat2$parameters) <- levels(dat2$parameters)[c(7, 1, 2, 4, 5, 6, 3)]
 
 graphTrace <- ggplot(data = dat2, aes(x = iterations, y = Freq, group = chains, color = chains)) +
   geom_line(alpha = .8) +
@@ -56,13 +57,13 @@ datAcf <- tibble(
 )
 
 datAcf$parameters <- recode(datAcf$parameters,
+  "b_Intercept" = "Intercept",
   "b[1]"        = "Grade~11",
   "b[2]"        = "Grade~12",
-  "sigma"       = "sigma[epsilon]",
-  "sd_SI"       = "sigma[s]",
-  "sd_SI:PI"    = "sigma[p]",
-  "sd_TI"       = "sigma[t]",
-  "b_Intercept" = "Intercept"
+  "sd_SI"       = "sigma[w]^2~(school)",
+  "sd_SI:PI"    = "sigma[u]^2~(student)",
+  "sd_TI"       = "sigma[v]^2~(task)",
+  "sigma"       = "sigma[epsilon]^2",
 )
 
 graphAcf <- ggplot(data = datAcf, aes(x = lag, y = acf, group = chain, color = chain)) +
@@ -94,13 +95,12 @@ nIter <- 1e4
 dat2 <- dat[dat$iter <= nIter, ]
 
 dat2$parameters <- recode(dat2$parameters,
-  "b[1]"        = "Grade~11",
-  "b[2]"        = "Grade~12",
-  "sigma"       = "sigma[epsilon]",
-  "sd_SI"       = "sigma[s]",
-  "sd_SI:PI"    = "sigma[p]",
-  "sd_TI"       = "sigma[t]",
-  "b_Intercept" = "Intercept"
+  "b_Intercept" = "Intercept",
+  "b[1]"        = "T2",
+  "b[2]"        = "T3",
+  "sd_SI"       = "sigma[w]^2~(school)",
+  "sd_SI:PI"    = "sigma[u]^2~(student)",
+  "sigma"       = "sigma[epsilon]^2"
 )
 
 graphTrace <- ggplot(data = dat2, aes(x = iterations, y = Freq, group = chains, color = chains)) +
@@ -127,13 +127,12 @@ datAcf <- tibble(
 )
 
 datAcf$parameters <- recode(datAcf$parameters,
-  "b[1]"        = "Grade~11",
-  "b[2]"        = "Grade~12",
-  "sigma"       = "sigma[epsilon]",
-  "sd_SI"       = "sigma[s]",
-  "sd_SI:PI"    = "sigma[p]",
-  "sd_TI"       = "sigma[t]",
-  "b_Intercept" = "Intercept"
+  "b_Intercept" = "Intercept",
+  "b[1]"        = "T~2",
+  "b[2]"        = "T~3",
+  "sd_SI"       = "sigma[w]^2~(school)",
+  "sd_SI:PI"    = "sigma[u]^2~(student)",
+  "sigma"       = "sigma[epsilon]^2"
 )
 
 graphAcf <- ggplot(data = datAcf, aes(x = lag, y = acf, group = chain, color = chain)) +

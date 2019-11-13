@@ -115,31 +115,53 @@ Carpenter, B.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Gelman%
-, Simpson%
-\BCBL {}\ \BBA {} Betancourt%
+Efron%
+\ \BBA {} Morris%
 }{%
-Gelman%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2017}}%
+Efron%
+\ \BBA {} Morris%
+}{%
+{\protect \APACyear {1977}}%
 }]{%
-gelman2017prior}
+EfronMorris1977}
 \APACinsertmetastar {%
-gelman2017prior}%
+EfronMorris1977}%
 \begin{APACrefauthors}%
-Gelman, A.%
-, Simpson, D.%
-\BCBL {}\ \BBA {} Betancourt, M.%
+Efron, B.%
+\BCBT {}\ \BBA {} Morris, C.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2017}{}{}.
+\APACrefYearMonthDay{1977}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {The prior can often only be understood in the context of
-  the likelihood} {The prior can often only be understood in the context of the
-  likelihood}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Stein's Paradox in Statistics} {Stein's paradox in
+  statistics}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{Entropy}{19}{10}{555}.
+\APACjournalVolNumPages{Scientific American}{236}{}{119--127}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Fan%
+}{%
+Fan%
+}{%
+{\protect \APACyear {2001}}%
+}]{%
+fan2001statistical}
+\APACinsertmetastar {%
+fan2001statistical}%
+\begin{APACrefauthors}%
+Fan, X.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2001}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Statistical significance and effect size in education
+  research: Two sides of a coin} {Statistical significance and effect size in
+  education research: Two sides of a coin}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{The Journal of Educational Research}{94}{5}{275--282}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -167,6 +189,83 @@ Graham, S\BPBI E.%
   research: Twelve recommendations}.{\BBCQ}
 \newblock
 
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Hojat%
+\ \BBA {} Xu%
+}{%
+Hojat%
+\ \BBA {} Xu%
+}{%
+{\protect \APACyear {2004}}%
+}]{%
+hojat2004visitor}
+\APACinsertmetastar {%
+hojat2004visitor}%
+\begin{APACrefauthors}%
+Hojat, M.%
+\BCBT {}\ \BBA {} Xu, G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2004}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A visitor's guide to effect sizes--statistical
+  significance versus practical (clinical) importance of research findings} {A
+  visitor's guide to effect sizes--statistical significance versus practical
+  (clinical) importance of research findings}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Advances in health sciences education}{9}{3}{241--249}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Kruschke%
+}{%
+Kruschke%
+}{%
+{\protect \APACyear {2011}}%
+}]{%
+kruschke2011bayesian}
+\APACinsertmetastar {%
+kruschke2011bayesian}%
+\begin{APACrefauthors}%
+Kruschke, J\BPBI K.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2011}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Bayesian assessment of null values via parameter
+  estimation and model comparison} {Bayesian assessment of null values via
+  parameter estimation and model comparison}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Perspectives on Psychological Science}{6}{3}{299--312}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Lakens%
+}{%
+Lakens%
+}{%
+{\protect \APACyear {2017}}%
+}]{%
+lakens2017equivalence}
+\APACinsertmetastar {%
+lakens2017equivalence}%
+\begin{APACrefauthors}%
+Lakens, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Equivalence tests: a practical primer for t tests,
+  correlations, and meta-analyses} {Equivalence tests: a practical primer for t
+  tests, correlations, and meta-analyses}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Social psychological and personality
+  science}{8}{4}{355--362}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -222,6 +321,33 @@ McShane, B\BPBI B.%
   significance}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{The American Statistician}{73}{}{235--245}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Morey%
+\ \BBA {} Rouder%
+}{%
+Morey%
+\ \BBA {} Rouder%
+}{%
+{\protect \APACyear {2011}}%
+}]{%
+MoreyRouder2011}
+\APACinsertmetastar {%
+MoreyRouder2011}%
+\begin{APACrefauthors}%
+Morey, R\BPBI D.%
+\BCBT {}\ \BBA {} Rouder, J\BPBI N.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2011}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Bayes Factor Approaches for Testing Interval Null
+  Hypotheses} {Bayes factor approaches for testing interval null
+  hypotheses}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Psychological Methods}{16}{}{406--419}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

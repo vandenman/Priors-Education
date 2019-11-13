@@ -24,13 +24,19 @@ dat$Grade <- recode(dat$Grade,
   "5" = "Grade 11",
   "6" = "Grade 12"
 )
-graph <- ggplot(data = dat, aes(x = factor(Task_Code), y = Score_Mean)) +
+xlab <- 1:32
+xlab[!xlab %in% c(1, 8, 16, 24, 32)] <- ""
+
+dat$xCoords <- as.numeric(factor(dat$Task_Code))
+
+graph <- ggplot(data = dat, aes(x = xCoords, y = Score_Mean, group = factor(xCoords))) +
   geom_boxplot() +
   facet_wrap(~Grade) +
+  scale_x_continuous(breaks = c(1, 8, 16, 24, 32)) + #, limits = c(1, 32)) +
   labs(x = "Task", y = "Text Quality") +
   theme_bw(base_size = 44) +
-  theme(axis.text.x = element_text(size = 16, angle = 45),
-        axis.ticks.length.x = unit(rep(1:2, 16), units = "cm"),
+  theme(#axis.text.x = element_text(size = 16, angle = 45),
+        # axis.ticks.length.x = unit(ifelse(xlab == "", 0, 1), units = "cm"),
         # strip.text  = element_text(size = 42),
         strip.background = element_rect(fill = "transparent", color = "gray"))
 # graph

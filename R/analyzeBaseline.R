@@ -12,8 +12,9 @@ chains <- 6L
 # run the chains in parallel
 cores <- min(parallel::detectCores() - 1L, chains)
 
-f <- Score_Mean ~ 1 + Grade + (1 | Task_index) + (1 || School_index / Participant_index)
-res <- brm(formula = f, data = dat, iter = iter, warmup = warmup, chains = chains, cores = cores)
+f <- Score_Mean ~ 1 + Grade + (1 | Task_index) + (1 || School_index / Participant_index) # TODO: single or double | for school index?
+brmres <- brm(formula = f, data = dat, iter = iter, warmup = warmup, chains = chains, cores = cores)
+res <- brmres$fit
 
 # write results to disk
 saveRDS(res, "results/analysisBaseline.rds")
@@ -38,6 +39,15 @@ dimnames(samplesArray)[[3L]] <- renamer(dimnames(samplesArray)[[3L]])
 # write all results to disk
 saveRDS(samplesMatrix, "results/samplesBaseline.rds")
 saveRDS(samplesArray, "results/samplesArrayBaseline.rds")
+
+# sanity check -- do the posterior means correspond to frequentist point estimates?
+# samplesBaseline <- readRDS("results/samplesBaseline.rds")
+# idx <- startsWith(colnames(samplesBaseline), "sd_") | startsWith(colnames(samplesBaseline), "sigma")
+# samplesBaseline[, idx] <- samplesBaseline[, idx]^2
+# colMeans(samplesBaseline)
+#
+# resFreq <- lme4::lmer(Score_Mean ~ 1 + Grade + (1 | Task_index) + (1 | School_index / Participant_index), data = dat)
+# summary(resFreq)
 
 # save task effects separately
 tasknames <- sort(unique(dat$Task_Code))

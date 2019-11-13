@@ -28,10 +28,14 @@
 	\pgfplotstablegetelem{#1}{#2}\of{#3}%
 	\pgfmathprintnumber{\pgfplotsretval}%
 }
+\newcommand{\setVal}[4]{%
+	\pgfplotstablegetelem{#1}{#2}\of{#3}%
+	\pgfmathprintnumberto{\pgfplotsretval}{#4}%
+}
 \newcommand{\getCI}[2]{95\% HPD [\getVal{#1}{Lower}{#2}, \getVal{#1}{Upper}{#2}]}
 
 \newcommand{\DON}	[1] 	{\todo[linecolor=gray, backgroundcolor=white]	{Don: 	{#1}}}
-%\newcommand{\DONa}	[1]		{\todo[linecolor=gray, backgroundcolor=white]	{Don:	{#1}}}
+\newcommand{\DONa}	[1]		{\todo[inline, linecolor=gray, backgroundcolor=white]	{Don:	{#1}}}
 
 %\newcommand{\DON}[1] {\todo[color=orange]{Don: {#1}}}
 
@@ -82,7 +86,12 @@ Don van den Bergh, University of Amsterdam, Department of Psychological Methods,
 \newpage
 
 %\section*{Introduction}
-
+\DONa{
+	0. Specifeer propere priors.
+	1. Herhaal alle analyses met brms.
+	2. Transformeer alle standaard deviaties naar varianties direct na het samplen en sla dat op.
+	3. Schoon de code op wat betreft het transformeren van varianties.
+}
 In many countries, the achievements of students are monitored in so-called national assessments. For instance, NAEP in the US, PEIL in the Netherlands (or international assessment programs like IEA or PIRLS) measure students' achievements at regular intervals to gain information on changes in achievement over time (or changes in differences between countries). For instance, in the Netherlands every four years the achievements of students are measured at the end of primary education in some of the most important subject areas. Although the results of these assessments often inform policymaking, the data are seldom used in educational research even though there are ample opportunities.
 
 A common denominator in national assessments is for all subject areas measurements are based on an analysis of that subject area. Therefore, students read multiple texts if reading is assessed or write multiple texts if writing is assessed. This is a necessity if one wants to describe the level of achievements covering a whole domain while generalizing over specific assignments (or tests) at the same time. For writing in the Netherlands, for instance, students wrote 21 different texts in a national assessment \cite{zwarts1990balans}. Of course, not all students take every test, but a sparse design is in operation, in order to minimize testing time but allowing for conclusion at population level at the same time.
@@ -96,22 +105,23 @@ So, on the one hand there is much information on levels of achievement of studen
 In fact, the information from national assessments can be seen as information on the level of achievements in general. In this sense, this information might be seen as prior knowledge that describes the standard level of achievements.  In experimental studies we like to show that the increase in achievements due to the experimental manipulation exceeds `natural' growth. Therefore, the information from assessments might function as a baseline, or standard level of achievement for experimental studies.
 Second, results of prior studies form the basis for new studies and research hypotheses. Nevertheless, we do not fully use the available data. Prior knowledge, prior data, is rarely used in statistical analyses. This might be inefficient, as we keep measuring students over and over again in order to get studies which have enough power to draw conclusions. However, we can also increase the power of studies if we enrich our analyses with prior results \cite{graham2014conducting}. One of the type of studies that comes directly to mind are of course assessment studies, not only because many students take these tests, but also because students take many tests in order the generalize over the idiosyncrasies of specific tests.
 
-Unfortunately, there exists no straightforward method to incorporate prior information into (frequentist) analyses \DON{ref, but see ref}. Ideally, the raw data from prior studies is included in the analyses as a benchmark comparison, but this is often impossible for practical (and privacy) reasons. Alternatively, prior knowledge can be represented by treating the prior results as population values and experimental results can be tested against this values. However, this approach seems far from ideal, as measurement error and uncertainty in the prior results are completely ignored. Although such uncertainties could be introduced by means of standard errors, many types of frequentist analyses are not equipped for such procedures.
+Unfortunately, there exists no straightforward method to incorporate prior information into (frequentist) analyses. Ideally, the raw data from prior studies is included in the analyses as a benchmark comparison, but this is often impossible for practical (and privacy) reasons. Alternatively, prior knowledge can be represented by treating the prior results as population values and experimental results can be tested against this values. However, this approach seems far from ideal, as measurement error and uncertainty in the prior results are completely ignored. Although such uncertainties could be introduced by means of standard errors, many types of frequentist analyses are not equipped for such procedures.
 
-In \DON{Herschrijf deze alinea.} this respect a Bayesian analyses of prior results and constructing approximate priors from the data might be preferable; Bayesian statistics offer a more rigorous and consistent approach to incorporate prior knowledge into statistical analyses. In Bayesian inference, prior knowledge is represented by probability distributions, which fully contains all uncertainty about the quantities of interest. Usually, prior distributions are chosen to be uninformative, i.e., such that they do not influence the results. However, in educational research there is an abundance of data and prior distributions are an ideal medium to propagate prior results into new analyses.
+In this respect, Bayesian analyses of prior results from the data might be preferable; Bayesian statistics offer a rigorous and consistent approach to quantify uncertainty in statistical analyses. In Bayesian inference, prior knowledge (or a lack thereof) is represented by probability distributions, which describe all uncertainty about the quantities of interest. Upon observing the data, prior knowledge is updated to posterior knowledge, which is again represented by probability distributions. Key is that these probability distributions provide a complete account of the uncertainty. Thus, Bayesian inference is an ideal vehicle to reuse findings from prior analyses into future studies, while accounting for the uncertainty in these prior results. In educational research, there is an abundance of data, but results from the analyses are rarely used in the analysis of new studies.
 
-The outline of this paper is as follows. First we introduce a large data set on writing instruction in high school that serves as a baseline data set. By means of this baseline data set, we provide a brief explanation of Bayesian statistics, before analysing the data with a multilevel model. We show how to approximate the posterior distributions with parametric distributions such that these can be used as prior distributions in future analyses. Next, we demonstrate the influence of these priors by analysing a follow up data set using both the newly obtained priors and uninformative priors. \DON{Some sentence about the diverence in results. The paper is concluded with a discussion on ... (todo).}
+The outline of this paper is as follows. First we introduce a large data set on writing instruction in high school that serves as a baseline data set. By means of this baseline data set, we provide a brief explanation of Bayesian statistics, before analyzing the data with a multilevel model. Next, we analyze a follow up data set and relate the parameter estimates from the baseline analysis to those of the follow up. The paper is concluded with a discussion on the widespread applicability and benefits of this approach and the limitations concerning the validity of this approach.
+
+%We show how to approximate the posterior distributions with parametric distributions such that these can be used as prior distributions in future analyses. Next, we demonstrate the influence of these priors by analysing a follow up data set using both the newly obtained priors and uninformative priors. \DON{Some sentence about the diverence in results. The paper is concluded with a discussion on ... (todo).}
 
 
 \section*{Baseline Data Set}
-\DON{fill in missings, I also don't know anything about students that dropped out completely.}
 \noindent The baseline data set was collected to investigate the writing quality of students in the tenth, eleventh, and twelfth grade of high school. Here we provide some information about the data collection and some descriptives of the data.
 
 Schools were selected at random by creating three lists of schools. First, a school in the first batch was approached for participating in the study. If this school did not reply or refused, a school in the second batch was selected at random. If the second school did not participate a school from the third batch was approached.
 
-In total, the writing quality was measured for 625 students, nested in 43 schools. To assess between-task variance, 32 different tasks were administered of which students made four at random. Some students did not make all tasks, 497 students made four tasks and 128 students made three or fewer tasks. The minimum amount of students per task was 62 whereas the maximum was 84. Students' text were rated by... \DON{aanvullen aub}.
+In total, the writing quality was measured for 625 students, nested in 43 schools. To assess between-task variance, 32 different tasks were administered of which students made four at random. Some students did not make all tasks, 497 students made four tasks and 128 students made three or fewer tasks. The minimum amount of students per task was 62 whereas the maximum was 84. Students' text were rated by... \DON{Aanvullen aub}.
 
-The data contain an obvious nested structure, as illustrated in Figure~\ref{fig:baselineDescriptives}. Observations are nested within students and tasks. Furthermore, students are nested within schools. Students took a random sample of four tasks out of 32 tasks developed for this writing assessment. \DON{maake van de x-as 1, 8, 16, 24, 32 ipv A1, A2, ...}
+The data contain an obvious nested structure, as illustrated in Figure~\ref{fig:baselineDescriptives}. Observations are nested within students and tasks. Furthermore, students are nested within schools. Students took a random sample of four tasks out of 32 tasks developed for this writing assessment.
 
 \begin{figure}[!ht]
 	\includegraphics[width=\textwidth]{figures/descriptivesBaseline.pdf}
@@ -120,7 +130,7 @@ The data contain an obvious nested structure, as illustrated in Figure~\ref{fig:
 \end{figure}
 The observations of text quality cannot be considered as independent. Scores of students in the same school might be more alike than scores of students from different schools. Likewise, scores on the same task might be more alike than score on different writing tasks. Therefore, a cross classified multilevel model is in operation. If $y_{(ij)k}$ is the score of student $i$ ($i = 1, 2, 3, ...., I_k$) on task $j$ ($j = 1, 2, ..., J_i$) in school $k$ ($k = 1, 2, ...., K$), we can write the model to be analyzed as:
 \begin{align*}
-	y_{(ij)k} = \beta * \mathrm{Grade}_{ijk} + [w_{00k} + u_{i0k} + v_{0j0} + \epsilon_{(ij)k}].
+	y_{(ij)k} = \beta \times \mathrm{Grade}_{ijk} + [w_{00k} + u_{i0k} + v_{0j0} + \epsilon_{(ij)k}].
 \end{align*}
 The model consists of two parts: a fixed parts and a random part (between square brackets). In the fixed part, $\mathrm{Grade}_{ijk}$ is an indicator matrix for students' grade. Consequently the vector of regression weights ($\beta$) represent the mean writing score for each grade. In the random part four residual scores are distinguished, all of which are assumed to be normally distributed around with an expected value of 0. The first residual ($w_{00k}$) captures the difference between a school and the average. The second residual ($u_{i0k}$) captures that the average score of student $i$ in school $k$ can deviate from the schools' mean. The third residual ($v_{0j0}$) captures that some tasks might be more difficult than other tasks. The fourth residual ($\epsilon_{(ij)k}$) indicates the deviation of the score of task $j$ of the average of student $i$ in school $k$. Usually the variance of this term is interpreted as random noise.
 
@@ -144,7 +154,7 @@ The key step in Bayesian inference is to use the data $\data$ to update the prio
 \underbrace{\prob{\bm{\beta} \mid \data , \model}}_{\text{Posterior}}
 &= 
 \overbrace{\prior{\bm{\beta}\mid \model}}^{\text{Prior}}
-\enspace \times \enspace
+%\enspace \times %\enspace
 \underbrace{\overbrace{
 		\frac{\lik{\data \mid \bm{\beta}, \model}}{\prob{\data \mid \model}}
 	}^{\text{Likelihood}}}_{\substack{\text{Marginal}\\ \text{Likelihood}}}.
@@ -192,7 +202,7 @@ We summarized the posterior distribution in Table~\ref{tb:baselineSummary}. This
 	columns/Parameter/.style={string type}
 	]\tbPostSummaryBaseline
 \end{table}
-\DON{dubbelcheck of het een variantie of standard deviatie is. Zonodig kwadraat toevoegen. Volgorde moet zijn wuve, met tussen haakjes wat het is.}
+
 Figure~\ref{fig:baselinePosteriorTextQuality} visualizes the improvement in text quality across grades. To obtain the posterior distributions for grades 11 and 12, we add the posterior distribution of the intercept to that of the improvement in Grade 11 and Grade 12. 
 \begin{figure}[!ht]
 	\includegraphics[width=\textwidth]{figures/baselinePosteriorTextQualityOverGrades.pdf}
@@ -218,7 +228,7 @@ Data was collected from 89 students of two high-schools in the Netherlands. Stud
 
 A typical analysis for this data set is almost identical to that of the baseline data set, except that here we estimate differences between measurements, which might be contaminated with differences due to tasks. Since each student took only one task at each measurement occasions, the between-task variance cannot be estimated. Thus $y_{(hi)k}$ is the observation of measurement $h$ ($h=1, 2, 3$) of student $i$ ($i=1, ..., K_i$) in school $k$ ($k = 1, 2$). The multilevel model thus becomes:
 \begin{align*}
-y_{(ij)k} = \beta_0 + \beta \mathrm{Measurement}_{ijk} +  [w_{00k} + u_{i0k} + \epsilon_{ijk}].
+y_{(ij)k} = \beta_0 + \beta \times \mathrm{Measurement}_{ijk} +  [w_{00k} + u_{i0k} + \epsilon_{ijk}].
 \end{align*}
 Here, $y_{ijk}$ is the observation of student $i$ on measurement $j$ in school $k$. The fixed part consists of an intercept ($\beta_0$), fixed effect of measurement $\beta$. The random part consists of a random intercept for school ($w_{00k}$), a random intercept for person within school $u_{i0k}$ and a residual $\epsilon_{ijk}$.
 %\begin{align*}
@@ -247,7 +257,6 @@ As for the baseline analysis, we summarize the posterior distribution of the mul
 		columns/Parameter/.style={string type}
 	]\tbPostSummaryProduct
 \end{table}
-\DON{wederom de volgorde van de tabel omdraaien!  }
 
 The estimated improvement across measurement occasions is shown in Figure~\ref{fig:productPosteriorTextQual}. Apparent is that students perform better at post-test than at pre-test and that the difference between follow up and post-test appears negligible.
 \begin{figure}[!ht]
@@ -270,7 +279,6 @@ Ideally, we directly compare the difference in text quality between measurement 
 	\caption{Posterior distributions for each grade in the baseline study and each measurement occasion in the experimental study. The posterior distributions of the baseline study are more narrow because they are based on more observations. We subtracted the estimated average task effect of each task category in the baseline study from the posteriors distributions in the experimental study to correct these for task effect.}
 	\label{fig:comparePostTextQual}
 \end{figure}
-\DON{measurement moet overal T1, T2, T3 zijn!}
 
 From Figure~\ref{fig:comparePostTextQual} we can infer that the corrected difference between measurement 1 and measurement 2 in the experimental study is almost as large as the difference between grade 10 and 11 in the baseline study. Hence, there is a substantial effect. By comparison, the difference between measurement 2 and measurement 3 is much smaller. Of course, this is not a statistical test of significance. Typically, such a test should account for between-task variance. To obtain an estimate for magnitude of between-task effects we can use the estimates of the baseline study to simulate a distribution of task difficulty. Next, we can compute the probability that the observed difference between measurement occasions in the experimental study is due to differences between tasks. 
 
@@ -294,40 +302,110 @@ Since \DON{tot hier gekomen!}multilevel models typically assume that the random 
 	\label{fig:posteriorImprovement}
 \end{figure}
 
-The left and middle panel in Figure~\ref{fig:posteriorImprovement} contrast measurement occasions 2 and 3 against intake. The improvement appears to exceeds what would be expected of a random task-effect. The right panel contrasts measurement 2 with measurement 3. Here, the improvement seems indistinguishable from random task-effect. This makes sense as there was no intervention between measurements 2 and 3.
-\DON{Should we express improvement in leerjaren?}
+The left and middle panel in Figure~\ref{fig:posteriorImprovement} contrast measurement occasions 2 and 3 against intake. 
+\DON{
+Dit moeten we ook voor de prior verdelingen berekenen, en vervolgens kiezen we de prior zo dat deze kans a-priori 0.5 is. Vervolgens kunnen we aan de hand van de prior en posterior kans een BF berekenen.
+Op dit moment is de prior op beta improper, maar als we daar een Cauchy(0, 1) op zetten dan is mijn conjecture dat de prior kans dat een fixed effect groter is dan een random effect gelijk is aan 0.5.
+We moeten ook nog ergens vertellen dat we daarom de priors gekozen hebben.
+}
+The improvement appears to exceeds what would be expected of a random task-effect. 
+The right panel contrasts measurement 2 with measurement 3. Here, the improvement seems indistinguishable from random task-effect. 
+This makes sense as there was no intervention between measurements 2 and 3.
+
+
+The above results show that the observed effect between measurement moment 1 and 2 is greater than can be expected from any given task. However, this does not provide a clear way to straightforward manner to interpret the magnitude of this effect. To obtain an measure that is easy to interpret, we again compare the results to that of the baseline. From the baseline study, we obtained a posterior distribution that quantifies students' improvement between grade 10 and grade 11, accounting for differences between tasks (i.e., parameter Grade 11 in Table~\ref{tb:baselineSummary}). Next, we take the posterior samples for the effect of measurement in the experimental study (Parameter Measurement 2 in Table~\ref{tb:productPosteriorSummary}) and divide these by the samples of the baseline study. The resulting posterior distribution expresses the progress of students in experimental study in baseline study years and provides a practically intuitive interpretation for the effect size.
+
+% these cannot be generated inside the caption
+\pgfplotstableread{credibleIntervalsImprovement.csv}\tbCRIimprovement
+\setVal{0}{lower}{\tbCRIimprovement}{\criLowerA}
+\setVal{0}{upper}{\tbCRIimprovement}{\criUpperA}
+\setVal{1}{lower}{\tbCRIimprovement}{\criLowerB}
+\setVal{1}{upper}{\tbCRIimprovement}{\criUpperB}
+\begin{figure}[!ht]
+	\includegraphics[width=\textwidth]{figures/improvementInYears.pdf}
+	\caption{Improvement in the experimental study relative to the improvement between grade 11 and grade 10. The left panel shows the posterior distribution for the improvement between measurement 1 and measurement 2 divided by the improvement from grade 10 to 11 (95\% HPD [$\criLowerA$, $\criUpperA$]). The right panel shows the improvement from measurement 1 to measurement 3, standardized in the same manner (95\% HPD [$\criLowerB$, $\criUpperB$]). The horizontal error bars above the densities represent 95\% HPD intervals.}
+	\label{fig:improvementInYears}
+\end{figure}
 
 \section*{Discussion}
-\todo[inline]{verwerkt dit comment in de discussie: om didactische redenen lijkt het me idd goed om het onderscheid tussen de experimenten er avn buiten te laten, maar aan het eind zou het een mooi sluitstuk zijn als je wel laat zien hoe je dan met twee xperimentele condities kunt werken. Voordeel van de beshcikking van een baseline is dat je niet een controlegroep hoeft mee te nemen, maar dat je tijd en geld kunt besteden aan een theoretisch interessante experimentele tegenhanger.}
-In this paper, we introduced a procedure for comparing results from a large scale assessment into the analysis of an experimental study that lacked a control group. If a control group is missing, the task-effect cannot be disentangled from the effect of an intervention. However, by relating the increase in performance to estimates of the between-task variance in a baseline study, we can compute how probable it is that improvement across measurements is a task-effect. This method could provide a point of reference for studies without a control group and may help discern between statistically significant effects and practically relevant effects (ref) \DON{lookup ref}.
+%\DONa{verwerkt dit comment in de discussie: om didactische redenen lijkt het me idd goed om het onderscheid tussen de experimenten er avn buiten te laten, maar aan het eind zou het een mooi sluitstuk zijn als je wel laat zien hoe je dan met twee xperimentele condities kunt werken. Voordeel van de beshcikking van een baseline is dat je niet een controlegroep hoeft mee te nemen, maar dat je tijd en geld kunt besteden aan een theoretisch interessante experimentele tegenhanger.}
+In this paper, we introduced a procedure for comparing results from a large scale assessment into the analysis of an experimental study that lacked a control group. 
+If a control group is missing, the task-effect cannot be disentangled from the effect of an intervention. 
+However, by relating the increase in performance to estimates of the between-task variance in a baseline study, we can compute how probable it is that improvement across measurements is a task-effect. 
+This method could provide a point of reference for studies without a control group and may help discern between statistically significant effects and practically relevant effects
+\cite{hojat2004visitor, fan2001statistical}.
 
-Comparing the distribution of task-effect in an experimental study to that of a baseline study relates to approaches of statistical tests for equivalence, such as TOST, ROPE, and interval Bayes factors (refs)\DON{add refs Lakens, Kruschke, ???}. These three approaches have in common that a researcher specifies some minimal effect size below which an effect is practically equivalent to zero. Another thing these tests have in common is that they provide no guidance on how to determine such a minimal effect size. In contrast, our approach can be seen as deriving this minimal effect size from a baseline study (e.g., the effect size that is sufficiently implausible to be caused by between task effects.)
+Comparing the distribution of task-effect in an experimental study to that of a baseline study relates to approaches of statistical tests for equivalence, such as TOST \cite{lakens2017equivalence}, ROPE \cite{kruschke2011bayesian}, and interval Bayes factors \cite{MoreyRouder2011}.
+These three approaches have in common that a researcher specifies some minimal effect size below which an effect is practically equivalent to zero.
+Another thing these tests have in common is that they provide little guidance on how to determine such a minimal effect size.
+In contrast, our approach can be seen as deriving this minimal effect size from a baseline study (e.g., the effect size that is sufficiently implausible to be caused by between task effects.)
 
 Here, we opted to speak of significance when the posterior probability that the observed task-effect is larger than that of a random task is less than $0.05$. This choice is arbitrary and other motivations have been suggested \cite{McShane2017abandon, BenjaminEtAl2018}.
 
+We chose for a Bayesian analysis because it allows us to account for the uncertainty in the estimates of the baseline study when comparing these to the results in the experimental study. In a frequentist analysis, it is also possible to do this so some extent. A distribution of effect sizes can be obtained by using the point estimates 
+
+
 \subsection*{Limitations}
-It is important to stress that if improvement exceeds between-task effect the results cannot be viewed as a causal relation. This is no different from ``correlation is not causation'', and since no randomized experiment with a control group takes place the results are correlational and must be interpreted as such. However, between-task variance is a major source of variance, and we can quantify how unlikely it is that the results are caused by between-task variability. Nonetheless, to assert a causal relation between an intervention and an increase in performance a control group is required.
-
-A key assumption is that task-effects are, at least asymptotically, normally distributed. If normality is violated then the computed probabilities may be far from the truth. However, note that a naive estimator for the effect of a task is simply the mean of the scores on that task.\DON{lookup ref if this estimator is unbiased!} Since this estimator is an average the central limit theorem applies and thus the distribution of task-effects converges asymptotically to a normal distribution (under mild regularity conditions, e.g., see ref).
-
-Another avenue for incorporating the results of a baseline study into the analysis of an experimental study is through the prior distribution. The posterior distributions of the baseline study could be used as prior distributions for the experimental study. Although this seems straightforward, it requires the analyst of the experimental study to have the original data. The benefit of such an approach is unclear, as the data typically overwhelm the influence of the prior distribution, barring extreme cases \cite{Lynch2007}. However, Bayesian hypothesis testing using Bayes factors is sensitive to the choice of the prior distribution (in particular the marginal likelihood is sensitive to the prior \citeNP{gelman2017prior}).
-
-%Children could improve just by making tasks?
-
-%\subsubsection*{Bayesian Hypothesis Testing}
-%Although we did not do so here, 
+It is important to stress that if improvement exceeds between-task effect the results cannot be viewed as a causal relation.
+This is no different from ``correlation is not causation''; since no randomized experiment with a control group takes place the results are correlational and must be interpreted as such. 
+To assert a causal relation a control group is essential.
 %
-%To compare different models within a Bayesian statistics, e.g., to test if a new writing instruction improves performance on writing tasks there are multiple options. Commonly used are Bayes factors (ref) and cross-validation (ref). Bayes factors compare the predictive performance of both models. 
-%
-%Dat het model met verschillen tussen de meetmomenten het beter doet is apparent (e.g., see Figure...). However, our main focus is to relate the improvement to a baseline study to facilitate...
-%
-%\DON{Refereren naar special issue robust cognitive modelling, prior predictive}
+%we must 
+%Although, between-task variance is a major source of variance, and we can quantify how unlikely it is that the results are caused by between-task variability. 
+%Nonetheless, to assert a causal relation between an intervention and an increase in performance a control group is required.
+
+A key assumption is that task-effects are, at least asymptotically, normally distributed. 
+If normality is violated then the probabilities shown in Figure~\ref{fig:posteriorImprovement} could be biased. 
+Here, we briefly outline an argument why the task effects are likely approximately normally distributed. 
+Note that a naive estimator for the effect of a task is simply the mean of the students' scores on that task. 
+Although this estimator is unbiased, much better estimates can be obtained in practice by accounting for the hierarchical structure \cite<e.g., see>{EfronMorris1977}. 
+Since the naive estimator is an average the central limit theorem applies and thus the distribution of task-effects converges asymptotically to a normal distribution (under mild regularity conditions).
+\DON{ik weet niet zeker of dit argument helemaal klopt.}
+
+Another avenue for incorporating the results of a baseline study into the analysis of an experimental study is through the prior distribution. 
+The posterior distribution of the baseline study could serve as prior distribution for the experimental study.
+Although this is conceptually straightforward, we did not do so for two reasons.
+First, to obtain exact approximations to the posterior, the analyst of the experimental study must have the original data to obtain posterior distributions for the baseline data set. 
+In practice, it is unlikely that an analyst has access to a baseline data set which limits the applicability of the method.
+It is possible to approximate the marginal posterior distributions using some parametric family of distributions, which can then be published and used in experimental studies. 
+However, these approximations will likely ignore the correlations and other higher order moments in the posterior distribution.
+The consequences of ignoring the higher order moments in the posterior distribution are simply unknown.
+Second, the benefit of informed priors is unclear, as the data typically overwhelm the influence of the prior distribution, barring extreme cases \cite{Lynch2007}. 
+Thus, since the inference done in the paper are based solely on the posterior distribution, the influence of the prior distribution is likely negligible.
+%A clear use case for these priors is typical Bayesian hypothesis. 
+%Typically, Bayesian hypothesis testing is done using Bayes factors, which are sensitive to the choice of the prior distribution (in particular the marginal likelihood is sensitive to the prior \citeNP{gelman2017prior}).
+%Prior distributions informed by baseline studies could facilitate 
+%Third, applying 
+
+
+\DONa{We kunnen vertellen dat frequentisten dit ook kunnen doen met een puntschatting van variantie. Het is dan alleen niet duidelijk is hoe de standaardfout van die puntschatting gebruikt kan worden om de onzekerheid van de schatting te laten voortvloeien in de gesimuleerde effect groottes (en het negeren van de onzekerheid zal leiden tot een te nauwe verdeling van effect groottes en als gevolg te zekere uitspraken gegeven de data).}
 
 \subsection*{Recommendations}
-Prior information about a subject can enrich the statistical analyses and provide more insight into the data. However, we emphasize that a key requirement for comparison with a large scale assessment is that the data obtained in an experimental study are comparable with the data from a large scale assessment. Such a comparison hinges on the validity of the measurement instruments. If the constructs measured at baseline differ from those measured by a study then a comparison between them cannot be interpreted and is meaningless. Our recommendation is to use the same measurement instruments as those used in the baseline assessment.
+Prior information can enrich the statistical analyses and provide more insight into the data.
+Here, we outline several recommendations for those who wish to apply our method for incorporating prior information in practice.
 
-In sum, we related the results from a baseline study to the analysis of an experimental study that lacked a control group. This allowed us to determine whether the differences between measurements in the experimental group exceeded what would be expected from between task variance. Altogether, this may help to place effect sizes of experimental studies in a broader context.
 
+A key requirement for comparing results from a large scale assessment with those from an experimental study is that the data are comparable.
+Whether the data are comparable hinges on the validity of the measurement instruments.
+It is not so much important that the instruments measure what they are supposed to measure (the traditional definition of validity), but rather they should measure the same construct.
+If the baseline study measured different constructs than the experimental study, for instance, because they used different measurement instruments, then a comparison is unintelligible and thus meaningless.
+Thus, we recommend to use the same measurement instruments as those used in a baseline assessment.
+
+The use of a baseline study instead of a control group opens up new avenues for designing experimental studies. 
+Currently, researches tend to allocate about half of the available resources to a control group and the other half to an experimental group. 
+However, since the experimental group can now be related to a baseline study, it becomes possible to allocate funds to a theoretically competing theory,rather than to a control group.
+
+The use of our method is subject to large scale assessments publishing their results.
+It is key that those studies either disclose the raw data, or that they publish the marginal posterior distributions of the parameters.
+If the results of large scale assessments are not available as benchmark, then it is inoperable to use them to inform the analysis of experimental studies.
+
+
+
+
+In sum, we related the results from a baseline study to the analysis of an experimental study that lacked a control group.
+This allowed us to determine whether the differences between measurements in the experimental group exceeded what would be expected from between task variance.
+Altogether, this may help to place effect sizes of experimental studies in a broader context.
+\DONa{Hier moeten we iets meer zeggen over de mogelijkheden die dit introduceert.}
 
 \bibliographystyle{apacite}
 \bibliography{references}
@@ -368,7 +446,8 @@ In sum, we related the results from a baseline study to the analysis of an exper
 		\centering
 		\includegraphics[width=\linewidth]{figures/baselineAutocorrelationplots.pdf}
 	\end{subfigure}%
-	\caption{Left: trace plots of the first 10,000 posterior samples after warmup. The different chains appear indistinguishable, which indicates they converged. Right: Autocorrelation of the chains. The 0\textsuperscript{th} lag was omitted (as this is 1 by definition). The autocorrelation drops to 0 after about 5 iterations.}
+	\caption{
+		Convergence diagnostics for the analysis of the baseline data set. Left: trace plots of the first 10,000 posterior samples after warmup. The different chains appear indistinguishable, which indicates they converged. Right: Autocorrelation of the chains. The 0\textsuperscript{th} lag was omitted (as this is 1 by definition). The autocorrelation drops to 0 after about 5 iterations.}
 	\label{fig:baselinePosteriorDiagnostics}
 \end{figure}
 
@@ -380,6 +459,7 @@ In sum, we related the results from a baseline study to the analysis of an exper
 	\label{fig:productPosteriorDescriptives}
 \end{figure}
 
+
 \begin{figure}[!ht]
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -390,7 +470,9 @@ In sum, we related the results from a baseline study to the analysis of an exper
 		\centering
 		\includegraphics[width=\linewidth]{figures/baselineAutocorrelationplots.pdf}
 	\end{subfigure}%
-	\caption{Left: trace plots of the first 10,000 posterior samples after warmup. The different chains appear indistinguishable, which indicates they converged. Right: Autocorrelation of the chains. The 0\textsuperscript{th} lag was omitted (as this is 1 by definition). The autocorrelation drops to 0 after about 5 iterations.}
+	\caption{
+		Convergence diagnostics for the analysis of the experimental data set.
+		Left: trace plots of the first 10,000 posterior samples after warmup. The different chains appear indistinguishable, which indicates they converged. Right: Autocorrelation of the chains. The 0\textsuperscript{th} lag was omitted (as this is 1 by definition). The autocorrelation drops to 0 after about 5 iterations.}
 	\label{fig:baselinePosteriorDiagnostics}
 \end{figure}
 

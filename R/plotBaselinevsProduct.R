@@ -66,15 +66,16 @@ ms <- c(m1, colMeans(samplesProduct[, c("b[1]", "b[2]")]) + m1)
 nm <- unique(df[["what"]]); nm <- nm[startsWith(nm, "Experiment")]
 tb <- data.frame(Mean = c(tapply(df[["samples"]], df[["what"]], mean)[nm], ms),
                  what = c(nm, paste("Exp", 1:3, "uncorrected")), row.names = NULL)[c(4:6, 1:3), ]
-write.csv(tb, "tables/postMeansProductCategoryCorrected.csv", row.names = FALSE, quote = FALSE)
+# write.csv(tb, "tables/postMeansProductCategoryCorrected.csv", row.names = FALSE, quote = FALSE)
 
 # compare posterior distribution intercept baseline vs product
 g <- plotMeasureVersusTaskVariance(df, cols, xlab = "Posterior Text Quality")
-saveFigure("comparePosteriorTextQuality.pdf", graph = g, width = 14, height = 7)
+# saveFigure("comparePosteriorTextQuality.pdf", graph = g, width = 14, height = 7)
 
 
+# probability of task effect ----
 # color of task effect
-colTask <- gplots::col2hex("gray60")
+colTask <- col2hex("gray60")
 
 # widht & height of pdf
 width  <- 6
@@ -163,21 +164,22 @@ g234 <- plotMeasureVersusTaskVariance(df234, cols = c(cols[5:6], rgb2(colorRamp(
                                       legendInPlot = TRUE) + theme(legend.position = c(.94, .95), strip.text = element_text(size = 24))
 
 
+# saveFigure("compareTaskEffectToT2.pdf",  g2,       width, height)
+# saveFigure("compareTaskEffectToT3.pdf",  g3,       width, height)
+# saveFigure("compareTaskEffectToT23.pdf", g4,       width, height)
+# saveFigure("compareTaskEffects.pdf",     g234, 3 * width, height)
 
-saveFigure("compareTaskEffectToT2.pdf",  g2,       width, height)
-saveFigure("compareTaskEffectToT3.pdf",  g3,       width, height)
-saveFigure("compareTaskEffectToT23.pdf", g4,       width, height)
-saveFigure("compareTaskEffects.pdf",     g234, 3 * width, height)
-
-# visualize the average effect of grade
-averageEffectGrade <- (samplesBaseline[, "b[1]"] + samplesBaseline[, "b[2]"] / 2) / 2
+# visualize the average effect of grade ----
+# average of Grade 10 to Grade 11 and grade 11 to grade 12
+# averageEffectGrade <- (samplesBaseline[, "b[1]"] + samplesBaseline[, "b[2]"] / 2) / 2
+# Grade 10 to Grade 11
+averageEffectGrade <- samplesBaseline[, "b[1]"]
 df4 <- data.frame(samples = averageEffectGrade)
 
 g4 <- ggplot(data = df4, aes(x = samples)) +
   geom_density(alpha = .7) +
   labs(color = "", fill = "", x = "Posterior Effect", y = "Density") +
   theme_bw(base_size = 24)
-dev.new()
 print(g4)
 
 dev.new()
@@ -218,5 +220,51 @@ plot(d1)
 plot(d2)
 
 # credible interval
-round(quantile(effectT21inGrade, probs = c(.025, .5, .975)), 3)
-round(quantile(effectT31inGrade, probs = c(.025, .5, .975)), 3)
+cri21 <- coda::HPDinterval(coda::as.mcmc(effectT21inGrade))
+cri31 <- coda::HPDinterval(coda::as.mcmc(effectT31inGrade))
+
+computeCRIandDensity <- function(x) {
+  cri <- coda::HPDinterval(coda::as.mcmc(x))
+  d <- density(x, from = -1, to = 5)
+  df <- data.frame(x = d$x, y = d$y)
+  dfh <- data.frame(xmin = cri[1], xmax = cri[2], y = 0.95)#1.1 * max(df$y))
+  return(list(df = df, dfh = dfh))
+}
+
+progressPlot <- function(df, dfh, xlab = "Improvement in years", ylab = "Density") {
+
+  g <- ggplot(data = df, aes(x = x, y = y)) +
+    geom_line() +
+    geom_errorbarh(data = dfh, mapping = aes(xmin = xmin, xmax = xmax, y = y), height = .1, inherit.aes = FALSE) +
+    scale_x_continuous(limits = c(-1, 5), breaks = -1:5) +
+    labs(x = xlab, y = ylab) +
+    theme_bw(base_size = 24)
+
+  if ("g" %in% colnames(df))
+    g <- g +
+      facet_grid(cols = vars(g), labeller = label_parsed) +
+      theme(strip.background = element_rect(fill = "transparent", color = "transparent"))
+  return(g)
+}
+
+d21 <- computeCRIandDensity(effectT21inGrade)
+d31 <- computeCRIandDensity(effectT31inGrade)
+
+titles <- c("frac(T2, 'Grade 11' - 'Grade 10')", "frac(T3, 'Grade 11' - 'Grade 10')")
+d21_31 <- d21
+d21_31$df  <- rbind(d21_31$df, d31$df)
+d21_31$dfh <- rbind(d21_31$dfh, d31$dfh)
+d21_31$df$g <- rep(titles, each = 512)
+d21_31$dfh$g <- titles
+
+g21 <- progressPlot(d21$df, d21$dfh)
+g31 <- progressPlot(d31$df, d31$dfh)
+g21_31 <- progressPlot(d21_31$df, d21_31$dfh)
+g21_31
+
+tb2save <- d21_31$dfh[, 1:2]
+names(tb2save) <- c("lower", "upper")
+tb2save$g <- 1:2
+
+# writeTable(tb2save, "tables/credibleIntervalsImprovement.csv")
+# saveFigure("improvementInYears.pdf", g21_31, 2 * width, width)
