@@ -32,7 +32,6 @@ plotMeasureVersusTaskVariance <- function(df, cols, xlab = "", ylab = "Density",
 }
 
 samplesBaseline     <- readRDS("results/samplesBaseline.rds")
-samplesBaselineTask <- readRDS("results/samplesBaselineTaskEffects.rds")
 samplesExperimental <- readRDS("results/samplesExperimental.rds")
 averageTaskEffects  <- readRDS("results/samplesBaselineAverageTaskEffects.rds")
 

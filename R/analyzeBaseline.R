@@ -87,7 +87,7 @@ for (i in 1:4) {
   idx <- 1:4 + 8L * (i - 1L)
   averageTaskEffects[, i] <- rowMeans(samplesTaskEffects[, idx])
 }
-saveRDS(samplesTaskEffects, "results/samplesBaselineAverageTaskEffects.rds")
+saveRDS(averageTaskEffects, "results/samplesBaselineAverageTaskEffects.rds")
 
 # compute task effects
 

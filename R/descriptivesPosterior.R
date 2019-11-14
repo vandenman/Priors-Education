@@ -101,7 +101,6 @@ gDescriptive <- posteriorScatterPlot(samplesBaseline, columnLabels = columnLabel
 saveFigure("posteriorDescriptivesBaseline.pdf",  gDescriptive, width = 20, height = 20)
 
 # improvement over grades
-samplesBaselineTask <- readRDS("results/samplesBaselineTaskEffects.rds")
 averageTaskEffects  <- readRDS("results/samplesBaselineAverageTaskEffects.rds")
 
 df <- tibble(
