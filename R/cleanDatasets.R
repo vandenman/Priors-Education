@@ -7,19 +7,19 @@ library(dplyr)
 library(readr)
 
 # clean baseline dataset
-dBaseline <- read_csv2("data/Baselinestudie_vwo456.csv")
+dBaseline <- readr::read_csv2("data/Baselinestudie_vwo456.csv")
 
 RuweData <- dBaseline
 RuweData$Gender <- factor(RuweData$Gender)
-RuweData$Grade <- factor(RuweData$Grade,levels=c("4","5","6","BA1","BA2","BA3"))
-TQ_VO<-RuweData[(RuweData$Grade!="BA1")&(RuweData$Grade!="BA2")&(RuweData$Grade!="BA3"),]
-TQ_VO$GradeL<-as.numeric(TQ_VO$Grade)-1
-TQ_VO$Nbronnen<-NA
-TQ_VO$Nbronnen[TQ_VO$Topic=="A"]<-3
-TQ_VO$Nbronnen[TQ_VO$Topic=="B"]<-5
-TQ_VO$Nbronnen[TQ_VO$Topic=="C"]<-4
-TQ_VO$Nbronnen[TQ_VO$Topic=="D"]<-4
-TQ_VO$Nbronnen<-as.factor(TQ_VO$Nbronnen)
+RuweData$Grade  <- factor(RuweData$Grade,levels = c("4","5","6","BA1","BA2","BA3"))
+TQ_VO <- RuweData[!(RuweData$Grade %in% c("BA1", "BA2", "BA3")), ]
+TQ_VO$GradeL <- as.numeric(TQ_VO$Grade) - 1L
+TQ_VO$Nbronnen <- NA
+TQ_VO$Nbronnen[TQ_VO$Topic == "A"] <- 3
+TQ_VO$Nbronnen[TQ_VO$Topic == "B"] <- 5
+TQ_VO$Nbronnen[TQ_VO$Topic == "C"] <- 4
+TQ_VO$Nbronnen[TQ_VO$Topic == "D"] <- 4
+TQ_VO$Nbronnen <- as.factor(TQ_VO$Nbronnen)
 Dat <- na.omit(TQ_VO[,c("ID_Participant","Task_Code","Schoolnummer","Score_Mean","Grade","GradeL","Gender","Genre","Task_Order","Nbronnen","Complementariteit_bronnen","Hoeveelheid_overbodige_info")])
 Dat$Grade <- droplevels(Dat$Grade)
 Dat$Participant_index <- as.integer(as.factor(Dat$ID_Participant))
@@ -35,7 +35,7 @@ Dat$Grade <- recode(Dat$Grade,
 saveRDS(Dat, file = "data/cleanedBaseline.rds")
 
 # clean productfeedback dataset
-dProductFeedback <- read_csv("data/Dataset productfeedback 2019.csv")
+dProductFeedback <- readr::read_csv("data/Dataset productfeedback 2019.csv")
 
 dProductFeedback2 <-
   dProductFeedback %>%

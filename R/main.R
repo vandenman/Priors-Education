@@ -1,8 +1,5 @@
 rm(list = ls())
 
-# install all required R packages
-source("R/installrequiredRpackages.R")
-
 # clean all data sets
 source("R/cleanDatasets.R")
 

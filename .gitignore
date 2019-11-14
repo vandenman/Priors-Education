@@ -1,10 +1,5 @@
-data/Baselinestudie_vwo456.csv
-data/cleanedBaseline.rds
-data/cleanedProductfeedback.rds
-data/data_interventie_vwo4.csv
-data/Dataset procesfeedback 2019.xlsx
-data/Dataset productfeedback 2019.csv
-data/Dataset productfeedback 2019.xlsx
+data/*
+!data/README.md
 .Rproj.user/*
 *.rds
 *.aux
@@ -15,3 +10,5 @@ data/Dataset productfeedback 2019.xlsx
 *.tdo
 ..gitignore.kate-swp
 .Rproj.user
+packrat/lib*/
+packrat/src/

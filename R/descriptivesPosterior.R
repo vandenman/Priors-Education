@@ -7,7 +7,6 @@ library(coda)
 library(xtable)
 Tex <- latex2exp::TeX
 source("R/utils.R")
-source("R/commonPlotSettings.R")
 
 posteriorScatterPlot <- function(samples, thm, ...) {
 

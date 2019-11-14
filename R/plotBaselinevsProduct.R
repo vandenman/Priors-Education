@@ -4,7 +4,6 @@ library(tibble)
 library(ggplot2)
 TeX <- latex2exp::TeX
 source("R/utils.R")
-source("R/commonPlotSettings.R")
 
 plotMeasureVersusTaskVariance <- function(df, cols, xlab = "", ylab = "Density", colorlab = "", title = NULL,
                                           legendInPlot = FALSE, peakLocation = "right") { #, textFill = textColor, ...) {
