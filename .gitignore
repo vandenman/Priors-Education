@@ -1,5 +1,8 @@
 data/*
 !data/README.md
+paper/*
+!paper/liftProject.tex
+!paper/liftProject.pdf
 .Rproj.user/*
 *.rds
 *.aux

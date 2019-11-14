@@ -1,7 +1,8 @@
-\contentsline {todo}{Don: {Aanvullen aub}}{4}{section*.3}% 
-\contentsline {todo}{Don: {Aanvullen aub!}}{7}{section*.13}% 
-\contentsline {todo}{Don: {tot hier gekomen!}}{11}{section*.20}% 
-\contentsline {todo}{Don: { Dit moeten we ook voor de prior verdelingen berekenen, en vervolgens kiezen we de prior zo dat deze kans a-priori 0.5 is. Vervolgens kunnen we aan de hand van de prior en posterior kans een BF berekenen. Op dit moment is de prior op beta improper, maar als we daar een Cauchy(0, 1) op zetten dan is mijn conjecture dat de prior kans dat een fixed effect groter is dan een random effect gelijk is aan 0.5. We moeten ook nog ergens vertellen dat we daarom de priors gekozen hebben. }}{11}{section*.22}% 
-\contentsline {todo}{Don: {ik weet niet zeker of dit argument helemaal klopt.}}{14}{section*.26}% 
-\contentsline {todo}{Don: {We kunnen vertellen dat frequentisten dit ook kunnen doen met een puntschatting van variantie. Het is dan alleen niet duidelijk is hoe de standaardfout van die puntschatting gebruikt kan worden om de onzekerheid van de schatting te laten voortvloeien in de gesimuleerde effect groottes (en het negeren van de onzekerheid zal leiden tot een te nauwe verdeling van effect groottes en als gevolg te zekere uitspraken gegeven de data).}}{14}{section*.27}% 
-\contentsline {todo}{Don: {Hier moeten we iets meer zeggen over de mogelijkheden die dit introduceert.}}{15}{section*.29}% 
+\contentsline {todo}{Don: { 0. Specifeer propere priors. 1. Herhaal alle analyses met brms. 2. Transformeer alle standaard deviaties naar varianties direct na het samplen en sla dat op. 3. Schoon de code op wat betreft het transformeren van varianties. }}{3}{section*.2}% 
+\contentsline {todo}{Don: {Aanvullen aub}}{5}{section*.4}% 
+\contentsline {todo}{Don: {Aanvullen aub!}}{8}{section*.14}% 
+\contentsline {todo}{Don: {tot hier gekomen!}}{12}{section*.21}% 
+\contentsline {todo}{Don: { Dit moeten we ook voor de prior verdelingen berekenen, en vervolgens kiezen we de prior zo dat deze kans a-priori 0.5 is. Vervolgens kunnen we aan de hand van de prior en posterior kans een BF berekenen. Op dit moment is de prior op beta improper, maar als we daar een Cauchy(0, 1) op zetten dan is mijn conjecture dat de prior kans dat een fixed effect groter is dan een random effect gelijk is aan 0.5. We moeten ook nog ergens vertellen dat we daarom de priors gekozen hebben. }}{12}{section*.23}% 
+\contentsline {todo}{Don: {ik weet niet zeker of dit argument helemaal klopt.}}{16}{section*.27}% 
+\contentsline {todo}{Don: {We kunnen vertellen dat frequentisten dit ook kunnen doen met een puntschatting van variantie. Het is dan alleen niet duidelijk is hoe de standaardfout van die puntschatting gebruikt kan worden om de onzekerheid van de schatting te laten voortvloeien in de gesimuleerde effect groottes (en het negeren van de onzekerheid zal leiden tot een te nauwe verdeling van effect groottes en als gevolg te zekere uitspraken gegeven de data).}}{16}{section*.28}% 
+\contentsline {todo}{Don: {Hier moeten we iets meer zeggen over de mogelijkheden die dit introduceert.}}{17}{section*.30}% 

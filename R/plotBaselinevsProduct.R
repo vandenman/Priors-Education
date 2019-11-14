@@ -163,10 +163,10 @@ g234 <- plotMeasureVersusTaskVariance(df234, cols = c(cols[5:6], rgb2(colorRamp(
                                       legendInPlot = TRUE) + theme(legend.position = c(.94, .95), strip.text = element_text(size = 24))
 
 
-# saveFigure("compareTaskEffectToT2.pdf",  g2,       width, height)
-# saveFigure("compareTaskEffectToT3.pdf",  g3,       width, height)
-# saveFigure("compareTaskEffectToT23.pdf", g4,       width, height)
-# saveFigure("compareTaskEffects.pdf",     g234, 3 * width, height)
+saveFigure("compareTaskEffectToT2.pdf",  g2,       width, height)
+saveFigure("compareTaskEffectToT3.pdf",  g3,       width, height)
+saveFigure("compareTaskEffectToT23.pdf", g4,       width, height)
+saveFigure("compareTaskEffects.pdf",     g234, 3 * width, height)
 
 # visualize the average effect of grade ----
 # average of Grade 10 to Grade 11 and grade 11 to grade 12
@@ -265,5 +265,5 @@ tb2save <- d21_31$dfh[, 1:2]
 names(tb2save) <- c("lower", "upper")
 tb2save$g <- 1:2
 
-# writeTable(tb2save, "tables/credibleIntervalsImprovement.csv")
-# saveFigure("improvementInYears.pdf", g21_31, 2 * width, width)
+writeTable(tb2save, "tables/credibleIntervalsImprovement.csv")
+saveFigure("improvementInYears.pdf", g21_31, 2 * width, width)

@@ -1,5 +1,9 @@
 rm(list = ls())
 
+# determines whether results are written to file.
+options("writeFiguresToFile" = TRUE)
+options("writeTablesToFile" = TRUE)
+
 # clean all data sets
 source("R/cleanDatasets.R")
 
