@@ -102,11 +102,7 @@ saveFigure("posteriorDescriptivesBaseline.pdf",  gDescriptive, width = 20, heigh
 
 # improvement over grades
 samplesBaselineTask <- readRDS("results/samplesBaselineTaskEffects.rds")
-averageTaskEffects <- matrix(NA, nrow(samplesBaselineTask), 4L, dimnames = list(NULL, LETTERS[1:4]))
-for (i in 1:4) {
-  idx <- 1:4 + 8L * (i - 1L)
-  averageTaskEffects[, i] <- rowMeans(samplesBaselineTask[, idx])
-}
+averageTaskEffects  <- readRDS("results/samplesBaselineAverageTaskEffects.rds")
 
 df <- tibble(
   what = rep(paste("Grade", 10:12), each = nrow(samplesBaseline)),

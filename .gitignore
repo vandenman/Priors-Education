@@ -4,6 +4,7 @@ paper/*
 !paper/liftProject.tex
 !paper/liftProject.pdf
 results/brmsFit_*
+results/samplesBaselineTaskEffectsRaw.rds
 .Rproj.user/*
 *.aux
 *.bbl

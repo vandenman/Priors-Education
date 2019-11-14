@@ -49,7 +49,7 @@ samplesMatrix[, idx2Square]  <- samplesMatrix[, idx2Square]^2
 samplesArray[, , idx2Square] <- samplesArray[, , idx2Square]^2
 
 # write all results to disk
-saveRDS(samplesMatrix, file = "results/samplesBaseline.rds")
+saveRDS(samplesMatrix, file = "results/samplesBaseline.rds", )
 saveRDS(samplesArray,  file = "results/samplesArrayBaseline.rds")
 
 # sanity check -- do the posterior means correspond to frequentist point estimates?
@@ -80,7 +80,16 @@ nms[idx2]
 
 samplesTaskEffects <- as.matrix(res, pars = nms[idx2])
 colnames(samplesTaskEffects) <- tasknames
-saveRDS(samplesTaskEffects, "results/samplesBaselineTaskEffects.rds")
+saveRDS(samplesTaskEffects, "results/samplesBaselineTaskEffectsRaw.rds")
+
+averageTaskEffects <- matrix(NA, nrow(samplesTaskEffects), 4L, dimnames = list(NULL, LETTERS[1:4]))
+for (i in 1:4) {
+  idx <- 1:4 + 8L * (i - 1L)
+  averageTaskEffects[, i] <- rowMeans(samplesTaskEffects[, idx])
+}
+saveRDS(samplesTaskEffects, "results/samplesBaselineAverageTaskEffects.rds")
+
+# compute task effects
 
 # diagnostics
 rstan::check_hmc_diagnostics(res)

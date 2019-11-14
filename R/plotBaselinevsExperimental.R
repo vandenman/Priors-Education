@@ -34,13 +34,7 @@ plotMeasureVersusTaskVariance <- function(df, cols, xlab = "", ylab = "Density",
 samplesBaseline     <- readRDS("results/samplesBaseline.rds")
 samplesBaselineTask <- readRDS("results/samplesBaselineTaskEffects.rds")
 samplesExperimental <- readRDS("results/samplesExperimental.rds")
-
-averageTaskEffects <- matrix(NA, nrow(samplesBaselineTask), 4L, dimnames = list(NULL, LETTERS[1:4]))
-for (i in 1:4) {
-  idx <- 1:4 + 8L * (i - 1L)
-  # should not be the mean?
-  averageTaskEffects[, i] <- rowMeans(samplesBaselineTask[, idx])
-}
+averageTaskEffects  <- readRDS("results/samplesBaselineAverageTaskEffects.rds")
 
 df <- tibble(
   what = rep(c(paste("Baseline Grade", 10:12), paste("Experiment", 1:3)), each = nrow(samplesExperimental)),
@@ -169,11 +163,8 @@ saveFigure("compareTaskEffects.pdf",     g234, 3 * width, height)
 # averageEffectGrade <- (samplesBaseline[, "b[1]"] + samplesBaseline[, "b[2]"] / 2) / 2
 # Grade 10 to Grade 11
 averageEffectGrade <- samplesBaseline[, "Grade 11"]
-averageEffectGradeAndTask <- averageEffectGrade +
-  samplesBaselineTask[cbind(seq_len(nrow(samplesBaseline)), idx)]
-
-effectT21inGrade <- (samplesExperimental[, "T2"] - averageTaskEffects[, "A"]) / averageEffectGradeAndTask
-effectT31inGrade <- (samplesExperimental[, "T3"] - averageTaskEffects[, "D"]) / averageEffectGradeAndTask
+effectT21inGrade <- (samplesExperimental[, "T2"] - averageTaskEffects[, "A"]) / averageEffectGrade
+effectT31inGrade <- (samplesExperimental[, "T3"] - averageTaskEffects[, "D"]) / averageEffectGrade
 
 
 # credible interval
