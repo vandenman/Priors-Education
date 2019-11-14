@@ -1,13 +1,13 @@
 saveFigure <- function(filename, graph, width = 20, height = 10) {
 
   p1 <- file.path("figures", filename)
-  p2 <- file.path("paper", p1)
+  if (!dir.exists("figures"))
+    dir.create("figures")
 
-  if (getOption(options("writeFiguresToFile", FALSE))) {
+  if (getOption("writeFiguresToFile", FALSE)) {
     pdf(p1, width = width, height = height)
     print(graph)
     dev.off()
-    file.copy(p1, p2, overwrite = TRUE)
   }
 }
 
@@ -20,8 +20,13 @@ col2hex <- function(cname) {
 writeTable <- function(x, file) {
   # small wrapper around write.csv to save tables in a way that the latex package pgfplotstable
   # can easily read them
-  if (getOption(options("writeTablesToFile", FALSE)))
-    write.csv(x, file, row.names = FALSE, quote = FALSE)
+
+  p1 <- file.path("tables", file)
+  if (!dir.exists("tables"))
+    dir.create("tables")
+
+  if (getOption("writeTablesToFile", FALSE))
+    write.csv(x, p1, row.names = FALSE, quote = FALSE)
 }
 
 # colors

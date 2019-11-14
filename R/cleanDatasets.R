@@ -7,7 +7,7 @@ library(dplyr)
 library(readr)
 
 # clean baseline dataset
-dBaseline <- readr::read_csv2("data/Baselinestudie_vwo456.csv")
+dBaseline <- read_csv2("data/Baselinestudie_vwo456.csv")
 
 RuweData <- dBaseline
 RuweData$Gender <- factor(RuweData$Gender)
@@ -34,11 +34,11 @@ Dat$Grade <- recode(Dat$Grade,
 
 saveRDS(Dat, file = "data/cleanedBaseline.rds")
 
-# clean productfeedback dataset
-dProductFeedback <- readr::read_csv("data/Dataset productfeedback 2019.csv")
+# clean experimental dataset
+dExperimental <- read_csv("data/Dataset productfeedback 2019.csv")
 
-dProductFeedback2 <-
-  dProductFeedback %>%
+dExperimental2 <-
+  dExperimental %>%
   select("ID_Participant", "School", "Klas", "Conditie",
          "herschaalde score taak 1", "herschaalde score taak 2", "herschaalde score taak 3") %>%
   na_if("-99.00") %>%
@@ -48,5 +48,6 @@ dProductFeedback2 <-
     Participant_index = ID_Participant,
     School_index      = School
   )
+dExperimental2 <- dExperimental2[complete.cases(dExperimental2), ]
 
-saveRDS(dProductFeedback2, file = "data/cleanedProductfeedback.rds")
+saveRDS(dExperimental2, file = "data/cleanedExperimental.rds")

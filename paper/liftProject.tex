@@ -73,7 +73,7 @@ Don van den Bergh, University of Amsterdam, Department of Psychological Methods,
 \title{Priors Information for Multilevel models in Educational Analyses}
 \date{}
 
-\graphicspath{{../figures}}
+\graphicspath{{../figures/}}
 
 \begin{document}
 
@@ -136,13 +136,6 @@ The observations of text quality cannot be considered as independent. Scores of 
 \end{align*}
 The model consists of two parts: a fixed parts and a random part (between square brackets). In the fixed part, $\mathrm{Grade}_{ijk}$ is an indicator matrix for students' grade. Consequently the vector of regression weights ($\beta$) represent the mean writing score for each grade. In the random part four residual scores are distinguished, all of which are assumed to be normally distributed around with an expected value of 0. The first residual ($w_{00k}$) captures the difference between a school and the average. The second residual ($u_{i0k}$) captures that the average score of student $i$ in school $k$ can deviate from the schools' mean. The third residual ($v_{0j0}$) captures that some tasks might be more difficult than other tasks. The fourth residual ($\epsilon_{(ij)k}$) indicates the deviation of the score of task $j$ of the average of student $i$ in school $k$. Usually the variance of this term is interpreted as random noise.
 
-%A natural model to describe these data is a multilevel model. Multilevel models can capture the nested structure of the data and can estimate the variance due by each level of nesting. For example, a multilevel model can inform us how much variance in the observed scores is caused by differences between tasks.
-
-%An observed text quality score in the baseline data set can be viewed as a realization the following multilevel model:
-%\begin{align*}
-%	y_{pstg} &= \beta_0 + \beta_p + \beta_s + \beta_t + \beta_g + \epsilon_{pstg}.
-%\end{align*}
-%Here, the observed score for student $p$ in school $s$ on task $t$ in grade $g$ is a function of the intercept $\beta_0$, a random intercept for each level of nesting, $\beta_p, \beta_s, \beta_t$, a fixed effect for grade $\beta_g$, and the residual error $\epsilon_{pstg}$. The residual error is generally assumed to be normally distributed with mean zero and unknown variance $\sigma_\epsilon^2$, i.e., $\epsilon_{pstg}~\sim~\dnorm{0}{\sigma_\epsilon^2}$. The random intercepts are assumed to be realizations from a normal distribution with unknown variance, for example, $\beta_{t} \sim \dnorm{0}{\sigma_t^2}$. Multilevel models estimate the contribution of each level of nesting and therefore aim to generalize over these levels. In this case, we aim to generalize over students, schools, and tasks.
 
 \subsection*{Bayesian Inference}
 \pgfmathsetmacro{\zCrit}{1.959964}% qnorm(0.975)
@@ -171,18 +164,10 @@ All analyses were done in R \cite{R}. The R package \code{brms} was used for Bay
 %The R package \code{rstan} was used to interface between R and Stan \cite{rstan2018}. The R package \code{fitdistrplus} was used to approximate posterior distributions with parametric ones \cite{delignette2015fitdistrplus}.
 
 \section*{Baseline Analysis}
+
 % setup table
 \pgfplotstableread{postSummaryBaseline.csv}\tbPostSummaryBaseline
 
-%\pgfplotstablegetelem{0}{Mean}\of\tbPostSummaryBaseline
-%
-%\pgfmathsetmacro{\valueinB}{\pgfplotsretval}
-
-%\pgfmathsmuggle\valueinB%
-%\endgroup
-%\pgfmathsetmacro{\valueinB}{\pgfplotsretval}
-%\getValue{0}{Mean}{\tbPostSummaryBaseline}
-%\pgfmathprintnumber{84.40000000000046}
 We summarized the posterior distribution in Table~\ref{tb:baselineSummary}. This shows that the average text quality of students in grade 10 is estimated at \getVal{0}{Mean}{\tbPostSummaryBaseline}. The 95\% highest posterior density (HPD) credible interval ranges from  \getCI{0}{\tbPostSummaryBaseline}.	 Students in grade 11 performed on average about \getVal{1}{Mean}{\tbPostSummaryBaseline} points better (\getCI{1}{\tbPostSummaryBaseline}) than students in grade 10. Likewise, students in grade 12 performed on average about \getVal{2}{Mean}{\tbPostSummaryBaseline} points better (\getCI{2}{\tbPostSummaryBaseline}) than students in grade 10. However, the estimated variance between schools (\getVal{3}{Mean}{\tbPostSummaryBaseline}), students within school (\getVal{4}{Mean}{\tbPostSummaryBaseline}), and tasks (\getVal{5}{Mean}{\tbPostSummaryBaseline}) clearly deviate from 0. Since the data set contained such a large variety of schools and tasks, it is likely that these findings generalize over tasks.
 \begin{table}[!ht]
 	\caption{Summary of the posterior distribution for the baseline data set. The first column shows the parameter. The second the posterior mean for that parameter, the third the posterior standard deviation and the last two columns show the 95\% higher posterior density interval. Grade 11 and 12 represent the improvement relative to grade 10 (the intercept).}
@@ -207,7 +192,7 @@ We summarized the posterior distribution in Table~\ref{tb:baselineSummary}. This
 
 Figure~\ref{fig:baselinePosteriorTextQuality} visualizes the improvement in text quality across grades. To obtain the posterior distributions for grades 11 and 12, we add the posterior distribution of the intercept to that of the improvement in Grade 11 and Grade 12.
 \begin{figure}[!ht]
-	\includegraphics[width=\textwidth]{baselinePosteriorTextQualityOverGrades.pdf}
+	\includegraphics[width=\textwidth]{posteriorTextQualityBaseline}
 	\caption{Posterior distribution of text quality in grades 10, 11, and 12. Posteriors distributions for grades 11 and 12 are obtained by adding the MCMC samples of the intercept to the MCMC samples for the improvement of the respective grade.}
 	\label{fig:baselinePosteriorTextQuality}
 \end{figure}
@@ -215,18 +200,17 @@ Figure~\ref{fig:baselinePosteriorTextQuality} visualizes the improvement in text
 \section*{Application to an Experimental Analysis}
 
 \subsection*{Data Set}
-%(product)
 Data was collected from 89 students of two high-schools in the Netherlands. Students made three writing tasks in one week; one on Monday, Wednesday, and Friday. After the first task, the students received feedback on the quality of their written texts by a rating scale based on the baseline data set.
 \DON{Aanvullen aub!}
 
 \begin{figure}[!ht]
-	\includegraphics[width=\textwidth]{descriptivesProduct.pdf}
+	\includegraphics[width=\textwidth]{descriptivesExperimental}
 	\caption{Box and whiskers plot of student performance on the three measurement occasions. Grey points represent the raw scores on text quality. Quasi-random jitter was added to the x-coordinates of the points to avoid visual clutter. The average performance clearly increases from measurement one to two, but it is hard to quantify the improvement without a reference group.}
 	\label{fig:productDescriptives}
 \end{figure}
 
 \subsection*{Analysis}
-\pgfplotstableread{postSummaryProduct.csv}\tbPostSummaryProduct
+\pgfplotstableread{postSummaryExperimental.csv}\tbPostSummaryProduct
 
 A typical analysis for this data set is almost identical to that of the baseline data set, except that here we estimate differences between measurements, which might be contaminated with differences due to tasks. Since each student took only one task at each measurement occasions, the between-task variance cannot be estimated. Thus $y_{(hi)k}$ is the observation of measurement $h$ ($h=1, 2, 3$) of student $i$ ($i=1, ..., K_i$) in school $k$ ($k = 1, 2$). The multilevel model thus becomes:
 \begin{align*}
@@ -263,7 +247,7 @@ As for the baseline analysis, we summarize the posterior distribution of the mul
 The estimated improvement across measurement occasions is shown in Figure~\ref{fig:productPosteriorTextQual}. Apparent is that students perform better at post-test than at pre-test and that the difference between follow up and post-test appears negligible.
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=\textwidth]{productPosteriorTextQuality.pdf}
+	\includegraphics[width=\textwidth]{posteriorTextQualityExperimental.pdf}
 	\caption{Posterior distribution of text quality at each measurement occasion of the product data set.}
 	\label{fig:productPosteriorTextQual}
 \end{figure}
@@ -273,7 +257,7 @@ At this point in the analysis, drawing conclusions about the effect of the treat
 
 %\subsection*{Relating Baseline Result to Experimental Findings}
 \subsection*{Relating Baseline Results to the Analysis of an Experimental Study}
-\pgfplotstableread{postMeansProductCategoryCorrected.csv}\tbPostMeansProdCC
+\pgfplotstableread{postMeansCorrectedExperimental.csv}\tbPostMeansProdCC
 
 Ideally, we directly compare the difference in text quality between measurement occasions in the experimental study. However, interpreting these differences is not straightforward as the contamination of task effect and measurement occasion make this impossible. To make the differences between measurement occasions interpretable we need to correct these for task difficulty. As the The baseline study provides estimates of task difficulty, a correction is self-evident.  We can correct students scores in the experimental study by subtracting the estimated task in the baseline study. As a consequence, the corrected posterior means for each measurement occasion changed slightly, see Figure~\ref{fig:comparePostTextQual} (from \getVal{0}{Mean}{\tbPostMeansProdCC} to \getVal{3}{Mean}{\tbPostMeansProdCC} for measurement 1, from \getVal{1}{Mean}{\tbPostMeansProdCC} to \getVal{4}{Mean}{\tbPostMeansProdCC} for measurement 2, and from \getVal{2}{Mean}{\tbPostMeansProdCC} to \getVal{5}{Mean}{\tbPostMeansProdCC} for measurement 3). Note that a direct comparison is possible because the rating procedure of the experimental study is based on the rating procedure of the baseline study.
 \begin{figure}[!ht]
@@ -415,7 +399,7 @@ Altogether, this may help to place effect sizes of experimental studies in a bro
 \newpage
 
 \begin{figure}[!ht]
-	\includegraphics[width=\textwidth]{baselinePosteriorDescriptivesPlot.pdf}
+	\includegraphics[width=\textwidth]{posteriorDescriptivesBaseline}
 	\caption{Visual summary of the posterior distributions for the group level effects of the baseline data set. The strips above and right of the figures indicate the parameters compared. Figures on the diagonal show marginal density estimates. Figures below the diagonal show bivariate hexagonal histograms. The numbers above the diagonal indicate the Pearson correlation between the samples of the parameters.}
 	\label{fig:baselinePosteriorDescriptives}
 \end{figure}
@@ -425,11 +409,11 @@ Altogether, this may help to place effect sizes of experimental studies in a bro
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=\linewidth]{baselineTraceplots.pdf}
+		\includegraphics[width=\linewidth]{traceplotsBaseline}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=\linewidth]{baselineAutocorrelationplots.pdf}
+		\includegraphics[width=\linewidth]{autocorrelationBaseline}
 	\end{subfigure}%
 	\caption{
 		Convergence diagnostics for the analysis of the baseline data set. Left: trace plots of the first 10,000 posterior samples after warmup. The different chains appear indistinguishable, which indicates they converged. Right: Autocorrelation of the chains. The 0\textsuperscript{th} lag was omitted (as this is 1 by definition). The autocorrelation drops to 0 after about 5 iterations.}
@@ -439,7 +423,7 @@ Altogether, this may help to place effect sizes of experimental studies in a bro
 
 
 \begin{figure}[!ht]
-	\includegraphics[width=\textwidth]{baselinePosteriorDescriptivesPlot.pdf}
+	\includegraphics[width=\textwidth]{posteriorDescriptivesExperimental}
 	\caption{Visual summary of the posterior distributions for the group level effects of the experimental data set. The strips above and right of the figures indicate the parameters compared. Figures on the diagonal show marginal density estimates. Figures below the diagonal show bivariate hexagonal histograms. The numbers above the diagonal indicate the Pearson correlation between the samples of the parameters.}
 	\label{fig:productPosteriorDescriptives}
 \end{figure}
@@ -449,11 +433,11 @@ Altogether, this may help to place effect sizes of experimental studies in a bro
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=\linewidth]{baselineTraceplots.pdf}
+		\includegraphics[width=\linewidth]{traceplotsExperimental.pdf}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=\linewidth]{baselineAutocorrelationplots.pdf}
+		\includegraphics[width=\linewidth]{autocorrelationExperimental}
 	\end{subfigure}%
 	\caption{
 		Convergence diagnostics for the analysis of the experimental data set.

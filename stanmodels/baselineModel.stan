@@ -66,7 +66,6 @@ model {
     mu[n] += r_1_1[J_1[n]] * Z_1_1[n] + r_2_1[J_2[n]] * Z_2_1[n] + r_3_1[J_3[n]] * Z_3_1[n];
   }
   // priors including all constants
-  target += normal_lpdf(b | 0, 100);
   target += student_t_lpdf(Intercept | 3, 90, 18);
   target += student_t_lpdf(sigma | 3, 0, 18)
     - 1 * student_t_lccdf(0 | 3, 0, 18);

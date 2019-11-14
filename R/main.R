@@ -2,7 +2,7 @@ rm(list = ls())
 
 # determines whether results are written to file.
 options("writeFiguresToFile" = TRUE)
-options("writeTablesToFile" = TRUE)
+options("writeTablesToFile"  = TRUE)
 
 # clean all data sets
 source("R/cleanDatasets.R")
@@ -11,13 +11,13 @@ source("R/cleanDatasets.R")
 source("R/descriptivesBaseline.R")
 
 # descriptives of baseline data set
-source("R/descriptivesProduct.R")
+source("R/descriptivesExperimental.R")
 
 # analyze baseline data set
 source("R/analyzeBaseline.R")
 
-# analyze product dataset
-source("R/analyzeProductFeedback.R")
+# analyze experimental dataset
+source("R/analyzeExperimental.R")
 
 # figures with mcmc diagnostics
 source("R/MCMCconvergence.R")
@@ -26,4 +26,4 @@ source("R/MCMCconvergence.R")
 source("R/descriptivesPosterior.R")
 
 # compare baseline and experimental data set
-source("R/plotBaselinevsProduct.R")
+source("R/plotBaselinevsExperimental.R")
