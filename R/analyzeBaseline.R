@@ -103,14 +103,4 @@ rstan::check_hmc_diagnostics(res)
 # Energy:
 #   E-BFMI indicated no pathological behavior.
 
-# visual diagnostics
-show <- nms[idx] # remove [idx] to see results for all parameters
-rhats <- bayesplot::rhat(res, pars = show)
-ratios_cp <- neff_ratio(res, pars = show)
-bayesplot::mcmc_rhat(rhats)
-bayesplot::mcmc_neff(ratios_cp, size = 2)
-
-# summary of posterior
-summ <- summary(res, pars = show)
-summ$summary[show, ]
 

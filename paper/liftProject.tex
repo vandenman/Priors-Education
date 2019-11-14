@@ -88,11 +88,10 @@ Don van den Bergh, University of Amsterdam, Department of Psychological Methods,
 \newpage
 
 %\section*{Introduction}
-\DONa{
-	0. Specifeer propere priors.
-	1. Herhaal alle analyses met brms.
-	2. Transformeer alle standaard deviaties naar varianties direct na het samplen en sla dat op.
-	3. Schoon de code op wat betreft het transformeren van varianties.
+\DONa{\\
+	0. Specifeer propere priors.\\
+	1. Herhaal alle analyses met brms.\\
+	2. Bereken Rhat voor beide analyses en maak er een figuur van.
 }
 In many countries, the achievements of students are monitored in so-called national assessments. For instance, NAEP in the US, PEIL in the Netherlands (or international assessment programs like IEA or PIRLS) measure students' achievements at regular intervals to gain information on changes in achievement over time (or changes in differences between countries). For instance, in the Netherlands every four years the achievements of students are measured at the end of primary education in some of the most important subject areas. Although the results of these assessments often inform policymaking, the data are seldom used in educational research even though there are ample opportunities.
 
@@ -309,7 +308,7 @@ The above results show that the observed effect between measurement moment 1 and
 \setVal{1}{upper}{\tbCRIimprovement}{\criUpperB}
 \begin{figure}[!ht]
 	\includegraphics[width=\textwidth]{improvementInYears.pdf}
-	\caption{Improvement in the experimental study relative to the improvement between grade 11 and grade 10. The left panel shows the posterior distribution for the improvement between measurement 1 and measurement 2 divided by the improvement from grade 10 to 11 (95\% HPD [$\criLowerA$, $\criUpperA$]). The right panel shows the improvement from measurement 1 to measurement 3, standardized in the same manner (95\% HPD [$\criLowerB$, $\criUpperB$]). The horizontal error bars above the densities represent 95\% HPD intervals.}
+	\caption{Improvement in the experimental study relative to the improvement between grade 11 and grade 10. The left panel shows the posterior distribution for the improvement between measurement 1 and measurement 2 divided by the improvement from grade 10 to 11 (95\% HPD [$\criLowerA$, $\criUpperA$]). The right panel shows the improvement from measurement 1 to measurement 3, standardized in the same manner (95\% HPD [$\criLowerB$, $\criUpperB$]). The shaded area under the curve represent 95\% HPD intervals.}
 	\label{fig:improvementInYears}
 \end{figure}
 
