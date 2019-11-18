@@ -55,6 +55,7 @@ model {
     mu[n] += r_1_1[J_1[n]] * Z_1_1[n] + r_2_1[J_2[n]] * Z_2_1[n];
   }
   // priors including all constants
+  target += cauchy_lpdf(b | 0, 1);
   target += student_t_lpdf(Intercept | 3, 82, 18);
   target += student_t_lpdf(sigma | 3, 0, 18)
     - 1 * student_t_lccdf(0 | 3, 0, 18);

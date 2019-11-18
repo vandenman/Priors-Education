@@ -12,15 +12,8 @@ if (file.exists(fileBrmsFitExperimental)) { # Load results from disk
 
 } else { # Resample model
 
-  # setup for mcmc samples, in total (iter - warmup) * chains samples are obtained.
-  iter   <- 6e4L
-  warmup <- 1e4L
-  chains <- 6L
-
-  # arguments for Stan's sampling algorithm
-  control <- list(
-    adapt_delta = 0.81
-  )
+  # load common MCMC settings (no iterations, warmup, chains, etc.)
+  source("R/mcmcSettings.R")
 
   # run the chains in parallel
   cores <- min(parallel::detectCores() - 1L, chains)
@@ -29,7 +22,9 @@ if (file.exists(fileBrmsFitExperimental)) { # Load results from disk
   formula <- Score_Mean ~ 1 + Taak + (1 || School_index / Participant_index)
   brmres <- brm(
     formula = formula, data = dat, iter = iter, warmup = warmup, chains = chains, cores = cores,
-    control = control, save_model = file.path("stanmodels", "experimentalModel.stan")
+    control = control, save_model = file.path("stanmodels", "experimentalModel.stan"),
+    prior = set_prior("cauchy(0, 1)", class = "b", coef = "", group = "", resp = "",
+                      dpar = "", nlpar = "", lb = NA, ub = NA, check = TRUE)
   )
   saveRDS(brmres, file = fileBrmsFitExperimental)
 }
@@ -76,3 +71,22 @@ saveRDS(samplesArray,  file = "results/samplesArrayExperimental.rds")
 # (Intercept)                    76.193      1.640  46.457
 # Taakherschaalde score taak 2   10.447      1.783   5.861
 # Taakherschaalde score taak 3   11.040      1.816   6.078
+
+
+# brms may print this warning:
+#  "Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable."
+# however, the code below shows that for each chain both the "Tail Effective Samples Size" and the
+# "Bulk Effective Samples Size" are above the criteria of 100.
+mon <- rstan::monitor(res)
+range(mon$Tail_ESS)
+# 451 155941
+range(mon$Bulk_ESS)
+# 1107 138115
+range(mon$Rhat)
+# 1.000067 1.005247
+saveRDS(mon, file = file.path("results", "monitorFitExperimental.rds"))
+
+
+# TODO: rename the school index to 1, 2, 3 in data cleaning, to anonimize the results later
+# TODO: write these fits to file and reference them in the manuscript.
+

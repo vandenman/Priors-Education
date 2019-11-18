@@ -11,10 +11,8 @@ if (file.exists(fileBrmsFitBaseline)) { # Load results from disk
 
 } else { # Resample model
 
-  # setup for mcmc samples, in total (iter - warmup) * chains samples are obtained.
-  iter   <- 6e4L
-  warmup <- 1e4L
-  chains <- 6L
+  # load common MCMC settings (no iterations, warmup, chains, etc.)
+  source("R/mcmcSettings.R")
 
   # run the chains in parallel
   cores <- min(parallel::detectCores() - 1L, chains)
@@ -23,7 +21,7 @@ if (file.exists(fileBrmsFitBaseline)) { # Load results from disk
   formula <- Score_Mean ~ 1 + Grade + (1 | Task_index) + (1 || School_index / Participant_index)
   brmres <- brm(
     formula = formula, data = dat, iter = iter, warmup = warmup, chains = chains, cores = cores,
-    save_model = file.path("stanmodels", "baselineModel.stan")
+    control = control, save_model = file.path("stanmodels", "baselineModel.stan")
   )
   saveRDS(brmres, file = fileBrmsFitBaseline)
 }
@@ -103,4 +101,18 @@ rstan::check_hmc_diagnostics(res)
 # Energy:
 #   E-BFMI indicated no pathological behavior.
 
+
+# brms may print this warning:
+#  "Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable."
+# however, the code below shows that for each chain both the "Tail Effective Samples Size" and the
+# "Bulk Effective Samples Size" are above the criteria of 100.
+
+mon <- rstan::monitor(res)
+range(mon$Tail_ESS)
+# 100017 255349
+range(mon$Bulk_ESS)
+#  59056 425906
+range(mon$Rhat)
+# 0.9999901 1.0001112
+saveRDS(mon, file = file.path("results", "monitorFitBaseline.rds"))
 
