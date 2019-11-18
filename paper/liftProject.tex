@@ -15,6 +15,9 @@
 \usepackage{todonotes}
 \setlength{\marginparwidth}{4cm}
 
+\usepackage{setspace}
+\doublespacing
+
 \usepackage{pgfplotstable}
 \pgfplotstableset{
 	fixed zerofill,
@@ -40,8 +43,6 @@
 
 \newcommand{\DON}	[1] 	{\todo[linecolor=gray, backgroundcolor=white]	{Don: 	{#1}}}
 \newcommand{\DONa}	[1]		{\todo[inline, linecolor=gray, backgroundcolor=white]	{Don:	{#1}}}
-
-%\newcommand{\DON}[1] {\todo[color=orange]{Don: {#1}}}
 
 \newcommand{\argument}[1]{\noindent\textbf{PG:} \textit{#1}}
 \newcommand{\code}[1]{\texttt{#1}}
