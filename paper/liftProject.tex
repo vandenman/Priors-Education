@@ -152,9 +152,11 @@ Likewise, scores on the same task might be more alike than scores on different w
 Therefore, a cross-classified multilevel model is in operation.
 If $y_{(ij)k}$ is the score of student $i$ ($i = 1, 2, 3, ...., I_k$) on task $j$ ($j = 1, 2, ..., J_i$) in school $k$ ($k = 1, 2, ...., K$), we can write the model to be analyzed as:
 \begin{align*}
-	y_{(ij)k} = \beta \times \mathrm{Grade}_{ijk} + [w_{00k} + u_{i0k} + v_{0j0} + \epsilon_{(ij)k}].
+%	y_{(ij)k} = \beta \times \mathrm{Grade}_{ijk} + [w_{00k} + u_{i0k} + v_{0j0} + \epsilon_{(ij)k}].
+	y_{(ij)k} &= \beta_0 + \beta_1 \times [\mathrm{Grade}_{ijk}=11] + \beta_2 \times [\mathrm{Grade}_{ijk}=12]\\
+			  &+ w_{00k} + u_{i0k} + v_{0j0} + \epsilon_{(ij)k}.
 \end{align*}
-The model consists of two parts: a fixed part and a random part (between square brackets). In the fixed part, $\mathrm{Grade}_{ijk}$ is an indicator matrix for students' grade. Consequently, the vector of regression weights ($\beta$) represents the mean writing score for each grade. In the random part four residual scores are distinguished, all of which are assumed to be normally distributed around with an expected value of 0. The first residual ($w_{00k}$) captures the difference between a school and the average. The second residual ($u_{i0k}$) captures that the average score of student $i$ in school $k$ can deviate from the schools' mean. The third residual ($v_{0j0}$) captures that some tasks might be more difficult than other tasks. The fourth residual ($\epsilon_{(ij)k}$) indicates the deviation of the score of task $j$ of the average of student $i$ in school $k$. Usually, the variance of this term is interpreted as random noise.
+The model consists of two parts: a fixed part, the first line, and a random part, the second line. In the fixed part, $\mathrm{Grade}_{ijk}$ is an indicator matrix for students' grade. The intercept $\beta_0$ represents the mean writing score in Grade 10. Consequently, the regression weights $\beta_1$ and $\beta_2$ represent the difference in mean writing score between grade 11 and 10, and grade 12 and 10 respectively. In the random part four residual scores are distinguished, all of which are assumed to be normally distributed around with an expected value of 0. The first residual ($w_{00k}$) captures the difference between a school and the average. The second residual ($u_{i0k}$) captures that the average score of student $i$ in school $k$ can deviate from the schools' mean. The third residual ($v_{0j0}$) captures that some tasks might be more difficult than other tasks. The fourth residual ($\epsilon_{(ij)k}$) indicates the deviation of the score of task $j$ of the average of student $i$ in school $k$. Usually, the variance of this term is interpreted as random noise.
 
 
 \subsection*{Bayesian Inference}
@@ -241,11 +243,15 @@ Data were collected from 89 students of two high-schools in the Netherlands. Stu
 \subsection*{Analysis}
 \pgfplotstableread{postSummaryExperimental.csv}\tbPostSummaryProduct
 
-A typical analysis for this data set is almost identical to that of the baseline data set, except that here we estimate differences between measurements, which might be contaminated with differences due to tasks. Since each student took only one task at each measurement occasion, the between-task variance cannot be estimated. Thus $y_{(hi)k}$ is the observation of measurement $h$ ($h=1, 2, 3$) of student $i$ ($i=1, ..., K_i$) in school $k$ ($k = 1, 2$). The multilevel model thus becomes:
+A typical analysis for this data set is almost identical to that of the baseline data set, except that here we estimate differences between measurements, which might be contaminated with differences due to tasks. Since each student took only one task at each measurement occasion, the between-task variance cannot be estimated. Thus $y_{hik}$ is the observation of measurement $h$ ($h=1, 2, 3$) of student $i$ ($i=1, ..., K_i$) in school $k$ ($k = 1, 2$). The multilevel model thus becomes:
 \begin{align*}
-y_{(ij)k} = \beta_0 + \beta \times \mathrm{Measurement}_{ijk} +  [w_{00k} + u_{i0k} + \epsilon_{ijk}].
+%y_{(ij)k} = \beta_0 + \beta \times \mathrm{Measurement}_{ijk} +  [w_{00k} + u_{i0k} + \epsilon_{ijk}].
+y_{hik} &= \beta_0 + \beta_1 \times [\mathrm{Measurement}_{hik} = 2] + \beta_2 \times [\mathrm{Measurement}_{hik} = 3]\\
+        &+ w_{00k} + u_{i0k} + \epsilon_{hik}.
 \end{align*}
-Here, $y_{ijk}$ is the observation of student $i$ on measurement $j$ in school $k$. The fixed part consists of an intercept ($\beta_0$), fixed effect of measurement $\beta$. The random part consists of a random intercept for school ($w_{00k}$), a random intercept for person within school $u_{i0k}$ and a residual $\epsilon_{ijk}$.
+%Here, $y_{hjk}$ is the observation of student $i$ on measurement $j$ in school $k$. 
+The fixed part consists of an intercept ($\beta_0$) that represents the mean writing score on the first measurement and two fixed effects that capture the difference in mean writing score between subsequent measurements and the first measurement ($\beta_1$ and $\beta_2$).
+The random part consists of a random intercept for school ($w_{00k}$), a random intercept for person within school $u_{i0k}$ and a residual $\epsilon_{hik}$.
 %\begin{align*}
 %y_{psm} &= \beta_0 + \beta_p + \beta_s + \beta_m  + \epsilon_{pstg}.
 %\end{align*}

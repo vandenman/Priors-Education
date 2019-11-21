@@ -69,11 +69,6 @@ effectT21inGrade <- (samplesExperimental[, "T2"] - averageTaskEffects[, "A"]) / 
 effectT31inGrade <- (samplesExperimental[, "T3"] - averageTaskEffects[, "D"]) / averageEffectGrade
 
 
-# credible interval
-cri21 <- HPDinterval(as.mcmc(effectT21inGrade))
-cri31 <- HPDinterval(as.mcmc(effectT31inGrade))
-
-
 d21 <- computeCRIandDensity(effectT21inGrade)
 d31 <- computeCRIandDensity(effectT31inGrade)
 
@@ -89,9 +84,12 @@ g31 <- progressPlot(d31$df, d31$dfh)
 g21_31 <- progressPlot(d21_31$df, d21_31$dfh, fill = colsExperim[-1])
 g21_31
 
-tb2save <- d21_31$dfh[, 1:2]
-names(tb2save) <- c("lower", "upper")
-tb2save$g <- 1:2
+# credible interval
+cri21 <- c(HPDinterval(as.mcmc(effectT21inGrade)), mean(effectT21inGrade))
+cri31 <- c(HPDinterval(as.mcmc(effectT31inGrade)), mean(effectT31inGrade))
+tb2save <- rbind(cri21, cri31)
+colnames(tb2save) <- c("Lower", "Upper", "mean")
+tb2save[, "months"] <- 12 * tb2save
 
 width  <- 6
 saveFigure("improvementInYears.pdf", g21_31, 2 * width, width)
