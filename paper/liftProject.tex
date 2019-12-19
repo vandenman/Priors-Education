@@ -41,8 +41,12 @@
 }
 \newcommand{\getCI}[2]{95\% HPD [\getVal{#1}{Lower}{#2}, \getVal{#1}{Upper}{#2}]}
 
-\newcommand{\DON}	[1] 	{\todo[linecolor=gray, backgroundcolor=white]	{Don: 	{#1}}}
-\newcommand{\DONa}	[1]		{\todo[inline, linecolor=gray, backgroundcolor=white]	{Don:	{#1}}}
+%\newcommand{\DON}	[1] 	{\todo[linecolor=gray, backgroundcolor=white]	{Don: 	{#1}}}
+%\newcommand{\DONa}	[1]		{\todo[inline, linecolor=gray, backgroundcolor=white]	{Don:	{#1}}}
+\newcommand{\DON}	[1] 	{}
+\newcommand{\DONa}	[1]		{}
+
+
 
 \newcommand{\argument}[1]{\noindent\textbf{PG:} \textit{#1}}
 \newcommand{\code}[1]{\texttt{#1}}
@@ -82,7 +86,7 @@ Don van den Bergh, University of Amsterdam, Department of Psychological Methods,
 
 \begin{document}
 
-\listoftodos
+%\listoftodos
 \newpage
 \maketitle
 \renewcommand{\thefootnote}{\arabic{footnote}}
@@ -98,22 +102,31 @@ In many countries, the achievements of students are monitored in so-called natio
 
 A common denominator in national assessments is for all subject areas measurements are based on an analysis of that subject area. Therefore, students read multiple texts if reading is assessed or write multiple texts if writing is assessed. This is a necessity if one wants to describe the level of achievements covering a whole domain while generalizing over specific assignments (or tests) at the same time. For writing in the Netherlands, for instance, students wrote 21 different texts in a national assessment \cite{zwarts1990balans}. Of course, not all students take every test, but a sparse design is in operation, to minimize testing time but allowing for conclusion at the population level at the same time.
 
-If we contrast experimental studies with national assessments it is apparent that in many experimental studies the measurements are not as varied as in national assessments. In the vast majority of experimental studies on writing, students write one text as a pretest and one text as a posttest \cite<e.g.,>{graham2014conducting}. Based on these texts we are proned to draw conclusions on changes in the writing skills of students. Although it is well documented that differences between different types of writing assignments can be large \cite<e.g.,>{bouwer2015effect}, and we hardly can make inferences based on only one writing assignment. Of course, many researchers are aware of the limited generalizability of single-task experiments. However, it is often infeasible that students write more tasks.
-
-%Hence, generalization over writing tasks does not appear to be a crucial issue in experimental writing studies as it is assessments.
+If we contrast experimental studies with national assessments it is apparent that in many experimental studies the measurements are not as varied as in national assessments. In the vast majority of experimental studies on writing, students write one text as a pretest and one text as a posttest \cite<e.g.,>{graham2014conducting}. Based on these texts we are proned to draw conclusions on changes in the writing skills of students. Although it is well documented that differences between different types of writing assignments can be large \cite<e.g.,>{bouwer2015effect}, and we hardly can make inferences based on only one writing assignment. Of course, many researchers are aware of the limited generalizability of single-task experiments. However, in most experiments it is often infeasible that students write more tasks.
 
 So, on the one hand, there is much information on levels of achievement of students (at certain levels of education) from assessments, and on the other hand in many experimental studies, we rely on relatively small samples and relative narrow measures of skills. Therefore, one could wonder why don't we use the information from large scale assessments? Can this information from assessments be put to use in our experimental studies?
 
-The information from national assessments can be seen as information on the level of achievements in general.
-In this sense, this information might be seen as prior knowledge that describes the standard level of achievements. 
-In experimental studies, we like to show that the increase in achievements due to the experimental manipulation exceeds `natural' growth.
-Therefore, the information from assessments might function as a baseline, or standard level of achievement for experimental studies.
-Second, the results of prior studies form the basis for new studies and research hypotheses.
-Nevertheless, we do not fully use the available data.
-Prior knowledge, prior data, is rarely used in statistical analyses.
-This might be inefficient, as we keep measuring students over and over again to get studies that have enough power to draw conclusions.
-However, we can also increase the power of studies if we enrich our analyses with prior results \cite{graham2014conducting}.
-One of the types of studies that comes directly to mind are of course assessment studies, not only because many students take these tests, but also because students take many tests in order the generalize over the idiosyncrasies of specific tests.
+In experimental studies, the goal is often to show that the increase in achievements due to an experimental manipulation exceeds `natural' growth.
+Usually, this is done by comparing an experimental condition to a control condition, where the control condition represents the general level of achievement.
+This is possibly inefficient, as students are measured repeatedly to obtain studies that have sufficient power to draw conclusions.
+One alternative to increase the power of studies is by enriching the statistical analyses with prior results \cite{graham2014conducting}.
+In contrast to control conditions, national assessments consist of more observations on a larger variety of tasks and therefore provide a much richer account of the general level of achievement.
+Thus, the idea is to use the data from national assessment as prior knowledge on the general level of achievement instead of a control group.
+
+%However, national assessments provide much richer information on the general level of achievement and could form the basis for prior knowledge on achievement.
+%National assessments provide information on the general level of achievement and could form the basis for prior knowledge on achievement.
+%However, we can also increase the power of studies if we enrich our analyses with prior results \cite{graham2014conducting}.
+%One of the types of studies that comes directly to mind are of course assessment studies, not only because many students take these tests, but also because students take many tests in order the generalize over the idiosyncrasies of specific tests.
+%The information from national assessments can be seen as information on the level of achievements in general.
+%In this sense, this information might be seen as prior knowledge that describes the standard level of achievements. 
+%In experimental studies, we like to show that the increase in achievements due to the experimental manipulation exceeds `natural' growth.
+%Therefore, the information from assessments might function as a baseline, or standard level of achievement for experimental studies.
+%Second, the results of prior studies form the basis for new studies and research hypotheses.
+%Nevertheless, we do not fully use the available data.
+%Prior knowledge, prior data, is rarely used in statistical analyses.
+%This might be inefficient, as we keep measuring students over and over again to get studies that have enough power to draw conclusions.
+%However, we can also increase the power of studies if we enrich our analyses with prior results \cite{graham2014conducting}.
+%One of the types of studies that comes directly to mind are of course assessment studies, not only because many students take these tests, but also because students take many tests in order the generalize over the idiosyncrasies of specific tests.
 
 Unfortunately, there exists no straightforward method to incorporate prior information into (frequentist) analyses. 
 Ideally, the raw data from prior studies are included in the analyses as a benchmark comparison, but this is often impossible for practical (and privacy) reasons.
@@ -137,7 +150,7 @@ The paper is concluded with a discussion on the widespread applicability and ben
 
 Schools were selected at random by creating three lists of schools. First, a school in the first batch was approached for participating in the study. If this school did not reply or refused, a school in the second batch was selected at random. If the second school did not participate a school from the third batch was approached.
 
-In total, the writing quality was measured for 625 students, nested in 43 schools. To assess between-task variance, 32 different tasks were administered of which students made four at random. Some students did not make all tasks, 497 students made four tasks and 128 students made three or fewer tasks. The minimum amount of students per task was 62 whereas the maximum was 84. Students' text were rated by... \DON{Aanvullen aub}.
+In total, the writing quality was measured for 625 students, nested in 43 schools. To assess between-task variance, 32 different tasks were administered of which students made four at random. Students did not make all tasks, 497 students made four tasks and 128 students made three or fewer tasks. The minimum amount of students per task was 62 whereas the maximum was 84. Students' text were rated by... \DON{Aanvullen aub}.
 
 The data contain an obvious nested structure, as illustrated in Figure~\ref{fig:baselineDescriptives}. Observations are nested within students and tasks. Furthermore, students are nested within schools. Students took a random sample of four tasks out of 32 tasks developed for this writing assessment.
 
@@ -153,10 +166,10 @@ Therefore, a cross-classified multilevel model is in operation.
 If $y_{(ij)k}$ is the score of student $i$ ($i = 1, 2, 3, ...., I_k$) on task $j$ ($j = 1, 2, ..., J_i$) in school $k$ ($k = 1, 2, ...., K$), we can write the model to be analyzed as:
 \begin{align*}
 %	y_{(ij)k} = \beta \times \mathrm{Grade}_{ijk} + [w_{00k} + u_{i0k} + v_{0j0} + \epsilon_{(ij)k}].
-	y_{(ij)k} &= \beta_0 + \beta_1 \times [\mathrm{Grade}_{ijk}=11] + \beta_2 \times [\mathrm{Grade}_{ijk}=12]\\
+	y_{(ij)k} &= \beta_0 + \beta_1 \times [\mathrm{Grade}_{(ij)k}=11] + \beta_2 \times [\mathrm{Grade}_{(ij)k}=12]\\
 			  &+ w_{00k} + u_{i0k} + v_{0j0} + \epsilon_{(ij)k}.
 \end{align*}
-The model consists of two parts: a fixed part, the first line, and a random part, the second line. In the fixed part, $\mathrm{Grade}_{ijk}$ is an indicator matrix for students' grade. The intercept $\beta_0$ represents the mean writing score in Grade 10. Consequently, the regression weights $\beta_1$ and $\beta_2$ represent the difference in mean writing score between grade 11 and 10, and grade 12 and 10 respectively. In the random part four residual scores are distinguished, all of which are assumed to be normally distributed around with an expected value of 0. The first residual ($w_{00k}$) captures the difference between a school and the average. The second residual ($u_{i0k}$) captures that the average score of student $i$ in school $k$ can deviate from the schools' mean. The third residual ($v_{0j0}$) captures that some tasks might be more difficult than other tasks. The fourth residual ($\epsilon_{(ij)k}$) indicates the deviation of the score of task $j$ of the average of student $i$ in school $k$. Usually, the variance of this term is interpreted as random noise.
+The model consists of two parts: a fixed part, the first line, and a random part, the second line. In the fixed part, $\mathrm{Grade}_{(ij)k}$ is an indicator matrix for students' grade (e.g., for students in grade 11 $[\mathrm{Grade}_{(ij)k}=11] = 1$, otherwise 0). The intercept $\beta_0$ represents the mean writing score in Grade 10. Consequently, the regression weights $\beta_1$ and $\beta_2$ represent the difference in mean writing score between grade 11 and 10, and grade 12 and 10 respectively. In the random part four residual scores are distinguished, all of which are assumed to be normally distributed around with an expected value of 0. The first residual ($w_{00k}$) captures the difference between a school and the average. The second residual ($u_{i0k}$) captures that the average score of student $i$ in school $k$ can deviate from the schools' mean. The third residual ($v_{0j0}$) captures that some tasks might be more difficult than other tasks. The fourth residual ($\epsilon_{(ij)k}$) indicates the deviation of the score of task $j$ of the average of student $i$ in school $k$. Usually, the variance of this term is interpreted as random noise.
 
 
 \subsection*{Bayesian Inference}
@@ -227,6 +240,8 @@ Figure~\ref{fig:baselinePosteriorTextQuality} visualizes the improvement in text
 	\caption{Posterior distribution of text quality in grades 10, 11, and 12. Posteriors distributions for grades 11 and 12 are obtained by adding the MCMC samples of the intercept to the MCMC samples for the improvement of the respective grade.}
 	\label{fig:baselinePosteriorTextQuality}
 \end{figure}
+
+The descriptive plot in Figure~\ref{fig:baselineDescriptives} suggested that the scores of students depend on the task they made. This is further confirmed by the posterior mean of between task variance \getVal{5}{Mean}{\tbPostSummaryBaseline} (\getCI{5}{\tbPostSummaryBaseline})) which is far away from 0. This shows that differences between tasks are substantial and that some tasks are systematically more difficult than others. Thus, the mean score of students depends on the task they take.
 
 \section*{Application to an Experimental Analysis}
 
