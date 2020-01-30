@@ -41,10 +41,10 @@
 }
 \newcommand{\getCI}[2]{95\% HPD [\getVal{#1}{Lower}{#2}, \getVal{#1}{Upper}{#2}]}
 
-%\newcommand{\DON}	[1] 	{\todo[linecolor=gray, backgroundcolor=white]	{Don: 	{#1}}}
-%\newcommand{\DONa}	[1]		{\todo[inline, linecolor=gray, backgroundcolor=white]	{Don:	{#1}}}
-\newcommand{\DON}	[1] 	{}
-\newcommand{\DONa}	[1]		{}
+\newcommand{\DON}	[1] 	{\todo[linecolor=gray, backgroundcolor=white]	{Don: 	{#1}}}
+\newcommand{\DONa}	[1]		{\todo[inline, linecolor=gray, backgroundcolor=white]	{Don:	{#1}}}
+%\newcommand{\DON}	[1] 	{}
+%\newcommand{\DONa}	[1]		{}
 
 
 
@@ -94,8 +94,8 @@ Don van den Bergh, University of Amsterdam, Department of Psychological Methods,
 \begin{abstract}
     Scholastic achievement is often monitored in national assessments. For each topic, multiple tasks measure a student's skill, to avoid task-specific effects. For example, reading comprehension is measured with multiple texts. In experimental studies, a similar approach is often employed; because student performance varies across tasks, multiple tasks are administered so that the influence of an experimental condition may be assessed while controlling for the effect of task. National assessments consist of many tasks and the data is generally rich in information. In contrast, experimental studies typically use only one assignment, which makes it difficult to distinguish improvement in an experimental condition from between-task variance. This prompts the question of whether knowledge obtained from national assessments about between-task variance can be used in the analyses of experimental studies. Here, we demonstrate how the information of a baseline data set can be used in the analysis of an experimental study. We adopt a Bayesian paradigm as this enables us to propagate the uncertainty in the estimates of a national assessment into the analysis of the experimental study.
 \end{abstract}
-\newpage
-\DONa{Misschien moeten we een naam verzinnen voor deze methode?}
+%\newpage
+%\DONa{Misschien moeten we een naam verzinnen voor deze methode?}
 %\section*{Introduction}
 
 In many countries, the achievements of students are monitored in so-called national assessments. For instance, NAEP in the US, PEIL in the Netherlands (or international assessment programs like IEA or PIRLS) measure students' achievements at regular intervals to gain information on changes in achievement over time (or changes in differences between countries). For instance, in the Netherlands every four years the achievements of students are measured at the end of primary education in some of the most important subject areas. Although the results of these assessments often inform policymaking, the data are seldom used in educational research even though there are ample opportunities.
@@ -150,7 +150,7 @@ The paper is concluded with a discussion on the widespread applicability and ben
 
 Schools were selected at random by creating three lists of schools. First, a school in the first batch was approached for participating in the study. If this school did not reply or refused, a school in the second batch was selected at random. If the second school did not participate a school from the third batch was approached.
 
-In total, the writing quality was measured for 625 students, nested in 43 schools. To assess between-task variance, 32 different tasks were administered of which students made four at random. Students did not make all tasks, 497 students made four tasks and 128 students made three or fewer tasks. The minimum amount of students per task was 62 whereas the maximum was 84. Students' text were rated by... \DON{Aanvullen aub}.
+In total, the writing quality was measured for 625 students, nested in 43 schools. To assess between-task variance, 32 different tasks were administered of which students made four at random. Students did not make all tasks, 497 students made four tasks and 128 students made three or fewer tasks. The minimum amount of students per task was 62 whereas the maximum was 84. Students' text were rated by... \DONa{Aanvullen aub}
 
 The data contain an obvious nested structure, as illustrated in Figure~\ref{fig:baselineDescriptives}. Observations are nested within students and tasks. Furthermore, students are nested within schools. Students took a random sample of four tasks out of 32 tasks developed for this writing assessment.
 
@@ -318,7 +318,7 @@ Ideally, we directly compare the difference in text quality between measurement 
 
 From Figure~\ref{fig:comparePostTextQual} we can infer that the corrected difference between measurement 1 and measurement 2 in the experimental study is almost as large as the difference between grade 10 and 11 in the baseline study. Hence, there is a substantial effect. By comparison, the difference between measurement 2 and measurement 3 is much smaller. Of course, this is not a statistical test of significance. Typically, such a test should account for between-task variance. To obtain an estimate for the magnitude of between-task effects we can use the estimates of the baseline study to simulate a distribution of task difficulty. Next, we can compute the probability that the observed difference between measurement occasions in the experimental study is due to differences between tasks.
 
-Since \DON{tot hier gekomen!}multilevel models typically assume that the random effects follow a normal distribution with mean 0 we simulate a large number these from a normal distribution. As variance, we use the posterior samples for the between-task variance, to propagate the uncertainty in this parameter into the distribution over task-effects.\footnote{Essentially, the effects of these new random tasks are drawn from the posterior predictive distribution of the baseline study.} In total \getValInt{0}{total}{\tbMCMCsettings} task-effects were sampled (the same amount as MCMC samples). Next, we can visualize the posterior distribution of improvement between measurement occasions and contrast this to the distribution over task-effects, as shown in Figure~\ref{fig:posteriorImprovement}.
+Since multilevel models typically assume that the random effects follow a normal distribution with mean 0 we simulate a large number these from a normal distribution. As variance, we use the posterior samples for the between-task variance, to propagate the uncertainty in this parameter into the distribution over task-effects.\footnote{Essentially, the effects of these new random tasks are drawn from the posterior predictive distribution of the baseline study.} In total \getValInt{0}{total}{\tbMCMCsettings} task-effects were sampled (the same amount as MCMC samples). Next, we can visualize the posterior distribution of improvement between measurement occasions and contrast this to the distribution over task-effects, as shown in Figure~\ref{fig:posteriorImprovement}.
 \begin{figure}[!ht]
 	\centering
 %	\begin{subfigure}{.33\textwidth}
@@ -385,7 +385,7 @@ We chose for a Bayesian analysis because it allows us to account for the uncerta
 
 
 \subsection*{Limitations}
-\DONa{we negeren hier de steekproef variantie in de experimentele analyse. Dwz, we weten niet hoe waarschijnlijk het is dat we, gegeven H0, een effect vinden dat groter is dan die in de baseline.}
+%\DONa{we negeren hier de steekproef variantie in de experimentele analyse. Dwz, we weten niet hoe waarschijnlijk het is dat we, gegeven H0, een effect vinden dat groter is dan die in de baseline.}
 It is important to stress that if improvement exceeds between-task effects the results cannot be viewed as a causal relation.
 This is no different from ``correlation is not causation''; since no randomized experiment with a control group takes place the results are correlational and must be interpreted as such.
 To assert a causal relation a control group is essential.
@@ -398,9 +398,9 @@ A key assumption is that task-effects are, at least asymptotically, normally dis
 If normality is violated then the probabilities shown in Figure~\ref{fig:posteriorImprovement} could be biased.
 Here, we briefly outline an argument on why the task effects are likely approximately normally distributed.
 Note that a naive estimator for the effect of a task is simply the mean of the students' scores on that task.
-Although this estimator is unbiased, much better estimates can be obtained in practice by accounting for the hierarchical structure \cite<e.g., see>{EfronMorris1977}.
+Although this estimator is unbiased, much better estimates can be obtained by accounting for the hierarchical structure \cite<e.g., see>{EfronMorris1977}.
 Since the naive estimator is an average the central limit theorem applies and thus the distribution of task-effects converges asymptotically to a normal distribution (under mild regularity conditions).
-\DON{ik weet niet zeker of dit argument helemaal klopt.}
+%\DON{ik weet niet zeker of dit argument helemaal klopt.}
 
 Another avenue for incorporating the results of a baseline study into the analysis of an experimental study is through the prior distribution.
 The posterior distribution of the baseline study could serve as the prior distribution for the experimental study.
@@ -418,7 +418,7 @@ Thus, since the inferences done in the paper are based solely on the posterior d
 %Third, applying
 
 
-\DONa{We kunnen vertellen dat frequentisten dit ook kunnen doen met een puntschatting van variantie. Het is dan alleen niet duidelijk is hoe de standaardfout van die puntschatting gebruikt kan worden om de onzekerheid van de schatting te laten voortvloeien in de gesimuleerde effect groottes (en het negeren van de onzekerheid zal leiden tot een te nauwe verdeling van effect groottes en als gevolg te zekere uitspraken gegeven de data).}
+%\DONa{We kunnen vertellen dat frequentisten dit ook kunnen doen met een puntschatting van variantie. Het is dan alleen niet duidelijk is hoe de standaardfout van die puntschatting gebruikt kan worden om de onzekerheid van de schatting te laten voortvloeien in de gesimuleerde effect groottes (en het negeren van de onzekerheid zal leiden tot een te nauwe verdeling van effect groottes en als gevolg te zekere uitspraken gegeven de data).}
 
 \subsection*{Recommendations}
 Prior information can enrich the statistical analyses and provide more insight into the data.
@@ -445,7 +445,7 @@ If the results of large scale assessments are not available as a benchmark, then
 In sum, we related the results from a baseline study to the analysis of an experimental study that lacked a control group.
 This allowed us to determine whether the differences between measurements in the experimental group exceeded what would be expected from between task variance.
 Altogether, this may help to place effect sizes of experimental studies in a broader context.
-\DONa{Hier moeten we iets meer positieve dingen zeggen over wat voor mogelijkheden deze methode introduceert.}
+%\DONa{Hier moeten we iets meer positieve dingen zeggen over wat voor mogelijkheden deze methode introduceert.}
 
 \bibliographystyle{apacite}
 \bibliography{references}
