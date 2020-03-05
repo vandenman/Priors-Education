@@ -3,6 +3,8 @@ rm(list = ls())
 # determines whether results are written to file.
 options("writeFiguresToFile" = TRUE)
 options("writeTablesToFile"  = TRUE)
+options("dirForFigures" = "figures")
+options("dirForTables" = "tables")
 
 # clean all data sets
 source("R/cleanDatasets.R")
@@ -28,4 +30,5 @@ source("R/descriptivesPosterior.R")
 # compare baseline and experimental data set
 source("R/plotBaselinevsExperimental.R")
 
+# relate improvement in the experimental study to improvement over years in the baseline study
 source("R/improvementInYears.R")

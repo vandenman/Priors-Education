@@ -1,8 +1,9 @@
 saveFigure <- function(filename, graph, width = 20, height = 10) {
 
-  p1 <- file.path("figures", filename)
-  if (!dir.exists("figures"))
-    dir.create("figures")
+  dirForFigures <- getOption("dirForFigures", "figures")
+  p1 <- file.path(dirForFigures, filename)
+  if (!dir.exists(dirForFigures))
+    dir.create(dirForFigures)
 
   if (getOption("writeFiguresToFile", FALSE)) {
     pdf(p1, width = width, height = height)
@@ -21,9 +22,10 @@ writeTable <- function(x, file) {
   # small wrapper around write.csv to save tables in a way that the latex package pgfplotstable
   # can easily read them
 
-  p1 <- file.path("tables", file)
-  if (!dir.exists("tables"))
-    dir.create("tables")
+  dirForTables <- getOption("dirForTables", "tables")
+  p1 <- file.path(dirForTables, file)
+  if (!dir.exists(dirForTables))
+    dir.create(dirForTables)
 
   if (getOption("writeTablesToFile", FALSE))
     write.csv(x, p1, row.names = FALSE, quote = FALSE)
