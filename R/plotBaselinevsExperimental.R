@@ -138,7 +138,6 @@ df4 <- data.frame(
   what = rep(nms, each = nrow(samplesBaseline)),
   samples = c(ss, diff23)
 )
-rgb2 <- function(x) rgb(x[1], x[2], x[3], maxColorValue = 255)
 g4 <- plotMeasureVersusTaskVariance(df4, cols = c(rgb2(colorRamp(cols[5:6])(.5)), colTask),
                                     xlab = xlab, title = title23, legendInPlot = TRUE)
 

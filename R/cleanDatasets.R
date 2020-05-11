@@ -34,7 +34,7 @@ Dat$Grade <- recode(Dat$Grade,
 
 saveRDS(Dat, file = "data/cleanedBaseline.rds")
 
-# clean experimental dataset
+# clean experimental data set
 dExperimental <- read_csv("data/Dataset productfeedback 2019.csv")
 
 dExperimental2 <-
@@ -47,7 +47,7 @@ dExperimental2 <-
   rename(
     Participant_index = ID_Participant,
     School_index      = School
-  )
-dExperimental2 <- dExperimental2[complete.cases(dExperimental2), ]
+  ) %>%
+  drop_na()
 
 saveRDS(dExperimental2, file = "data/cleanedExperimental.rds")

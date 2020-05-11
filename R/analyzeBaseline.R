@@ -47,8 +47,9 @@ samplesMatrix[, idx2Square]  <- samplesMatrix[, idx2Square]^2
 samplesArray[, , idx2Square] <- samplesArray[, , idx2Square]^2
 
 # write all results to disk
-saveRDS(samplesMatrix, file = "results/samplesBaseline.rds", )
-saveRDS(samplesArray,  file = "results/samplesArrayBaseline.rds")
+if (!dir.exists("results")) dir.create("results")
+saveRDS(samplesMatrix, file = file.path("results", "samplesBaseline.rds"))
+saveRDS(samplesArray,  file = file.path("results", "samplesArrayBaseline.rds"))
 
 # sanity check -- do the posterior means correspond to frequentist point estimates?
 # samplesMatrix <- readRDS("results/samplesBaseline.rds")
