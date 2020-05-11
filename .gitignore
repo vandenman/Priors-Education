@@ -16,3 +16,4 @@ results/samplesBaselineTaskEffectsRaw.rds
 .Rproj.user
 packrat/lib*/
 packrat/src/
+results/samplesArrayBaseline.rds
