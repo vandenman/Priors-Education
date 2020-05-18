@@ -43,15 +43,22 @@
 }
 \newcommand{\getCI}[2]{95\% HPD [\getVal{#1}{Lower}{#2}, \getVal{#1}{Upper}{#2}]}
 
+\newcommand*{\DEBUG}{}%
+\ifdefined\DEBUG
+
 \newcommand{\DON}	[1] 	{\todo[			linecolor=gray, backgroundcolor=white]	{Don: 	{#1}}}
 \newcommand{\DONa}	[1]		{\todo[inline, 	linecolor=gray, backgroundcolor=white]	{Don:	{#1}}}
 \newcommand{\GR}	[1]		{\todo[			linecolor=gray, backgroundcolor=white]	{Gert: 	{#1}}}
 \newcommand{\GRa}	[1]		{\todo[inline, 	linecolor=gray, backgroundcolor=white]	{Gert: 	{#1}}}
 
-%\newcommand{\DON}	[1] 	{}
-%\newcommand{\DONa}	[1]		{}
-%\newcommand{\GR}	[1] 	{}
-%\newcommand{\GRa}	[1]		{}
+\else
+
+\newcommand{\DON}	[1] 	{}
+\newcommand{\DONa}	[1]		{}
+\newcommand{\GR}	[1] 	{}
+\newcommand{\GRa}	[1]		{}
+
+\fi
 
 \newcommand{\argument}[1]{\noindent\textbf{PG:} \textit{#1}}
 \newcommand{\code}[1]{\texttt{#1}}
@@ -66,6 +73,7 @@
 \newcommand{\Reals}{\mathcal{R}}
 \newcommand{\dnorm}[2]{\text{Normal}\left(#1,\,#2\right)}
 
+\newcommand{\githubLink}{\url{https://github.com/vandenman/Priors-Education}}
 
 % title
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
@@ -90,25 +98,44 @@ Don van den Bergh, University of Amsterdam, Department of Psychological Methods,
 
 \begin{document}
 
-\listoftodos
-\newpage
+\ifdefined\DEBUG
+
+%\listoftodos
+%\newpage
+
+\fi
+
 \maketitle
 \renewcommand{\thefootnote}{\arabic{footnote}}
 
 \begin{abstract}
-Academic achievement is often monitored in national assessments covering multiple topics.
-For each topic, multiple tasks measure a student's skill, to avoid task-specific effects.
-For example, reading comprehension is measured with multiple texts and multiple items per text.
-In experimental studies, a similar approach is often employed; because student performance varies across tasks, multiple tasks are administered so that the influence of an experimental condition may be assessed while controlling for the effect of task.
-National assessments consist of many tasks and the data is generally rich in information.
-In contrast, experimental studies typically use only one assignment, which makes it difficult to distinguish improvement in an experimental condition from between-task variance.
-\GRa{zou je niet starten met (a) het verschil tussen exp studies (1 task) en national assessement (generalizabilty?
-	Het loopt in dit abstratc een beetje door elkaar, halverwege herhaal je het contrats. Waar het eigenlijk om gaat is dat experimentele studies in schrijfvaardigheid vaak een gebrek hebben aan generaliseerbaarhied over taken (1 taak), terwijl nationaal assessment juist investeert in veel taken tbv generalsieerbaarhied.
-	
-	Maar ok dan is de kenr van het probleem nog niet centraal. Centraal staat dat je experiemtnen wilt uitvoeren met theoretisch interessante contrasten , maar dan ook nogeens moet investeren in een controle groep om aan te kunnen tonen dat de experimenten uberhaupt iets teweeg brengen. als je een nationale baseline tot je beschikking hebt, hoef je niet te investeren in een controlegoep maar kun je investeren in een tweede of derde experimentele groep. De vraag is: hoe vergelijk je een resultaten vaneen of twee experimentele condities, met een nationale baseline?}
-This prompts the question of whether knowledge obtained from national assessments about between-task variance can be used in the analyses of experimental studies.
-Here, we demonstrate how the information of a baseline data set can be used in the analysis of an experimental study.
-We adopt a Bayesian paradigm as this enables us to propagate the uncertainty in the estimates of a national assessment into the analysis of the experimental study.
+%Academic achievement is often monitored in national assessments covering multiple topics.
+%For each topic, multiple tasks measure a student's skill, to avoid task-specific effects.
+%For example, reading comprehension is measured with multiple texts and multiple items per text.
+%In experimental studies, a similar approach is often employed; because student performance varies across tasks, multiple tasks are administered so that the influence of an experimental condition may be assessed while controlling for the effect of task.
+%National assessments consist of many tasks and the data is generally rich in information.
+%In contrast, experimental studies typically use only one assignment, which makes it difficult to distinguish improvement in an experimental condition from between-task variance.
+%\GRa{zou je niet starten met (a) het verschil tussen exp studies (1 task) en national assessement (generalizabilty?
+%	Het loopt in dit abstratc een beetje door elkaar, halverwege herhaal je het contrats. Waar het eigenlijk om gaat is dat experimentele studies in schrijfvaardigheid vaak een gebrek hebben aan generaliseerbaarhied over taken (1 taak), terwijl nationaal assessment juist investeert in veel taken tbv generalsieerbaarhied.
+%
+%	Maar ok dan is de kenr van het probleem nog niet centraal. Centraal staat dat je experiemtnen wilt uitvoeren met theoretisch interessante contrasten , maar dan ook nogeens moet investeren in een controle groep om aan te kunnen tonen dat de experimenten uberhaupt iets teweeg brengen. als je een nationale baseline tot je beschikking hebt, hoef je niet te investeren in een controlegoep maar kun je investeren in een tweede of derde experimentele groep. De vraag is: hoe vergelijk je een resultaten vaneen of twee experimentele condities, met een nationale baseline?}
+%This prompts the question of whether knowledge obtained from national assessments about between-task variance can be used in the analyses of experimental studies.
+%Here, we demonstrate how the information of a baseline data set can be used in the analysis of an experimental study.
+%We adopt a Bayesian paradigm as this enables us to propagate the uncertainty in the estimates of a national assessment into the analysis of the experimental study.
+
+In national assessment, the level of proficiency is typically evaluated with a variety of tasks that consist of multiple items.
+This enables generalizations from specific tasks to a domain.
+For example, reading proficiency is evaluated with many tasks related to different texts on a variety of subjects, and writing proficiency is measured with a large number of writing assignments.
+In short, national assessments yield a description of the proficiency level in a domain while accounting for differences between tasks.
+
+This contrasts with (quasi-)experimental research.
+In these studies, the skills in question are often evaluated with a single task.
+As a result, conclusions drawn about progress are specific to the task administered, and generalizing these conclusions to overall progress is difficult if not impossible.
+
+This prompts the question of whether we can use the results of national assessments about differences between tasks in the analyses of experimental studies.
+In this paper, we demonstrate how the information of a baseline data set can be used as a kind of control condition in the analysis of an experimental study.
+We adopt a Bayesian paradigm as this makes it straightforward to propagate the uncertainty in the estimates of a national assessment into the analysis of the experimental study.
+%\DON{rewrite the last sentence!}
 \end{abstract}
 %\newpage
 %\DONa{Misschien moeten we een naam verzinnen voor deze methode?}
@@ -126,7 +153,7 @@ Of course, many researchers are aware of the limited generalizability of single-
 However, in most experiments it is often infeasible that students write more tasks.
 
 So, on the one hand, there is much information on levels of achievement of students (at certain levels of education) from assessments, and on the other hand in many experimental studies, we rely on relatively small samples and relative narrow measures of skills. Therefore, one could wonder why don't we use the information from large scale assessments? Can this information from assessments be put to use in our experimental studies?
-\GR{ik vind dit eigenlijk wel een mooie startzin voor het hele stuk. Top down schrijven: eerst het thema, dan uitwerken}
+%\GR{ik vind dit eigenlijk wel een mooie startzin voor het hele stuk. Top down schrijven: eerst het thema, dan uitwerken}
 
 In experimental studies, the goal is often to show that the increase in achievements due to an experimental manipulation exceeds `natural' growth.
 Usually, this is done by comparing an experimental condition to a control condition, where the control condition represents the general level of achievement.
@@ -176,15 +203,14 @@ In total, the writing quality was measured for 625 students, nested in 43 school
 A benchmark rating procedure was used to assess the students' texts.
 This procedure entails that texts are rated holistically by comparing them to five benchmark texts at intervals of 1 SD.
 Benchmark rating proved to be a reliable rating method in several previous studies on writing \cite{blok1986essay, de2016student, rietdijk2017improving,bouwer2017tekster}.
-\DON{vindt ref en voeg toe: Bouwer, Koster, \& van den Bergh, 2016;}
 An overlapping rater team design with a total of 48 raters was applied \cite{vandenbergh1989method}.
 Every text was rated by a jury of three raters; average jury reliability was 0.65. The text's final score consisted of the average of the three separate scores.
 
 
 %Students' text were rated by... \DONa{Aanvullen aub}
 
-The data contain an obvious nested structure, as illustrated in Figure~\ref{fig:baselineDescriptives}. Observations are nested within students and tasks. Furthermore, students are nested within schools. Students took a random sample of four tasks out of 32 tasks developed for this writing assessment.
-\GR{not completely random; topics were assigned (each wrote about four topics), and none of the task configurations was repeated within a student (number of sources, the extend of homogeneity in the content when comparing two sources), and genre (two types)}
+The data contain an obvious nested structure, as illustrated in Figure~\ref{fig:baselineDescriptives}. Observations are nested within students and tasks. Furthermore, students are nested within schools. Students took a sample of four tasks out of 32 tasks developed for this writing assessment.
+%\GR{not completely random; topics were assigned (each wrote about four topics), and none of the task configurations was repeated within a student (number of sources, the extend of homogeneity in the content when comparing two sources), and genre (two types)}
 
 \begin{figure}[!ht]
 	\includegraphics[width=\textwidth]{descriptivesBaseline.pdf}
@@ -221,22 +247,23 @@ The procedure for updating the prior distribution to a posterior distribution is
 \begin{align*}\label{eq:BayesTheorem}
 \underbrace{\prob{\bm{\beta} \mid \data , \model}}_{\text{Posterior}}
 &=
-\overbrace{\prior{\bm{\beta}\mid \model}}^{\text{Prior}}
+\overbrace{\prob{\bm{\beta}\mid \model}}^{\text{Prior}}
 %\enspace \times %\enspace
+\,\,
 \underbrace{\overbrace{
 		\frac{\lik{\data \mid \bm{\beta}, \model}}{\prob{\data \mid \model}}
 	}^{\text{Likelihood}}}_{\substack{\text{Marginal}\\ \text{Likelihood}}}.
 \end{align*}
-Here, $\bm{\beta}$ represents all parameters in the model. The prior distribution of the parameters is updated through the likelihood of the statistical model. The likelihood is divided by the marginal likelihood so that the posterior distribution is a proper probability distribution (i.e., it integrates to 1). The posterior distribution is key for parameter estimates. For instance, if a single estimate for a parameter is desired, one could use the mean of the posterior distribution. Other often-used point-estimates are the posterior mode and posterior median. Simultaneously with obtaining the posterior, a measure of uncertainty for each parameter is obtained. Since the posterior distribution is a proper probability distribution, we can make inferences about the parameters. For example, given the posterior distribution for the intercept, $\prob{\beta_0 \mid \data , \model}$. This implies questions such as ``Given that we have seen the data, what is the probability that the intercept is larger than 0?'' Can be answered by computing $\prob{\beta_0 > 0 \mid \data , \model}$. Likewise, if we find a lower bound $LB$ and upper bound $UB$ for the intercept $\beta_0$ such that $\prob{ LB \leq \beta_0 \leq UB \mid \data , \model} = 0.95$, we can claim: ``Given that we have seen the data, we are $95\%$ confident that the true value of the intercept lies between $LB$ and $UB$.'' This interval is known as the Bayesian $95\%$ credible interval. Another often-used Bayesian uncertainty interval is the 95\% highest posterior density interval (HPD), an interval that contains 95\% of the posterior mass and has the highest probability density.
+Here, $\bm{\beta}$ represents all parameters in the model. The prior distribution of the parameters is updated through the likelihood of the statistical model. The likelihood is divided by the marginal likelihood so that the posterior distribution is a proper probability distribution (i.e., it integrates to 1). The posterior distribution is key for parameter estimates. For instance, if a single estimate for a parameter is desired, one could use the mean of the posterior distribution. Other often-used point-estimates are the posterior mode and posterior median. Simultaneously with obtaining the posterior, a measure of uncertainty for each parameter is obtained. Since the posterior distribution is a proper probability distribution, we can use it to draw inferences about the parameters. For example, consider the posterior distribution for the intercept, $\prob{\beta_0 \mid \data , \model}$. Questions such as ``Given that we have seen the data, what is the probability that the intercept is larger than 0?'' can be answered by computing $\prob{\beta_0 > 0 \mid \data , \model}$. Likewise, if we find a lower bound $LB$ and upper bound $UB$ for the intercept $\beta_0$ such that $\prob{ LB \leq \beta_0 \leq UB \mid \data , \model} = 0.95$, we can claim: ``Given that we have seen the data, we are $95\%$ confident that the population value of the intercept lies between $LB$ and $UB$.'' This interval is known as the Bayesian $95\%$ credible interval. Another often-used Bayesian uncertainty interval is the 95\% highest posterior density interval (HPD), an interval that contains 95\% of the posterior mass and has the highest probability density.
 
 \subsubsection*{Approximations to Posterior Distributions}
 Although Bayes theorem may appear straightforward, in practice the posterior distribution may be a high-dimensional probability distribution that is difficult to study analytically. 
 This holds in particular for multi-level models, as the number of dimensions equals the sum of the number of random effects, fixed effects, and variances.
-Rather than studying the mathematical form of the posterior, it is much easier to simulate random values from the posterior distribution and to use these for inference.
+Rather than studying the mathematical form of the posterior, it is easier to simulate random values from the posterior distribution and to use these for inference.
 Such simulation methods are commonly referred to as Markov chain Monte Carlo (MCMC).
-The idea is that instead of computing a statistic of the posterior distribution in closed form, we can draw random observations from the posterior and use a sample estimator to approximate the statistic of the distribution.
+The idea is that instead of computing a statistic of the posterior distribution in closed form, we draw a large number of random observations from the posterior distribution and use a sample estimator to approximate the statistic of the distribution.
 For example, if we are interested in the posterior mean of the intercept, we simulate many observations from the posterior distribution and use the sample mean of these observations to approximate the posterior mean of the intercept.
-Likewise, to compute the posterior probability that an intercept $\beta_0$ is positive, $\prob{\beta_0 > 0 \mid \data , \model}$, we examine the proportion of MCMC samples where $\beta_0$ is positive.
+Likewise, to compute the posterior probability that an intercept $\beta_0$ is positive, $\prob{\beta_0 > 0 \mid \data , \model}$, we take the proportion of MCMC samples where $\beta_0$ is positive.
 This procedure is akin to how applied scientists randomly sample participants from a population and then generalize the sample statistics to the population, although with MCMC it is often easy to draw enormous samples to obtain a near-perfect approximation.
 
 %Rather than studying the mathematical form of the posterior, it is much easier to simulate random values from the posterior distribution and to use these for inference. Such simulation methods are commonly referred to as Markov chain Monte Carlo (MCMC). The idea is that instead of computing a statistic of the posterior distribution in closed form, we can draw random observations from the posterior and use a sample estimator to approximate the statistic of the distribution. For example, if we are interested in the posterior mean of the intercept, we simulate many observations from the posterior distribution and use the sample mean of these observations to approximate the posterior mean of the intercept. Likewise, to compute the posterior probability that an intercept $\beta_0$ is positive, $\prob{\beta_0 > 0 \mid \data , \model}$, we examine the proportion of MCMC samples where $\beta_0$ is positive. This procedure is akin to how applied scientists attempt to randomly sample participants from a population and then generalize the sample statistics to the entire population, with the exception that is it relatively easy to draw enormous samples with MCMC to obtain near-perfect approximations.
@@ -244,7 +271,15 @@ This procedure is akin to how applied scientists randomly sample participants fr
 \subsection*{Statistical Software}
 \pgfplotstableread{mcmcSettings.csv}\tbMCMCsettings
 
-All analyses were done in R \cite{R}. The R package \code{brms} was used for Bayesian multilevel analyses \cite{burkner2017brms}. The R package \code{brms} is a convenient front-end for the probabilistic programming language Stan, which is software for general-purpose Bayesian inference \cite{carpenter2017stan}. For all analyses, we used six MCMC chains to assess convergence. Convergence was assessed using the $\widehat{R}$ statistic \cite{vehtari2019rank}. In line with the recommendations by \citeA{vehtari2019rank}, we tweaked the parameters of the Stan algorithm such that the $\widehat{R}$ is less than 1.01 and the rank-normalized effective sample size is larger than 400. Per chain, we simulated \getValInt{0}{iter}{\tbMCMCsettings} samples and discarded the first \getValInt{0}{warmup}{\tbMCMCsettings} as warmup samples. In total, results in Tables and Figures are based on \getValInt{0}{total}{\tbMCMCsettings} samples.
+All analyses were done in R \cite{R}.
+The R package \code{brms} was used for Bayesian multilevel analyses \cite{burkner2017brms}.
+The R package \code{brms} is a convenient front-end for the probabilistic programming language Stan, which is software for general-purpose Bayesian inference \cite{carpenter2017stan}.
+R code for all analyses is available at \githubLink{}.
+For all analyses, we used six MCMC chains to assess convergence.
+Convergence was assessed using the $\widehat{R}$ statistic \cite{vehtari2019rank}.
+In line with the recommendations by \citeA{vehtari2019rank}, we tweaked the parameters of the Stan algorithm such that the $\widehat{R}$ is less than 1.01 and the rank-normalized effective sample size is larger than 400.
+Per chain, we simulated \getValInt{0}{iter}{\tbMCMCsettings} samples and discarded the first \getValInt{0}{warmup}{\tbMCMCsettings} as warmup samples.
+In total, results in Tables and Figures are based on \getValInt{0}{total}{\tbMCMCsettings} samples.
 
 We used the default prior distributions of the R package \code{brms} for all parameters. That is, the standard deviations of the random effects and the residual were assigned a half t-distribution with a mean of 0, scale of 18, and 3 degrees of freedom. For the fixed effects we used a Cauchy distribution with location 0 and scale 1.
 
@@ -312,7 +347,7 @@ A typical analysis for this data set is almost identical to that of the baseline
 \begin{align*}
 %y_{(ij)k} = \beta_0 + \beta \times \mathrm{Measurement}_{ijk} +  [w_{00k} + u_{i0k} + \epsilon_{ijk}].
 y_{hik} &= \beta_0 + \beta_1 \times [\mathrm{Measurement}_{hik} = 2] + \beta_2 \times [\mathrm{Measurement}_{hik} = 3]\\
-        &+ w_{00k} + u_{i0k} + \epsilon_{hik}.
+        &+ w_{00k} + u_{0ik} + \epsilon_{hik}.
 \end{align*}
 %Here, $y_{hjk}$ is the observation of student $i$ on measurement $j$ in school $k$. 
 The fixed part consists of an intercept ($\beta_0$) that represents the mean writing score on the first measurement and two fixed effects that capture the difference in mean writing score between subsequent measurements and the first measurement ($\beta_1$ and $\beta_2$).
@@ -366,7 +401,7 @@ Ideally, we directly compare the difference in text quality between measurement 
 	\label{fig:comparePostTextQual}
 \end{figure}
 
-From Figure~\ref{fig:comparePostTextQual} we can infer that the corrected difference between measurement 1 and measurement 2 in the experimental study is almost as large as the difference between grade 10 and 11 in the baseline study. Hence, there is a substantial effect. By comparison, the difference between measurement 2 and measurement 3 is much smaller. Of course, this is not a statistical test of significance. Typically, such a test should account for between-task variance. To obtain an estimate for the magnitude of between-task effects we can use the estimates of the baseline study to simulate a distribution of task difficulty. Next, we can compute the probability that the observed difference between measurement occasions in the experimental study is due to differences between tasks.
+From Figure~\ref{fig:comparePostTextQual} we can infer that the corrected difference between measurement 1 and measurement 2 in the experimental study is almost as large as the difference between grade 10 and 11 in the baseline study. Hence, there is a substantial difference between both measurements and thus an effect. By comparison, the difference between measurement 2 and measurement 3 is much smaller. Of course, this is not a statistical test of significance. Typically, such a test should account for between-task variance. To obtain an estimate for the magnitude of between-task effects we can use the estimates of the baseline study to simulate a distribution of task difficulty. Next, we can compute the probability that the observed difference between measurement occasions in the experimental study is due to differences between tasks.
 
 Since multilevel models typically assume that the random effects follow a normal distribution with mean 0 we simulate a large number these from a normal distribution. As variance, we use the posterior samples for the between-task variance, to propagate the uncertainty in this parameter into the distribution over task-effects.\footnote{Essentially, the effects of these new random tasks are drawn from the posterior predictive distribution of the baseline study.} In total \getValInt{0}{total}{\tbMCMCsettings} task-effects were sampled (the same amount as MCMC samples). Next, we can visualize the posterior distribution of improvement between measurement occasions and contrast this to the distribution over task-effects, as shown in Figure~\ref{fig:posteriorImprovement}.
 \begin{figure}[!ht]
@@ -392,7 +427,7 @@ The left and middle panel in Figure~\ref{fig:posteriorImprovement} contrast meas
 The improvement appears to exceeds what would be expected of a random task-effect.
 The right panel contrasts measurement 2 with measurement 3. Here, the improvement seems indistinguishable from a random task-effect.
 This makes sense as there was no intervention between measurements 2 and 3.
-\GR{There WAS an intervention between 2 and 3.}
+\GR{``There WAS an intervention between 2 and 3.''\\ Don: Wat was deze interventie? Wat zal ik hierover schrijven?}
 
 
 The above results show that the observed effect between measurement occasions 1 and 2 is greater than can be expected from any given task.
@@ -422,12 +457,24 @@ In the left panel of Figure~\ref{fig:improvementInYears}, the posterior has a me
 
 \section*{Discussion}
 %\DONa{verwerkt dit comment in de discussie: om didactische redenen lijkt het me idd goed om het onderscheid tussen de experimenten er avn buiten te laten, maar aan het eind zou het een mooi sluitstuk zijn als je wel laat zien hoe je dan met twee xperimentele condities kunt werken. Voordeel van de beshcikking van een baseline is dat je niet een controlegroep hoeft mee te nemen, maar dat je tijd en geld kunt besteden aan een theoretisch interessante experimentele tegenhanger.}
-In this paper, we introduced a procedure for comparing results from a large scale assessment into the analysis of an experimental study that lacked a control group.
-\GRa{Maar is dat het probeem? Het probleem is dat de vooruitgang van T1 naar T2 gecontamineerd is met taak. Een controlegroep zou daar wel iets aan kunnen helpen, maar ook in die groep kan helden dat T2 veel makkelijker/moeilijker zou kunnen zijn.  De crux likt mij dat je op deze manier de scores op T1 en T2 zuivert voor taakeffecten, en dus het vershcil tussen T1 en T2 beter te interpreteren is. Don: dat is een heel extreem standpunt.}
+
+In this paper, we related the results of an experimental study to those of a baseline study.
+The post-intervention improvement in the experimental study exceeded the differences between random tasks in the baseline study.
+Therefore, we interpret the effect of the intervention as significant.
+We further quantified this effect by expressing the improvement in the number of school years.
+
+
+
+%\DON{1. Samenvatten effect van interventie aangetoond door vergelijking met baseline 2. generaliseerbaarheid over taken. 3. wat er nu staat.}
+%In this paper, we introduced a procedure for comparing results from a large scale assessment into the analysis of an experimental study that lacked a control group.
+%\GRa{Maar is dat het probeem? Het probleem is dat de vooruitgang van T1 naar T2 gecontamineerd is met taak. Een controlegroep zou daar wel iets aan kunnen helpen, maar ook in die groep kan helden dat T2 veel makkelijker/moeilijker zou kunnen zijn.  De crux likt mij dat je op deze manier de scores op T1 en T2 zuivert voor taakeffecten, en dus het vershcil tussen T1 en T2 beter te interpreteren is. Don: dat is een heel extreem standpunt.}
+
 If a control group is missing, the task-effect cannot be disentangled from the effect of an intervention.
 However, by relating the increase in performance to estimates of the between-task variance in a baseline study, we can compute how probable it is that improvement across measurements is a task-effect.
-This method could provide a point of reference for studies without a control group and may help discern between statistically significant effects and practically relevant effects
-\cite{hojat2004visitor, fan2001statistical}.\GR{maar zelfs ook voor studies MET een controlegroup?}
+This method could provide a point of reference for studies without a control group and may help discern between statistically significant effects and practically relevant effects \cite{hojat2004visitor, fan2001statistical}.
+
+A comparison with a baseline study can also enrich the results of studies with a control group.
+For example, if a study administers a smaller variety of tasks than a baseline study, a comparison can provide a clearer assessment of the generalization of an effect over tasks.
 
 Comparing the distribution of task-effect in an experimental study to that of a baseline study relates to approaches of statistical tests for equivalence, such as TOST \cite{lakens2017equivalence}, ROPE \cite{kruschke2011bayesian}, and interval Bayes factors \cite{MoreyRouder2011}.
 These three approaches have in common that a researcher specifies some minimal effect size below which an effect is practically equivalent to zero.
@@ -440,10 +487,16 @@ We chose for a Bayesian analysis because it allows us to account for the uncerta
 
 
 \subsection*{Limitations}
+As is typical for quasi-experimental research in educational settings, there was no random assignment in the experimental study.
+Therefore, the usual limitations of quasi-experimental research apply; it is possible that the observed differences between measurement occasions are caused by a confounding variable rather than the intervention.
+Caution should be exercised in interpreting the conclusions based on a comparison with a baseline study as causal.
+
+
 %\DONa{we negeren hier de steekproef variantie in de experimentele analyse. Dwz, we weten niet hoe waarschijnlijk het is dat we, gegeven H0, een effect vinden dat groter is dan die in de baseline.}
-It is important to stress that if improvement exceeds between-task effects the results cannot be viewed as a causal relation.
-This is no different from ``correlation is not causation''; since no randomized experiment with a control group takes place the results are correlational and must be interpreted as such.
-To assert a causal relation a control group is essential.
+%\DON{As in traditional quasi-experimental research, the effects of the intervention cannot zondermeer be interpreted as a causal effect.}
+%It is important to stress that if improvement exceeds between-task effects the results cannot be viewed as a causal relation.
+%This is no different from ``correlation is not causation''; since no randomized experiment with a control group takes place the results are correlational and must be interpreted as such.
+%To assert a causal relation a control group is essential.
 %
 %we must
 %Although, between-task variance is a major source of variance, and we can quantify how unlikely it is that the results are caused by between-task variability.
