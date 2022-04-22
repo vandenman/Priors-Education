@@ -3,7 +3,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage[american]{babel}
 \usepackage{csquotes}
-\usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber]{biblatex}
+%\usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber]{biblatex}
+\usepackage[style=authoryear-ibid,sortcites=true,sorting=nyt,backend=biber]{biblatex}
+
 \DeclareLanguageMapping{american}{american-apa}
 
 \addbibresource{references.bib}
@@ -15,18 +17,11 @@
 \usepackage{subcaption}
 \usepackage{booktabs}
 
-% custom commands
-\usepackage{todonotes}
-%\setlength{\marginparwidth}{4cm}
-
-%\usepackage{setspace}
-%\doublespacing
-%
 
 \usepackage[nameinlink,capitalize]{cleveref}
 
 \usepackage{pgfplotstable}
-\pgfplotsset{compat=1.15}
+%\pgfplotsset{compat=1.15}
 \pgfplotstableset{
 	fixed zerofill,
 	precision=3,
@@ -34,6 +29,65 @@
 	search path={../tables/}
 }
 \pgfkeys{/pgf/number format/precision={2}}%
+
+% read all csv files
+
+%\pgfplotstableread{mcmcSettings.csv}\tbMCMCsettings
+%\pgfplotstableread{postSummaryBaseline.csv}\tbPostSummaryBaseline
+%\pgfplotstableread{postSummaryExperimental.csv}\tbPostSummaryProduct
+%\pgfplotstableread{postMeansCorrectedExperimental.csv}\tbCRIimprovement
+%\pgfplotstableread{credibleIntervalsImprovementAllYears.csv}\tbCRIimprovement
+
+% List all csv files here since the online LateX doesn't like them.
+
+%mcmcSettings.csv
+\pgfplotstableread{
+	iter,warmup,chains,total
+	60000,10000,6,300000
+}\tbMCMCsettings
+
+%postSummaryBaseline.csv
+\pgfplotstableread{
+	Parameter,Mean,SD,Lower,Upper
+	Intercept,84.4006781257994,1.15467620910649,82.1299106371451,86.6721121643765
+	Grade 11,7.67179683241211,1.1042308035749,5.50152199985356,9.82257973644633
+	Grade 12,13.4561187526147,1.69206845704738,10.1530369050964,16.7906320447634
+	$\sigma^2_w \, \mathrm{(school)}$,13.8144207716212,6.13710406326938,3.42643716650466,26.2693438755073
+	$\sigma^2_u \, \mathrm{(student)}$,97.1350675289699,9.16849381663208,79.4750000001441,115.302127388722
+	$\sigma^2_v \, \mathrm{(task)}$,10.8863691634554,3.9570990636498,4.37131576035635,18.8435503012452
+	$\sigma^2_\epsilon$,198.918210347344,6.90126072443831,185.575907859527,212.598750382385
+}\tbPostSummaryBaseline
+
+%postSummaryExperimental.csv
+\pgfplotstableread{
+	Parameter,Mean,SD,Lower,Upper
+	Intercept,76.5198727104035,5.2219862460117,64.6087711301332,88.6333473860048
+	Measurement 2,9.3658352141152,1.92140066743488,5.58963143385505,13.1138395713566
+	Measurement 3,9.94264986992927,1.95689846292427,6.02873389865298,13.7246696674458
+	$\sigma^2_w \, \mathrm{(school)}$,86.8568892444172,213.12392067752,1.77284881700638e-10,414.621110883696
+	$\sigma^2_u \, \mathrm{(student)}$,101.102847398094,23.6764647369564,57.2409705609779,148.632579566195
+	$\sigma^2_\epsilon$,144.501837436296,15.9105549133032,115.001643141453,176.397842036508
+}\tbPostSummaryProduct
+
+%postMeansCorrectedExperimental.csv
+\pgfplotstableread{
+	Mean,what
+	76.5198727104035,Exp 1 uncorrected
+	85.8857079245187,Exp 2 uncorrected
+	86.4625225803328,Exp 3 uncorrected
+	79.5300636430171,Experiment 1
+	83.5368424187699,Experiment 2
+	85.4461437575531,Experiment 3
+}\tbPostMeansProdCC
+
+%credibleIntervalsImprovementAllYears.csv
+\pgfplotstableread{
+	Lower,Upper,mean
+	0.308330070884778,1.57928803044563,0.935094630498027
+	0.542479553565621,1.89013892154186,1.18928084199965
+	-0.326848611252267,0.841099762073886,0.25418621150162
+}\tbCRIimprovement
+
 
 \hypersetup{
 	colorlinks = true,
@@ -51,7 +105,6 @@
 		\framebox{\Cref{#1} about here.}
 	\end{nscenter}
 	\smallskip%
-%	\medskip%
 }
 
 \newcommand{\TbNote}[1]{%
@@ -77,23 +130,6 @@
 }
 \newcommand{\getCI}[2]{95\% HPD [\getVal{#1}{Lower}{#2}, \getVal{#1}{Upper}{#2}]}
 
-\newcommand*{\DEBUG}{}%
-\ifdefined\DEBUG
-
-\newcommand{\DON}	[1] 	{\todo[			linecolor=gray, backgroundcolor=white]	{Don: 	{#1}}}
-\newcommand{\DONa}	[1]		{\todo[inline, 	linecolor=gray, backgroundcolor=white]	{Don:	{#1}}}
-\newcommand{\GR}	[1]		{\todo[			linecolor=gray, backgroundcolor=white]	{Gert: 	{#1}}}
-\newcommand{\GRa}	[1]		{\todo[inline, 	linecolor=gray, backgroundcolor=white]	{Gert: 	{#1}}}
-
-\else
-
-\newcommand{\DON}	[1] 	{}
-\newcommand{\DONa}	[1]		{}
-\newcommand{\GR}	[1] 	{}
-\newcommand{\GRa}	[1]		{}
-
-\fi
-
 \newcommand{\argument}[1]{\noindent\textbf{PG:} \textit{#1}}
 \newcommand{\code}[1]{\texttt{#1}}
 
@@ -107,8 +143,8 @@
 \newcommand{\Reals}{\mathcal{R}}
 \newcommand{\dnorm}[2]{\text{Normal}\left(#1,\,#2\right)}
 
-\newcommand{\githubLink}{\url{https://github.com/vandenman/Priors-Education}}
-
+%\newcommand{\githubLink}{\url{https://github.com/vandenman/Priors-Education}}
+\newcommand{\githubLink}{\url{https://github.com/anonymousjournalsubmission2020/Prior-Information-in-Educational-Analyses}}
 
 \title{Prior Information for Multilevel models in Educational Analyses}
 \shorttitle{Prior Information in Educational Analyses}
@@ -129,41 +165,54 @@
 %\affil[2]{University of Antwerp}
 %\affil[3]{University of Utrecht}
 
-
-\date{}
-
-\graphicspath{{../figures/}}
-
-\begin{document}
-
-
-%\listoftodos
-%\newpage
-
-
-\maketitle
-\renewcommand{\thefootnote}{\arabic{footnote}}
-
-%\DON{Journal of Educational and Behavioral Statistics, ook nog anoniem maken!}
+\newlength{\mywidth}\setlength{\mywidth}{1cm}
+%\def{\mywidth}{1cm}
 
 \abstract{%
+%National assessments yield a description of the proficiency level in a domain while accounting for differences between tasks.
+%For instance, in writing assessments the level of proficiency is typically evaluated with a variety topics each measured with multiple tasks.
+%This enables generalizations from specific tasks to a domain.
+%	
+%\-\hspace{\mywidth} This contrasts with (quasi-)experimental research.
+%In these studies, writing skills are often evaluated with a single task.
+%Yet, conclusions about the effectivity of the treatment are formulated on the level of the domain, which is, euphemistically put, quite a stretch.
+%Although conclusions drawn about the effect of the treatment are specific to the task administered, they are often generalized to the domain without any form of reservation.
+%	
+%\-\hspace{\mywidth} This prompts the question of whether we can use the results of national assessments about differences between tasks in the analyses of experimental studies.
+%In this paper, we demonstrate how the information of a baseline data set can be used as a kind of control condition in the analysis of an experimental study.
+%We adopt a Bayesian paradigm as this makes it straightforward to propagate uncertainty in the estimates of a national assessment into the analysis of the experimental study.
+
+%National assessments yield a description of the proficiency level in a domain while accounting for differences between tasks.
+%For instance, in writing assessments the level of proficiency is typically evaluated with a variety topics each measured with multiple tasks.
+%This enables generalizations from specific tasks to a domain. This contrasts with (quasi-)experimental research. 
+%In these studies, writing skills are often evaluated with a single task.
+%Yet, conclusions about the effectivity of the treatment are formulated on the level of the domain, which is, euphemistically put, quite a stretch.
+%Although conclusions drawn about the effect of the treatment are specific to the task administered, they are often generalized to the domain without any form of reservation. This prompts the question of whether we can use the results of national assessments about differences between tasks in the analyses of experimental studies.
+%In this paper, we demonstrate how the information of a baseline data set can be used as a kind of control condition in the analysis of an experimental study.
+%We adopt a Bayesian paradigm as this makes it straightforward to propagate uncertainty in the estimates of a national assessment into the analysis of the experimental study.
 
 National assessments yield a description of the proficiency level in a domain while accounting for differences between tasks.
-For instance, in writing assessments the level of proficiency is typically evaluated with a variety topics each measured with multiple tasks.
-This enables generalizations from specific tasks to a domain.
-
-This contrasts with (quasi-)experimental research.
+For instance, in writing assessments the level of proficiency is typically evaluated with a variety of topics each measured with multiple tasks.
+This enables generalizations from specific tasks to a domain. This contrasts with (quasi-)experimental research.
 In these studies, writing skills are often evaluated with a single task.
-Yet, conclusions about the effectivity of the treatment are formulated on the level of the domain, which is, euphemistically put, quite a stretch.
-Although conclusions drawn about the effect of the treatment are specific to the task administered, they are often generalized to the domain without any form of reservation.
-
-This prompts the question of whether we can use the results of national assessments about differences between tasks in the analyses of experimental studies.
+Yet, conclusions about the effectiveness of the treatment are formulated on the level of the domain, which is, euphemistically put, quite a stretch.
+Although conclusions drawn about the effect of the treatment are specific to the task administered, they are often generalized to the domain without any form of reservation. This prompts the question of whether we can use the results of national assessments about differences between tasks in the analyses of experimental studies.
 In this paper, we demonstrate how the information of a baseline data set can be used as a kind of control condition in the analysis of an experimental study.
-We adopt a Bayesian paradigm as this makes it straightforward to propagate uncertainty in the estimates of a national assessment into the analysis of the experimental study.
 
 }
 
-\keywords{APA style, demonstration}
+\keywords{Prior information, Baseline comparison, Bayesian inference}
+
+\date{}
+
+\graphicspath{{../figuresFlattened/}}
+
+\begin{document}
+
+\maketitle
+%\renewcommand{\thefootnote}{\arabic{footnote}}
+
+\section{Introduction}
 
 In many countries, the achievements of students are monitored in so-called national assessments.
 For instance, NAEP in the US, PEIL in the Netherlands (or international assessment programs like IEA or PIRLS) measure students' achievements at regular intervals to gain information on changes in achievement over time (or changes in differences between countries).
@@ -174,17 +223,14 @@ Therefore, all students write multiple texts in the case of a writing assessment
 This is a necessity if one wants to describe the level of achievements covering a whole domain while generalizing over specific assignments at the same time.
 For writing in the Netherlands, for instance, students took a sample of 3 out of 21 assignments \parencite{zwarts1990balans} via an overlapping design to optimize the relation between testing time per individual while allowing for conclusions at the population level at the same time.
 
-
-
 If we contrast experimental studies with national assessments it is apparent that in many experimental studies the measurements are not as varied as in national assessments.
-In the vast majority of experimental studies on writing, students write one text as a pretest and one text as a posttest \parencite[e.g.,][graham2014conducting].
+In the vast majority of experimental studies on writing, students write one text as a pretest and one text as a posttest \parencite[e.g.,][]{graham2014conducting}.
 Based on these texts we are proned to draw conclusions on changes in the writing skills of students.
 However, it is well documented that differences between different types of writing assignments can be large \parencite[e.g.,][]{bouwer2015effect}.
 We thus can hardly make inferences based on only one writing assignment.
 Although many researchers are aware of the limited generalizability of single-task experiments, in most studies it is often infeasible that students write more tasks.
 
 So, on the one hand, there is much information on levels of achievement (at certain levels of education) from assessments, and on the other hand in most experimental studies, we must rely on relatively small samples of participants and relatively narrow samples of domain specific tasks. Therefore, one could wonder why do we not use the information from large scale assessments? Can this information from assessments be put to use in our experimental studies?
-
 
 In experimental studies, quite often the goal is to show that the increase in achievements due to an experimental manipulation exceeds `natural' growth.
 Usually, this is done by comparing an experimental condition to a control condition, where the control condition represents the expectation given the `natural' growth of achievement.
@@ -208,21 +254,21 @@ Next, we analyze a follow-up data set from an experiment and relate the paramete
 We conclude by discussing the widespread applicability and benefits of this approach and the limitations concerning the validity of this approach.
 
 
-\section*{Baseline Data Set}
+\section{Baseline Data Set}
 \noindent The baseline data set was collected to investigate the writing quality of students in the tenth, eleventh, and twelfth grade of high school. Here we provide some information about the data collection and some descriptives of the data.
 
 Schools were selected at random by creating three lists of schools. First, a school in the first batch was approached for participating in the study. If this school did not reply or refused, a school in the second batch was selected at random. If the second school did not participate a school from the third batch was approached.
 
-In total, the writing quality was measured for 625 students, nested in 43 schools. To assess between-task variance, 32 different tasks were administered of which each students made four. Students did not make all tasks, 497 students made four tasks and 128 students made three or fewer tasks. The minimum amount of students per task was 62 whereas the maximum was 84. 
+In total, the writing quality was measured for 625 students, nested in 43 schools. To assess between-task variance, 32 different tasks were administered of which each students made four. Not all students made all tasks, 497 students made four tasks and 128 students made three or fewer tasks. The minimum amount of students per task was 62 whereas the maximum was 84. 
 A benchmark rating procedure was used to assess the students' texts.
 This procedure entails that texts are rated holistically by comparing them to five benchmark texts at intervals of 1 SD.
 Benchmark rating proved to be a reliable rating method in several previous studies on writing \parencite{blok1986essay, de2016student, rietdijk2017improving,bouwer2017tekster}.
 An overlapping rater team design with a total of 48 raters was applied \parencite{vandenbergh1989method}.
 Every text was rated by a jury of three raters; average jury reliability was 0.65. The text's final score consisted of the average of the three separate scores.
 
-
-
-The data contain an obvious nested structure, as illustrated in Figure~\ref{fig:baselineDescriptives}. Observations are nested within students and tasks. Furthermore, students are nested within schools. Students took a sample of four tasks out of 32 tasks developed for this writing assessment.
+The data contain an obvious nested structure: observations are nested within students and tasks, and students are nested within schools.
+Students took a sample of four tasks out of 32 tasks developed for this writing assessment.
+Figure~\ref{fig:baselineDescriptives} shows the observed differences between grades, tasks, and students.
 \PlaceInsert{fig:baselineDescriptives}
 \begin{figure}[!ht]
 	\caption{Box and Whiskers Plot of Student Performance on each Task for the three Grades Measured}
@@ -242,7 +288,7 @@ If $y_{(ij)k}$ is the score of student $i$ ($i = 1, 2, 3, ...., I_k$) on task $j
 The model consists a fixed part, the first line, and a random part, the second line. In the fixed part, $\mathrm{Grade}_{(ij)k}$ is an indicator matrix for students' grade (e.g., for students in grade 11 $[\mathrm{Grade}_{(ij)k}=11] = 1$, otherwise 0). The intercept $\beta_0$ represents the mean writing score in Grade 10. Consequently, the regression weights $\beta_1$ and $\beta_2$ represent the difference in mean writing score between grade 11 and 10, and grade 12 and 10 respectively. In the random part four residual scores are distinguished, all of which are assumed to be normally distributed with an expected value of 0. The first residual ($w_{00k}$) captures the difference between the average of a school and the intercept. The second residual ($u_{i0k}$) captures that the average score of student $i$ in school $k$ can deviate from the schools' average. The third residual ($v_{0j0}$) captures that some tasks might be more difficult than other tasks. The fourth residual ($\epsilon_{(ij)k}$) indicates the deviation of the score of task $j$ of the average of student $i$ in school $k$. Usually, the variance of this term is interpreted as random noise.
 
 
-\subsection*{Bayesian Inference}
+\subsection{Bayesian Inference}
 \pgfmathsetmacro{\zCrit}{1.959964}% qnorm(0.975)
 
 This section aims to give a brief introduction to Bayesian inference with an emphasis on the problem at hand. For a more elaborate introduction to Bayesian inference, see the special issue in \emph{Psychonomic Bulletin \& Review} which provides tutorials and guidance for aspiring Bayesians \parencite{VandekerckhoveEtAl2018SI}. The choice for a Bayesian analysis is motivated by the fact that Bayesian inference is naturally accompanied by uncertainty estimates, as is explained later. Thus, the estimates of a baseline study and an experimental study can be compared while accounting for the uncertainty in both sets of estimates.
@@ -267,7 +313,7 @@ The procedure for updating the prior distribution to a posterior distribution is
 \end{align*}
 Here, $\bm{\beta}$ represents all parameters in the model. The prior distribution of the parameters is updated through the likelihood of the statistical model. The likelihood is divided by the marginal likelihood so that the posterior distribution is a proper probability distribution (i.e., it integrates to 1). The posterior distribution is key for parameter estimates. For instance, if a single estimate for a parameter is desired, one could use the mean of the posterior distribution. Other often-used point-estimates are the posterior mode and posterior median. Simultaneously with obtaining the posterior, a measure of uncertainty for each parameter is obtained. Since the posterior distribution is a proper probability distribution, we can use it to draw inferences about the parameters. For example, consider the posterior distribution for the intercept, $\prob{\beta_0 \mid \data , \model}$. Questions such as ``Given that we have seen the data, what is the probability that the intercept is larger than 0?'' can be answered by computing $\prob{\beta_0 > 0 \mid \data , \model}$. Likewise, if we find a lower bound $LB$ and upper bound $UB$ for the intercept $\beta_0$ such that $\prob{ LB \leq \beta_0 \leq UB \mid \data , \model} = 0.95$, we can claim: ``Given that we have seen the data, we are $95\%$ confident that the population value of the intercept lies between $LB$ and $UB$.'' This interval is known as the Bayesian $95\%$ credible interval. Another often-used Bayesian uncertainty interval is the 95\% highest posterior density interval (HPD), an interval that contains 95\% of the posterior mass and has the highest probability density.
 
-\subsubsection*{Approximations to Posterior Distributions}
+\subsubsection{Approximations to Posterior Distributions}
 Bayes' theorem may appear straightforward, however, in practice a model may contain a large number of parameters which complicates studying the posterior distribution analytically. 
 This holds in particular for multi-level models, as the number of dimensions equals the sum of the number of random effects, fixed effects, and variances.
 Rather than studying the mathematical form of the posterior, it is easier to simulate random values from the posterior distribution and to use these for inference.
@@ -277,8 +323,8 @@ For example, if we are interested in the posterior mean of the intercept, we sim
 Likewise, to compute the posterior probability that an intercept $\beta_0$ is positive, $\prob{\beta_0 > 0 \mid \data , \model}$, we take the proportion of MCMC samples where $\beta_0$ is positive.
 This procedure is akin to how applied scientists randomly sample participants from a population and then generalize the sample statistics to the population, although with MCMC it is often easy to draw enormous samples to obtain a near-perfect approximation.
 
-\subsection*{Statistical Software}
-\pgfplotstableread{mcmcSettings.csv}\tbMCMCsettings
+\subsection{Statistical Software}
+%\pgfplotstableread{mcmcSettings.csv}\tbMCMCsettings
 
 All analyses were done in R \parencite{R}.
 The R package \code{brms} was used for Bayesian multilevel analyses \parencite{burkner2017brms}.
@@ -292,10 +338,10 @@ In total, results in Tables and Figures are based on \getValInt{0}{total}{\tbMCM
 
 We used the default prior distributions of the R package \code{brms} for all parameters. That is, the standard deviations of the random effects and the residual were assigned a half t-distribution with a mean of 0, scale of 18, and 3 degrees of freedom. For the fixed effects we used a Cauchy distribution with location 0 and scale 1.
 
-\section*{Baseline Analysis}
+\section{Baseline Analysis}
 
 % setup table
-\pgfplotstableread{postSummaryBaseline.csv}\tbPostSummaryBaseline
+%\pgfplotstableread{postSummaryBaseline.csv}\tbPostSummaryBaseline
 
 We summarized the posterior distribution in Table~\ref{tb:baselineSummary}.
 This shows that the average text quality of students in grade 10 is estimated at \getVal{0}{Mean}{\tbPostSummaryBaseline}.
@@ -341,11 +387,11 @@ Figure~\ref{fig:baselinePosteriorTextQuality} visualizes the improvement in text
 
 The descriptive plot in Figure~\ref{fig:baselineDescriptives} suggested that the scores of students depend on the task they made. This is further confirmed by the posterior mean of between task variance \getVal{5}{Mean}{\tbPostSummaryBaseline} (\getCI{5}{\tbPostSummaryBaseline})) which is far away from 0. This shows that differences between tasks are substantial and that some tasks are systematically more difficult than others. Consequentially, a students' domain score depends on the task they made.
 
-\section*{Application to an Experimental Analysis}
+\section{Application to an Experimental Analysis}
 
 In this section, we demonstrate how the findings based in the baseline analyses can be used as prior information to assess the impact of an intervention in an experimental analysis.
 
-\subsection*{Data Set}
+\subsection{Experimental Data Set}
 Data were collected from 89 students of two high-schools in the Netherlands.
 Students made three writing tasks in one week; one on Monday, Wednesday, and Friday.
 Prior to writing the second and third text, the participants received feedback on their previously written text.
@@ -361,8 +407,8 @@ Figure~\ref{fig:productDescriptives} depicts the data from the experiment per me
 	\label{fig:productDescriptives}
 \end{figure}
 
-\subsection*{Analysis}
-\pgfplotstableread{postSummaryExperimental.csv}\tbPostSummaryProduct
+\subsection{Experimental Analysis}
+%\pgfplotstableread{postSummaryExperimental.csv}\tbPostSummaryProduct
 
 A typical analysis for this data set is almost identical to that of the baseline data set, except that here we estimate differences between measurements, which might be contaminated with differences due to tasks. Since each student took only one task at each measurement occasion, the between-task variance cannot be estimated. Thus $y_{hik}$ is the observation of measurement $h$ ($h=1, 2, 3$) of student $i$ ($i=1, ..., K_i$) in school $k$ ($k = 1, 2$). The multilevel model thus becomes:
 \begin{align*}
@@ -414,8 +460,8 @@ The estimated improvement across measurement occasions is shown in Figure~\ref{f
 At this point in the analysis, drawing conclusions about the effect of the treatment is problematic because there is no control group. 
 Thus, the improvement of the students cannot solely be attributed to just the intervention but might be caused by differences in difficulty between tasks.
 
-\subsection*{Relating Baseline Results to the Analysis of an Experimental Study}
-\pgfplotstableread{postMeansCorrectedExperimental.csv}\tbPostMeansProdCC
+\subsection{Relating Baseline Results to the Analysis of an Experimental Study}
+%\pgfplotstableread{postMeansCorrectedExperimental.csv}\tbPostMeansProdCC
 
 Ideally, we directly compare the difference in text quality between measurement occasions in the experimental study. However, interpreting these differences is not straightforward as the contamination of task effect and measurement occasion makes this impossible. To make the differences between measurement occasions interpretable we need to correct these for task difficulty. As the baseline study provides estimates of task difficulty, a correction is self-evident.  We can correct students' scores in the experimental study by subtracting the estimated task effect in the baseline study. As a consequence, the corrected posterior means for each measurement occasion changed slightly, see Figure~\ref{fig:comparePostTextQual} (from \getVal{0}{Mean}{\tbPostMeansProdCC} to \getVal{3}{Mean}{\tbPostMeansProdCC} for measurement 1, from \getVal{1}{Mean}{\tbPostMeansProdCC} to \getVal{4}{Mean}{\tbPostMeansProdCC} for measurement 2, and from \getVal{2}{Mean}{\tbPostMeansProdCC} to \getVal{5}{Mean}{\tbPostMeansProdCC} for measurement 3). Note that a direct comparison is possible because the rating procedure of the experimental study is based on the rating procedure of the baseline study.
 \PlaceInsert{fig:comparePostTextQual}
@@ -428,7 +474,9 @@ Ideally, we directly compare the difference in text quality between measurement 
 
 From Figure~\ref{fig:comparePostTextQual} we can infer that the corrected difference between measurement 1 and measurement 2 in the experimental study is almost as large as the difference between grade 10 and 11 in the baseline study. Hence, there is a substantial difference between both measurements and thus an experimental effect. By comparison, the difference between measurement 2 and measurement 3 is much smaller. Of course, this is not a statistical test of significance. Typically, such a test should account for between-task variance. To obtain an estimate for the magnitude of between-task effects we can use the estimates of the baseline study to simulate a distribution of task difficulty. Next, we can compute the probability that the observed difference between measurement occasions in the experimental study is due to differences between tasks.
 
-Since multilevel models typically assume that the random effects follow a normal distribution with mean 0 we simulate a large number of task effects from a normal distribution with mean 0. As variance for this normal distribution, we use the posterior samples for the between-task variance, to propagate the uncertainty in this parameter into the distribution over task-effects.\footnote{Essentially, the effects of these new random tasks are drawn from the posterior predictive distribution of the baseline study.} In total \getValInt{0}{total}{\tbMCMCsettings} task-effects were sampled (the same amount as MCMC samples). Next, we can visualize the posterior distribution of improvement between measurement occasions and contrast this with the distribution over task-effects, as shown in Figure~\ref{fig:posteriorImprovement}.
+Since multilevel models typically assume that the random effects follow a normal distribution with mean 0 we simulate a large number of task effects from a normal distribution with mean 0. As variance for this normal distribution, we use the posterior samples for the between-task variance, to propagate the uncertainty in this parameter into the distribution over task-effects.
+%\footnote{Essentially, the effects of these new random tasks are drawn from the posterior predictive distribution of the baseline study.} 
+In total \getValInt{0}{total}{\tbMCMCsettings} task-effects were sampled (the same amount as MCMC samples). Next, we can visualize the posterior distribution of improvement between measurement occasions and contrast this with the distribution over task-effects, as shown in Figure~\ref{fig:posteriorImprovement}.
 \PlaceInsert{fig:posteriorImprovement}
 \begin{figure}[!ht]
 	\caption{Distribution of the Effect of a Random Task versus the Posterior Distribution of the Estimated Progress in the Experimental Data}
@@ -452,7 +500,7 @@ The resulting posterior distributions are shown in Figure~\ref{fig:improvementIn
 
 \PlaceInsert{fig:improvementInYears}
 % these cannot be generated inside the caption
-\pgfplotstableread{credibleIntervalsImprovementAllYears.csv}\tbCRIimprovement
+%\pgfplotstableread{credibleIntervalsImprovementAllYears.csv}\tbCRIimprovement
 \setVal{0}{Lower}{\tbCRIimprovement}{\criLowerA}
 \setVal{0}{Upper}{\tbCRIimprovement}{\criUpperA}
 \setVal{1}{Lower}{\tbCRIimprovement}{\criLowerB}
@@ -468,7 +516,7 @@ The resulting posterior distributions are shown in Figure~\ref{fig:improvementIn
 
 In the left panel of Figure~\ref{fig:improvementInYears}, the posterior has a mean \getVal{0}{mean}{\tbCRIimprovement} (\getCI{0}{\tbCRIimprovement}), which indicates that the students appear to have gained almost a year in ability between the two measurements. In the middle panel, the posterior mean is \getVal{1}{mean}{\tbCRIimprovement} (\getCI{1}{\tbCRIimprovement}) which indicates that this improvement is still present at the third measurement. In the rightmost panel, the mean improvement is \getVal{2}{mean}{\tbCRIimprovement} (\getCI{2}{\tbCRIimprovement}) which is much smaller and indicates less improvement between measurement occasions two and three.
 
-\section*{Discussion}
+\section{Discussion}
 In this paper, we related the results of an experimental study to those of a baseline study.
 The post-intervention improvement in the experimental study exceeded the differences between random tasks in the baseline study.
 Therefore, we interpret the effect of the intervention as significant.
@@ -497,7 +545,7 @@ The Bayesian paradigm avoids this scenario automatically through the prior.
 
 
 
-\subsection*{Limitations}
+\subsection{Limitations}
 As is typical for quasi-experimental research in educational settings, there was no random assignment in the experimental study.
 Therefore, the usual limitations of quasi-experimental research apply; it is possible that the observed differences between measurement occasions are caused by a confounding variable rather than the intervention because students are not randomly assigned to either the experimental or baseline condition/ study.
 Caution should be exercised in interpreting the conclusions based on a comparison with a baseline study as causal.
@@ -520,7 +568,7 @@ The consequences of ignoring the higher-order moments in the posterior distribut
 Second, the benefit of informed priors is unclear, as the data typically overwhelm the influence of the prior distribution, barring extreme cases \parencite{Lynch2007}.
 Thus, since the inferences done in the paper are based solely on the posterior distribution, the influence of the prior distribution is likely negligible.
 
-\subsection*{Recommendations}
+\subsection{Recommendations}
 Prior information can enrich the statistical analyses and provide more insight into the data.
 Here, we outline three recommendations for those who wish to apply our method for incorporating prior information in practice.
 

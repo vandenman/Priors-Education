@@ -14,6 +14,10 @@ results/samplesBaselineTaskEffectsRaw.rds
 *.tdo
 ..gitignore.kate-swp
 .Rproj.user
-packrat/lib*/
-packrat/src/
 results/samplesArrayBaseline.rds
+figuresFlattened
+figuresFlattened_eps
+latex_supplement
+oldstuff
+simulations
+titlePage

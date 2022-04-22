@@ -61,7 +61,7 @@ writeTable(tb, "postMeansCorrectedExperimental.csv")
 
 # compare posterior distribution intercept baseline vs experimental
 g <- plotMeasureVersusTaskVariance(df, cols, xlab = "Posterior Text Quality")
-saveFigure("comparePosteriorTextQuality.pdf", graph = g, width = 14, height = 7)
+# saveFigure("comparePosteriorTextQuality.pdf", graph = g, width = 14, height = 7)
 
 # probability of task effect ----
 # color of task effect
