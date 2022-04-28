@@ -4,6 +4,17 @@ library(tibble)
 library(ggplot2)
 TeX <- latex2exp::TeX
 source("R/utils.R")
+useSimulatedData <- TRUE
+
+if (useSimulatedData) {
+  samplesBaseline     <- readRDS("resultsSimulatedData/samplesBaseline.rds")
+  samplesExperimental <- readRDS("resultsSimulatedData/samplesExperimental.rds")
+  averageTaskEffects  <- readRDS("resultsSimulatedData/samplesBaselineAverageTaskEffects.rds")
+} else {
+  samplesBaseline     <- readRDS("results/samplesBaseline.rds")
+  samplesExperimental <- readRDS("results/samplesExperimental.rds")
+  averageTaskEffects  <- readRDS("results/samplesBaselineAverageTaskEffects.rds")
+}
 
 plotMeasureVersusTaskVariance <- function(df, cols, xlab = "", ylab = "Density", colorlab = "", title = NULL,
                                           legendInPlot = FALSE, peakLocation = "right") { #, textFill = textColor, ...) {
@@ -31,9 +42,6 @@ plotMeasureVersusTaskVariance <- function(df, cols, xlab = "", ylab = "Density",
   return(g)
 }
 
-samplesBaseline     <- readRDS("results/samplesBaseline.rds")
-samplesExperimental <- readRDS("results/samplesExperimental.rds")
-averageTaskEffects  <- readRDS("results/samplesBaselineAverageTaskEffects.rds")
 
 df <- tibble(
   what = rep(c(paste("Baseline Grade", 10:12), paste("Experiment", 1:3)), each = nrow(samplesExperimental)),
@@ -57,7 +65,7 @@ ms <- c(m1, colMeans(samplesExperimental[, c("T2", "T3")]) + m1)
 nm <- unique(df[["what"]]); nm <- nm[startsWith(nm, "Experiment")]
 tb <- data.frame(Mean = c(tapply(df[["samples"]], df[["what"]], mean)[nm], ms),
                  what = c(nm, paste("Exp", 1:3, "uncorrected")), row.names = NULL)[c(4:6, 1:3), ]
-writeTable(tb, "postMeansCorrectedExperimental.csv")
+# writeTable(tb, "postMeansCorrectedExperimental.csv")
 
 # compare posterior distribution intercept baseline vs experimental
 g <- plotMeasureVersusTaskVariance(df, cols, xlab = "Posterior Text Quality")
