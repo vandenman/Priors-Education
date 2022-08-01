@@ -1,4 +1,4 @@
-\documentclass[man, mask]{apa7}
+\documentclass[man, floatsintext]{apa7}
 
 \usepackage[utf8]{inputenc}
 \usepackage[american]{babel}
@@ -21,7 +21,7 @@
 \usepackage[nameinlink,capitalize]{cleveref}
 
 \usepackage{pgfplotstable}
-%\pgfplotsset{compat=1.15}
+\pgfplotsset{compat=1.16}
 \pgfplotstableset{
 	fixed zerofill,
 	precision=3,
@@ -114,6 +114,7 @@
 		}%
 	\end{tablenotes}
 }
+
 \newcommand{\TbFigNote}[1]{\figurenote{#1}}
 
 \newcommand{\getVal}[3]{%
@@ -150,9 +151,11 @@
 \shorttitle{Prior Information in Educational Analyses}
 
 %\renewcommand{\thefootnote}{\fnsymbol{footnote}}
-\threeauthors{Don van den Bergh}{Nina Vandermeulen, Marije Lesterhuis, Sven de Maeyer,\\Elke van Steendam, Gert Rijlaarsdam}{Huub van den Bergh}
-\threeaffiliations{University of Amsterdam}{University of Antwerp}{University of Utrecht}
+%\threeauthors{Don van den Bergh}{Nina Vandermeulen, Marije Lesterhuis, Sven de Maeyer,\\Elke van Steendam, Gert Rijlaarsdam}{Huub van den Bergh}
+%\threeaffiliations{University of Amsterdam}{University of Antwerp}{University of Utrecht}
 
+\authorsnames[1,2,2,2,2,2,3]{Don van den Bergh,Nina Vandermeulen, Marije Lesterhuis, Sven de Maeyer,\\Elke van Steendam, Gert Rijlaarsdam,Huub van den Bergh}
+\authorsaffiliations{University of Amsterdam,University of Antwerp,University of Utrecht}
 %\author[1]{Don van den Bergh\thanks{Correspondence concerning this article should be addressed to
 %Don van den Bergh, University of Amsterdam, Department of Psychological Methods, Postbus 15906, 1001 NK Amsterdam, The Netherlands. E-Mail should be sent to donvdbergh@hotmail.com.}}
 %\author[2]{Nina Vandermeulen}
@@ -273,7 +276,7 @@ Figure~\ref{fig:baselineDescriptives} shows the observed differences between gra
 \begin{figure}[!ht]
 	\caption{Box and Whiskers Plot of Student Performance on each Task for the three Grades Measured}
 	\fitfigure{descriptivesBaseline.pdf}
-	\TbFigNote{The grade is indicated above each panel and the task code is shown on the x-axis. There is substantial variance in student performance between tasks and within tasks, and student performance appears to increase in successive grades.}
+	\figurenote{The grade is indicated above each panel and the task code is shown on the x-axis. There is substantial variance in student performance between tasks and within tasks, and student performance appears to increase in successive grades.}
 	\label{fig:baselineDescriptives}
 \end{figure}
 The observations of text quality cannot be considered as independent.
@@ -381,7 +384,7 @@ Figure~\ref{fig:baselinePosteriorTextQuality} visualizes the improvement in text
 \begin{figure}[!ht]
 	\caption{Posterior Distribution of Text Quality in Grades 10, 11, and 12}
 	\fitfigure{posteriorTextQualityBaseline}
-	\TbFigNote{Posteriors distributions for grades 11 and 12 are obtained by adding the MCMC samples of the intercept to the MCMC samples for the improvement of the respective grade.}
+	\figurenote{Posteriors distributions for grades 11 and 12 are obtained by adding the MCMC samples of the intercept to the MCMC samples for the improvement of the respective grade.}
 	\label{fig:baselinePosteriorTextQuality}
 \end{figure}
 
@@ -403,7 +406,7 @@ Figure~\ref{fig:productDescriptives} depicts the data from the experiment per me
 \begin{figure}[!ht]
 	\caption{Box and Whiskers Plot of Student Performance on the three Measurement Occasions}
 	\fitfigure{descriptivesExperimental}
-	\TbFigNote{Grey points represent the raw scores on text quality. Quasi-random jitter was added to the x-coordinates of the points to avoid visual clutter. The average performance clearly increases from measurement one to two, but it is hard to quantify the improvement without a reference group.}
+	\figurenote{Grey points represent the raw scores on text quality. Quasi-random jitter was added to the x-coordinates of the points to avoid visual clutter. The average performance clearly increases from measurement one to two, but it is hard to quantify the improvement without a reference group.}
 	\label{fig:productDescriptives}
 \end{figure}
 
@@ -468,7 +471,7 @@ Ideally, we directly compare the difference in text quality between measurement 
 \begin{figure}[!ht]
 	\caption{Posterior Distributions for each Grade in the Baseline Study and each Measurement Occasion in the Experimental Study.}
 	\fitfigure{comparePosteriorTextQuality.pdf}
-	\TbFigNote{The posterior distributions of the baseline study are narrower because they are based on more observations. We subtracted the estimated average task effect of each task category in the baseline study from the posteriors distributions in the experimental study to correct these for the task effect.}
+	\figurenote{The posterior distributions of the baseline study are narrower because they are based on more observations. We subtracted the estimated average task effect of each task category in the baseline study from the posteriors distributions in the experimental study to correct these for the task effect.}
 	\label{fig:comparePostTextQual}
 \end{figure}
 
@@ -481,7 +484,7 @@ In total \getValInt{0}{total}{\tbMCMCsettings} task-effects were sampled (the sa
 \begin{figure}[!ht]
 	\caption{Distribution of the Effect of a Random Task versus the Posterior Distribution of the Estimated Progress in the Experimental Data}
 	\fitfigure{compareTaskEffects.pdf}
-	\TbFigNote{The grey density represent the distribution of the effect of a random task. The blue density in the left panel is the posterior distribution of improvement between the first and second measurement; the purple density in the middle panel is the posterior distribution of improvement between the first and third measurement; the dark blue density in the right panel is the posterior distribution of improvement between the second and third measurement. The probability that a random task is larger than the improvement is shown above each panel.}
+	\figurenote{The grey density represent the distribution of the effect of a random task. The blue density in the left panel is the posterior distribution of improvement between the first and second measurement; the purple density in the middle panel is the posterior distribution of improvement between the first and third measurement; the dark blue density in the right panel is the posterior distribution of improvement between the second and third measurement. The probability that a random task is larger than the improvement is shown above each panel.}
 	\label{fig:posteriorImprovement}
 \end{figure}
 
@@ -510,7 +513,7 @@ The resulting posterior distributions are shown in Figure~\ref{fig:improvementIn
 \begin{figure}[!ht]
 	\caption{Improvement in the Experimental Study relative to the Improvement between Grades 11 and 10}
 	\fitfigure{improvementInAllYears.pdf}
-	\TbFigNote{The left panel shows the posterior distribution for the improvement between measurement 1 and measurement 2 divided by the improvement from grade 10 to 11 (95\% HPD [$\criLowerA$, $\criUpperA$]). The middle panel shows the improvement from measurement 1 to measurement 3, standardized in the same manner (95\% HPD [$\criLowerB$, $\criUpperB$]). The right panel shows the improvement between measurement 2 and 3  (95\% HPD [$\criLowerC$, $\criUpperC$]). The shaded areas under the curve represent 95\% HPD intervals.}
+	\figurenote{The left panel shows the posterior distribution for the improvement between measurement 1 and measurement 2 divided by the improvement from grade 10 to 11 (95\% HPD [$\criLowerA$, $\criUpperA$]). The middle panel shows the improvement from measurement 1 to measurement 3, standardized in the same manner (95\% HPD [$\criLowerB$, $\criUpperB$]). The right panel shows the improvement between measurement 2 and 3  (95\% HPD [$\criLowerC$, $\criUpperC$]). The shaded areas under the curve represent 95\% HPD intervals.}
 	\label{fig:improvementInYears}
 \end{figure}
 
@@ -598,7 +601,7 @@ Altogether, this may help to place effect sizes of experimental studies in a bro
 \begin{figure}
 	\caption{Visual Summary of the Posterior Distributions for the Group Level Effects of the Baseline Data Set}
 	\fitfigure{posteriorDescriptivesBaseline}
-	\TbFigNote{The strips above and right of the figures indicate the parameters compared. Figures on the diagonal show marginal density estimates. Figures below the diagonal show bivariate hexagonal histograms. The numbers above the diagonal indicate the Pearson correlation between the samples of the parameters.}
+	\figurenote{The strips above and right of the figures indicate the parameters compared. Figures on the diagonal show marginal density estimates. Figures below the diagonal show bivariate hexagonal histograms. The numbers above the diagonal indicate the Pearson correlation between the samples of the parameters.}
 	\label{fig:baselinePosteriorDescriptives}
 \end{figure}
 
@@ -615,7 +618,7 @@ Altogether, this may help to place effect sizes of experimental studies in a bro
 			\fitfigure{autocorrelationBaseline}
 		\end{subfigure}%
 	\end{nscenter}
-	\TbFigNote{Left: trace plots of the first 10,000 posterior samples after warmup. The different chains appear indistinguishable, which indicates they converged. Right: Autocorrelation of the chains. The 0\textsuperscript{th} lag was omitted (as this is 1 by definition). The autocorrelation drops to 0 after about 5 iterations.}
+	\figurenote{Left: trace plots of the first 10,000 posterior samples after warmup. The different chains appear indistinguishable, which indicates they converged. Right: Autocorrelation of the chains. The 0\textsuperscript{th} lag was omitted (as this is 1 by definition). The autocorrelation drops to 0 after about 5 iterations.}
 	\label{fig:baselinePosteriorDiagnostics}
 \end{figure}
 
@@ -624,7 +627,7 @@ Altogether, this may help to place effect sizes of experimental studies in a bro
 \begin{figure}
 	\caption{Visual Summary of the Posterior Distributions for the Group Level Effects of the Experimental Data Set.}
 	\fitfigure{posteriorDescriptivesExperimental}
-	\TbFigNote{The strips above and right of the figures indicate the parameters compared. Figures on the diagonal show marginal density estimates. Figures below the diagonal show bivariate hexagonal histograms. The numbers above the diagonal indicate the Pearson correlation between the samples of the parameters.}
+	\figurenote{The strips above and right of the figures indicate the parameters compared. Figures on the diagonal show marginal density estimates. Figures below the diagonal show bivariate hexagonal histograms. The numbers above the diagonal indicate the Pearson correlation between the samples of the parameters.}
 	\label{fig:productPosteriorDescriptives}
 \end{figure}
 
