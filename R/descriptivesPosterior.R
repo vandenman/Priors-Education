@@ -18,12 +18,17 @@ posteriorScatterPlot <- function(samples, thm, ...) {
         ggplot(data = data, mapping = mapping) +
           geom_hex() +
           scale_fill_gradient(low = "grey60", high = "grey20") +
+          scale_x_continuous(n.breaks = 3) +
           thm
       },
       combo = ggally_dot_no_facet
     ),
     diag = list(
-      continuous = function(data, mapping, ...) ggally_densityDiag(data, mapping, ...) + thm,
+      continuous = function(data, mapping, ...) {
+        ggally_densityDiag(data, mapping, ...) +
+          scale_x_continuous(n.breaks = 3) +
+          thm
+      },
       # GGally defaults
       discrete = "barDiag", na = "naDiag"
     ),

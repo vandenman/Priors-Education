@@ -1,8 +1,8 @@
-// generated with brms 2.10.0
+// generated with brms 2.17.0
 functions {
 }
 data {
-  int<lower=1> N;  // number of observations
+  int<lower=1> N;  // total number of observations
   vector[N] Y;  // response variable
   int<lower=1> K;  // number of population-level effects
   matrix[N, K] X;  // population-level design matrix
@@ -31,44 +31,43 @@ transformed data {
 }
 parameters {
   vector[Kc] b;  // population-level effects
-  // temporary intercept for centered predictors
-  real Intercept;
-  real<lower=0> sigma;  // residual SD
+  real Intercept;  // temporary intercept for centered predictors
+  real<lower=0> sigma;  // dispersion parameter
   vector<lower=0>[M_1] sd_1;  // group-level standard deviations
-  // standardized group-level effects
-  vector[N_1] z_1[M_1];
+  vector[N_1] z_1[M_1];  // standardized group-level effects
   vector<lower=0>[M_2] sd_2;  // group-level standard deviations
-  // standardized group-level effects
-  vector[N_2] z_2[M_2];
+  vector[N_2] z_2[M_2];  // standardized group-level effects
 }
 transformed parameters {
-  // actual group-level effects
-  vector[N_1] r_1_1 = (sd_1[1] * (z_1[1]));
-  // actual group-level effects
-  vector[N_2] r_2_1 = (sd_2[1] * (z_2[1]));
+  vector[N_1] r_1_1;  // actual group-level effects
+  vector[N_2] r_2_1;  // actual group-level effects
+  real lprior = 0;  // prior contributions to the log posterior
+  r_1_1 = (sd_1[1] * (z_1[1]));
+  r_2_1 = (sd_2[1] * (z_2[1]));
+  lprior += cauchy_lpdf(b | 0, 1);
+  lprior += student_t_lpdf(Intercept | 3, 82.2, 10.9);
+  lprior += student_t_lpdf(sigma | 3, 0, 10.9)
+    - 1 * student_t_lccdf(0 | 3, 0, 10.9);
+  lprior += student_t_lpdf(sd_1 | 3, 0, 10.9)
+    - 1 * student_t_lccdf(0 | 3, 0, 10.9);
+  lprior += student_t_lpdf(sd_2 | 3, 0, 10.9)
+    - 1 * student_t_lccdf(0 | 3, 0, 10.9);
 }
 model {
-  // initialize linear predictor term
-  vector[N] mu = Intercept + Xc * b;
-  for (n in 1:N) {
-    // add more terms to the linear predictor
-    mu[n] += r_1_1[J_1[n]] * Z_1_1[n] + r_2_1[J_2[n]] * Z_2_1[n];
-  }
-  // priors including all constants
-  target += cauchy_lpdf(b | 0, 1);
-  target += student_t_lpdf(Intercept | 3, 82, 18);
-  target += student_t_lpdf(sigma | 3, 0, 18)
-    - 1 * student_t_lccdf(0 | 3, 0, 18);
-  target += student_t_lpdf(sd_1 | 3, 0, 18)
-    - 1 * student_t_lccdf(0 | 3, 0, 18);
-  target += normal_lpdf(z_1[1] | 0, 1);
-  target += student_t_lpdf(sd_2 | 3, 0, 18)
-    - 1 * student_t_lccdf(0 | 3, 0, 18);
-  target += normal_lpdf(z_2[1] | 0, 1);
-  // likelihood including all constants
+  // likelihood including constants
   if (!prior_only) {
-    target += normal_lpdf(Y | mu, sigma);
+    // initialize linear predictor term
+    vector[N] mu = Intercept + rep_vector(0.0, N);
+    for (n in 1:N) {
+      // add more terms to the linear predictor
+      mu[n] += r_1_1[J_1[n]] * Z_1_1[n] + r_2_1[J_2[n]] * Z_2_1[n];
+    }
+    target += normal_id_glm_lpdf(Y | Xc, mu, b, sigma);
   }
+  // priors including constants
+  target += lprior;
+  target += std_normal_lpdf(z_1[1]);
+  target += std_normal_lpdf(z_2[1]);
 }
 generated quantities {
   // actual population-level intercept

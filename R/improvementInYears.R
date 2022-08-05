@@ -5,14 +5,16 @@ HPDinterval <- coda::HPDinterval
 as.mcmc <- coda::as.mcmc
 source("R/utils.R")
 
-# computeCRIandDensity <- function(x) {
-#   cri <- coda::HPDinterval(coda::as.mcmc(x))
-#   d <- density(x, from = -1, to = 5)
-#   df <- data.frame(x = d$x, y = d$y)
-#   # y was picked by eye
-#   dfh <- data.frame(xmin = cri[1], xmax = cri[2], y = 1.3)
-#   return(list(df = df, dfh = dfh))
-# }
+useSimulatedData <- TRUE
+if (useSimulatedData) {
+  samplesBaseline     <- readRDS("resultsSimulated/samplesBaseline.rds")
+  samplesExperimental <- readRDS("resultsSimulated/samplesExperimental.rds")
+  averageTaskEffects  <- readRDS("resultsSimulated/samplesBaselineAverageTaskEffects.rds")
+} else {
+  samplesBaseline     <- readRDS("results/samplesBaseline.rds")
+  samplesExperimental <- readRDS("results/samplesExperimental.rds")
+  averageTaskEffects  <- readRDS("results/samplesBaselineAverageTaskEffects.rds")
+}
 
 computeCRIandDensity <- function(x) {
   cri <- coda::HPDinterval(coda::as.mcmc(x))
@@ -55,10 +57,6 @@ progressPlot <- function(df, dfh, xlab = "Improvement in years", ylab = "Density
 
   return(g)
 }
-
-samplesBaseline     <- readRDS("results/samplesBaseline.rds")
-samplesExperimental <- readRDS("results/samplesExperimental.rds")
-averageTaskEffects  <- readRDS("results/samplesBaselineAverageTaskEffects.rds")
 
 # visualize the average effect of grade
 # average of Grade 10 to Grade 11 and grade 11 to grade 12
