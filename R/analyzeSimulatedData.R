@@ -6,19 +6,22 @@ library(brms)
 # for the settings used in the actual analyses, see  R/mcmcSettings.R
 # the settings below are a bit more practical and will ensure the model runs in a reasonable time
 # ~30 minutes on my machine
-iter   <- 6e3L
-warmup <- 1e3L
-chains <- 8L
-control <- list(adapt_delta = 0.9)
+iter   <- 1e4L
+warmup <- 5e3L
+chains <- 10L
+control <- list(adapt_delta = 0.9, max_treedepth = 15)
 # run the chains in parallel
 cores <- min(parallel::detectCores() - 1L, chains)
 
-# load simulated data
-datBaseline     <- readRDS(file.path("simulatedData", "baselineData.rds"))
-datExperimental <- readRDS(file.path("simulatedData", "experimentalData.rds"))
+dataDir    <- "dataSimulated"
+resultsDir <- "resultsSimulated"
 
-fileFitSimulatedBaseline     <- file.path("resultsSimulatedData", "fitBaselineData.rds")
-fileFitSimulatedExperimental <- file.path("resultsSimulatedData", "fitExperimentalData.rds")
+# load simulated data
+datBaseline     <- readRDS(file.path(dataDir, "baselineData.rds"))
+datExperimental <- readRDS(file.path(dataDir, "experimentalData.rds"))
+
+fileFitSimulatedBaseline     <- file.path(resultsDir, "fitBaselineData.rds")
+fileFitSimulatedExperimental <- file.path(resultsDir, "fitExperimentalData.rds")
 
 # fit both models
 if (file.exists(fileFitSimulatedBaseline)) {
@@ -66,9 +69,9 @@ colnames(samplesExperimental) <- newNames
 idx2Square <- startsWith(newNames, "var")
 samplesExperimental[, idx2Square]  <- samplesExperimental[, idx2Square]^2
 
-if (!dir.exists("resultsSimulatedData")) dir.create("resultsSimulatedData")
-saveRDS(samplesBaseline,     file = file.path("resultsSimulatedData", "samplesBaseline.rds"))
-saveRDS(samplesExperimental, file = file.path("resultsSimulatedData", "samplesExperimental.rds"))
+if (!dir.exists(resultsDir)) dir.create(resultsDir)
+saveRDS(samplesBaseline,     file = file.path(resultsDir, "samplesBaseline.rds"))
+saveRDS(samplesExperimental, file = file.path(resultsDir, "samplesExperimental.rds"))
 
 tasknames <- sort(unique(datBaseline$Task_Group))
 idx2 <- startsWith(names(fitBaseline$fit), prefix = "r_Task_index")
@@ -76,11 +79,11 @@ names(fitBaseline$fit)[idx2]
 
 samplesTaskEffects <- as.matrix(fitBaseline$fit, pars = names(fitBaseline$fit)[idx2])
 colnames(samplesTaskEffects) <- rep(tasknames, each = 8)
-saveRDS(samplesTaskEffects, file.path("resultsSimulatedData", "samplesBaselineTaskEffectsRaw.rds"))
+saveRDS(samplesTaskEffects, file.path(resultsDir, "samplesBaselineTaskEffectsRaw.rds"))
 
 averageTaskEffects <- matrix(NA, nrow(samplesTaskEffects), 4L, dimnames = list(NULL, LETTERS[1:4]))
 for (i in 1:4) {
   idx <- 1:4 + 8L * (i - 1L)
   averageTaskEffects[, i] <- rowMeans(samplesTaskEffects[, idx])
 }
-saveRDS(averageTaskEffects, file.path("resultsSimulatedData", "samplesBaselineAverageTaskEffects.rds"))
+saveRDS(averageTaskEffects, file.path(resultsDir, "samplesBaselineAverageTaskEffects.rds"))

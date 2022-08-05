@@ -12,7 +12,7 @@ if (!file.exists(fileBrmsFitBaseline))
   stop("The brms object of the baseline dataset is missing!")
 
 if (!file.exists(fileBrmsFitExperimental))
-  stop("The brms object of the baseline dataset is missing!")
+  stop("The brms object of the experimental dataset is missing!")
 
 brmresBaseline     <- readRDS(fileBrmsFitBaseline)
 brmresExperimental <- readRDS(fileBrmsFitExperimental)
@@ -26,7 +26,7 @@ str(newDataExperimental)
 plot(datExperimental$Score_Mean, newDataExperimental)
 plot(datBaseline$Score_Mean, newDataBaseline)
 
-simulatedBaseline <- datBaseline00 |>
+simulatedBaseline <- datBaseline |>
   mutate(
     Score_Mean = c(newDataBaseline),
     Task_Group = substr(Task_Code, 1, 1)
@@ -44,5 +44,5 @@ simulatedExperimental <- datExperimental |>
   select(-Taak)
 all(simulatedExperimental$Score_Mean == newDataExperimental)
 
-saveRDS(simulatedBaseline,     file.path("simulatedData", "baselineData.rds"))
-saveRDS(simulatedExperimental, file.path("simulatedData", "experimentalData.rds"))
+saveRDS(simulatedBaseline,     file.path("dataSimulated", "baselineData.rds"))
+saveRDS(simulatedExperimental, file.path("dataSimulated", "experimentalData.rds"))

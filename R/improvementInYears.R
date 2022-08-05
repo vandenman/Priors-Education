@@ -7,24 +7,14 @@ source("R/utils.R")
 
 useSimulatedData <- TRUE
 if (useSimulatedData) {
-  samplesBaseline     <- readRDS("resultsSimulatedData/samplesBaseline.rds")
-  samplesExperimental <- readRDS("resultsSimulatedData/samplesExperimental.rds")
-  averageTaskEffects  <- readRDS("resultsSimulatedData/samplesBaselineAverageTaskEffects.rds")
+  samplesBaseline     <- readRDS("resultsSimulated/samplesBaseline.rds")
+  samplesExperimental <- readRDS("resultsSimulated/samplesExperimental.rds")
+  averageTaskEffects  <- readRDS("resultsSimulated/samplesBaselineAverageTaskEffects.rds")
 } else {
   samplesBaseline     <- readRDS("results/samplesBaseline.rds")
   samplesExperimental <- readRDS("results/samplesExperimental.rds")
   averageTaskEffects  <- readRDS("results/samplesBaselineAverageTaskEffects.rds")
 }
-
-
-# computeCRIandDensity <- function(x) {
-#   cri <- coda::HPDinterval(coda::as.mcmc(x))
-#   d <- density(x, from = -1, to = 5)
-#   df <- data.frame(x = d$x, y = d$y)
-#   # y was picked by eye
-#   dfh <- data.frame(xmin = cri[1], xmax = cri[2], y = 1.3)
-#   return(list(df = df, dfh = dfh))
-# }
 
 computeCRIandDensity <- function(x) {
   cri <- coda::HPDinterval(coda::as.mcmc(x))
